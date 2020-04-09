@@ -10,22 +10,22 @@ getId
     web3.bzz.net.getId([callback])
     web3.shh.net.getId([callback])
 
-Gets the current network ID.
+获取当前的网络 ID.
 
 ----------
-Parameters
+参数
 ----------
 
 none
 
 -------
-Returns
+返回值
 -------
 
-``Promise`` returns ``Number``: The network ID.
+``Promise`` 返回 ``Number``: 网络 ID.
 
 -------
-Example
+例子
 -------
 
 .. code-block:: javascript
@@ -47,21 +47,22 @@ isListening
     web3.shh.net.isListening([callback])
 
 Checks if the node is listening for peers.
+查看当前节点是否正在连接其它对等节点。
 
 ----------
-Parameters
+参数
 ----------
 
 none
 
 -------
-Returns
+返回值
 -------
 
-``Promise`` returns ``Boolean``
+``Promise`` 返回 ``Boolean``
 
 -------
-Example
+例子
 -------
 
 .. code-block:: javascript
@@ -82,21 +83,22 @@ getPeerCount
     web3.shh.net.getPeerCount([callback])
 
 Get the number of peers connected to.
+获取正在连接的对等节点的数量。
 
 ----------
-Parameters
+参数
 ----------
 
 none
 
 -------
-Returns
+返回值
 -------
 
-``Promise`` returns ``Number``
+``Promise`` 返回 ``Number``
 
 -------
-Example
+例子
 -------
 
 .. code-block:: javascript
