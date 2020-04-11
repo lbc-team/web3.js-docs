@@ -4,20 +4,18 @@
 web3.shh
 ========
 
-
-The ``web3-shh`` package allows you to interact with the whisper protocol for broadcasting.
-For more see `Whisper  Overview <https://github.com/ethereum/go-ethereum/wiki/Whisper>`_.
-
+``web3-shh`` 包让你可以通过与 whisper 协议的交互进行消息广播。
+更多相关信息可以查看 `Whisper  概述 <https://github.com/ethereum/go-ethereum/wiki/Whisper>`_.
 
 .. code-block:: javascript
 
     var Shh = require('web3-shh');
 
-    // "Shh.providers.givenProvider" will be set if in an Ethereum supported browser.
+    // "Shh.providers.givenProvider" 在支持以太坊的浏览器上会被设置
     var shh = new Shh(Shh.givenProvider || 'ws://some.local-or-remote.node:8546');
 
 
-    // or using the web3 umbrella package
+    // 或用 web3 包
 
     var Web3 = require('web3');
     var web3 = new Web3(Web3.givenProvider || 'ws://some.local-or-remote.node:8546');
@@ -47,25 +45,25 @@ getVersion
 
     web3.shh.getVersion([callback])
 
-Returns the version of the running whisper.
+返回运行中的 whisper 版本
 
 ----------
-Parameters
+参数
 ----------
 
-1. ``Function`` - (optional) Optional callback, returns an error object as first parameter and the result as second.
+1. ``Function`` - (可选) 可选的回调函数，第一个参数为错误对象，第二个参数为返回结果。
 
 
 -------
-Returns
+返回值
 -------
 
 
-``String`` - The version of the current whisper running.
+``String`` - 当前运行中的 whisper 版本。
 
 
 -------
-Example
+例子
 -------
 
 
@@ -87,30 +85,30 @@ getInfo
 
     web3.shh.getInfo([callback])
 
-Gets information about the current whisper node.
+获取当前 whisper 节点旳信息。
 
 ----------
-Parameters
+参数
 ----------
 
-1. ``Function`` - (optional) Optional callback, returns an error object as first parameter and the result as second.
+1. ``Function`` - (可选) 可选的回调函数，第一个参数为错误对象，第二个参数为返回结果。
 
 
 -------
-Returns
+返回值
 -------
 
 
-``Object`` - The information of the node with the following properties:
+``Object`` - 节点信息描述对象，具有以下属性：
 
-    - ``messages`` - ``Number``: Number of currently floating messages.
-    - ``maxMessageSize`` - ``Number``: The current message size limit in bytes.
-    - ``memory`` - ``Number``: The memory size of the floating messages in bytes.
-    - ``minPow`` - ``Number``: The current minimum PoW requirement.
+    - ``messages`` - ``Number``: 当前浮动消息总数。
+    - ``maxMessageSize`` - ``Number``: 当前消息大小上限，以字节为单位。
+    - ``memory`` - ``Number``: 浮动消息内存大小，以字节为单位。
+    - ``minPow`` - ``Number``: 当前最小 PoW 需求。
 
 
 -------
-Example
+例子
 -------
 
 
@@ -135,27 +133,26 @@ setMaxMessageSize
 
     web3.shh.setMaxMessageSize(size, [callback])
 
-Sets the maximal message size allowed by this node. Incoming and outgoing messages with a larger size will be rejected.
-Whisper message size can never exceed the limit imposed by the underlying P2P protocol (10 Mb).
+设置节点允许的消息大小上限。大于此限制的接收和发送消息都将被拒绝。Whisper 中的消息大小不能超过底层 P2P 协议消息大小的上限（10 Mb）。
 
 ----------
-Parameters
+参数
 ----------
 
-1. ``Number`` - Message size in bytes.
-2. ``Function`` - (optional) Optional callback, returns an error object as first parameter and the result as second.
+1. ``Number`` - 消息大小，以字节为单位。
+2. ``Function`` - (可选) 可选的回调函数，第一个参数为错误对象，第二个参数为返回结果。
 
 
 -------
-Returns
+返回值
 -------
 
 
-``Boolean`` - ``true`` on success, error on failure.
+``Boolean`` - 成功则返回 true，否则返回 false。
 
 
 -------
-Example
+例子
 -------
 
 
@@ -175,30 +172,29 @@ setMinPoW
 
     web3.shh.setMinPoW(pow, [callback])
 
-Sets the minimal PoW required by this node.
+设置节点允许的最小 PoW 值。
 
-This experimental function was introduced for the future dynamic adjustment of PoW requirement.
-If the node is overwhelmed with messages, it should raise the PoW requirement and notify the peers.
-The new value should be set relative to the old value (e.g. double). The old value can be obtained via :ref:`web3.shh.getInfo() <shh-getinfo>`.
+该函数目前处于实验阶段，引入的目的是为了将来可以动态调整 PoW 需求。如果节点要处理大量的消息，就应该提高 PoW 需求量并通知其他节点。
+要设置的新值是参照现有值表示的（比如对现有值翻倍）。现有值可以通过 :ref:`web3.shh.getInfo() <shh-getinfo>` 方法获取。
 
 ----------
-Parameters
+参数
 ----------
 
-1. ``Number`` - The new PoW requirement.
-2. ``Function`` - (optional) Optional callback, returns an error object as first parameter and the result as second.
+1. ``Number`` - 新的 PoW 需求。
+2. ``Function`` - (可选) 可选的回调函数，第一个参数为错误对象，第二个参数为返回结果。
 
 
 -------
-Returns
+返回值
 -------
 
 
-``Boolean`` - ``true`` on success, error on failure.
+``Boolean`` - 成功则返回 true，否则返回 false
 
 
 -------
-Example
+例子
 -------
 
 
@@ -218,28 +214,28 @@ markTrustedPeer
 
     web3.shh.markTrustedPeer(enode, [callback])
 
-Marks specific peer trusted, which will allow it to send historic (expired) messages.
+将指定的节点标记为可信，从而允许其发送历史（过期）消息。
 
-.. note:: This function is not adding new nodes, the node needs to be an existing peer.
+.. 注意:: 该方法不能添加新节点，参数节点必须是已经存在的。
 
 ----------
-Parameters
+参数
 ----------
 
-1. ``String`` - Enode of the trusted peer.
-2. ``Function`` - (optional) Optional callback, returns an error object as first parameter and the result as second.
+1. ``String`` - 可信节点的 enode 信息。
+2. ``Function`` - (可选) 可选的回调函数，第一个参数为错误对象，第二个参数为返回值。
 
 
 -------
-Returns
+返回值
 -------
 
 
-``Boolean`` - ``true`` on success, error on failure.
+``Boolean`` - 成功返回 true，否则返回 false。
 
 
 -------
-Example
+例子
 -------
 
 
@@ -259,25 +255,25 @@ newKeyPair
 
     web3.shh.newKeyPair([callback])
 
-Generates a new public and private key pair for message decryption and encryption.
+生成用于消息加解密的公私钥密钥对。
 
 ----------
-Parameters
+参数
 ----------
 
-1. ``Function`` - (optional) Optional callback, returns an error object as first parameter and the result as second.
+1. ``Function`` - (可选) 可选的回调函数，其第一个参数为错误对象，第二个参数为返回结果
 
 
 -------
-Returns
+返回值
 -------
 
 
-``String`` - Key ID on success and an error on failure.
+``String`` - 密钥对生成成功则返回密钥 ID，否则返回错误信息
 
 
 -------
-Example
+例子
 -------
 
 
@@ -297,26 +293,26 @@ addPrivateKey
 
     web3.shh.addPrivateKey(privateKey, [callback])
 
-Stores a key pair derived from a private key, and returns its ID.
+根据给定的私钥生成密钥对，并在保存后返回其 ID。
 
 ----------
-Parameters
+参数
 ----------
 
-1. ``String`` - The private key as HEX bytes to import.
-2. ``Function`` - (optional) Optional callback, returns an error object as first parameter and the result as second.
+1. ``String`` - 要导入的私钥，用 16 进制字符串表示
+2. ``Function`` - (可选) 可选的回调函数，其第一个参数为错误对象，第二个参数为返回结果
 
 
 -------
-Returns
+返回值
 -------
 
 
-``String`` - Key ID on success and an error on failure.
+``String`` - 成功时返回密钥 ID，失败则返回错误信息
 
 
 -------
-Example
+例子
 -------
 
 
@@ -336,26 +332,26 @@ deleteKeyPair
 
     web3.shh.deleteKeyPair(id, [callback])
 
-Deletes the specifies key if it exists.
+删除指定密钥。
 
 ----------
-Parameters
+参数
 ----------
 
-1. ``String`` - The key pair ID, returned by the creation functions (``shh.newKeyPair`` and ``shh.addPrivateKey``).
-2. ``Function`` - (optional) Optional callback, returns an error object as first parameter and the result as second.
+1. ``String`` - 通过创建型函数 (``shh.newKeyPair`` and ``shh.addPrivateKey``) 返回的密钥对 ID。
+2. ``Function`` - (可选) 可选的回调函数，其第一个参数为错误对象，第二个参数为返回结果
 
 
 -------
-Returns
+返回值
 -------
 
 
-``Boolean`` - ``true`` on success, error on failure.
+``Boolean`` - 成功返回 true，失败返回 false
 
 
 -------
-Example
+例子
 -------
 
 
@@ -375,26 +371,25 @@ hasKeyPair
 
     web3.shh.hasKeyPair(id, [callback])
 
-Checks if the whisper node has a private key of a key pair matching the given ID.
+检查 whisper 节点的私钥是否匹配给定的 ID。
 
 ----------
-Parameters
+参数
 ----------
 
-1. ``String`` - The key pair ID, returned by the creation functions (``shh.newKeyPair`` and ``shh.addPrivateKey``).
-2. ``Function`` - (optional) Optional callback, returns an error object as first parameter and the result as second.
+1. ``String`` - 通过创建型函数 (``shh.newKeyPair`` 或 ``shh.addPrivateKey``) 返回的密钥对 ID。
+2. ``Function`` - (可选) 可选的回调函数，其第一个参数为错误对象，第二个参数为返回结果
 
 
 -------
-Returns
+返回值
 -------
 
-
-``Boolean`` - ``true`` on if the key pair exist in the node, ``false`` if not. Error on failure.
+``Boolean`` - 如果密钥对在节点中存在返回 ``true``, 否则返回 ``false``。
 
 
 -------
-Example
+例子
 -------
 
 
@@ -414,26 +409,26 @@ getPublicKey
 
     web3.shh.getPublicKey(id, [callback])
 
-Returns the public key for a key pair ID.
+返回指定 ID 密钥对中的公钥。
 
 ----------
-Parameters
+参数
 ----------
 
-1. ``String`` - The key pair ID, returned by the creation functions (``shh.newKeyPair`` and ``shh.addPrivateKey``).
-2. ``Function`` - (optional) Optional callback, returns an error object as first parameter and the result as second.
+1. ``String`` - 通过创建型函数 (``shh.newKeyPair`` 或 ``shh.addPrivateKey``) 返回的密钥对 ID。
+2. ``Function`` - (可选) 可选的回调函数，其第一个参数为错误对象，第二个参数为返回结果
 
 
 -------
-Returns
+返回值
 -------
 
 
-``String`` - Public key on success and an error on failure.
+``String`` - 成功时返回指定密钥对的公钥，否则返回错误信息。
 
 
 -------
-Example
+例子
 -------
 
 
@@ -453,26 +448,26 @@ getPrivateKey
 
     web3.shh.getPrivateKey(id, [callback])
 
-Returns the private key for a key pair ID.
+返回指定 ID 密钥对的私钥。
 
 ----------
-Parameters
+参数
 ----------
 
-1. ``String`` - The key pair ID, returned by the creation functions (``shh.newKeyPair`` and ``shh.addPrivateKey``).
-2. ``Function`` - (optional) Optional callback, returns an error object as first parameter and the result as second.
+1. ``String`` - 通过创建型函数 (``shh.newKeyPair`` 或 ``shh.addPrivateKey``) 返回的密钥对 ID。
+2. ``Function`` - (可选) 可选的回调函数，其第一个参数为错误对象，第二个参数为返回结果
 
 
 -------
-Returns
+返回值
 -------
 
 
-``String`` - Private key on success and an error on failure.
+``String`` - 成功则返回指定密钥对的私钥，否则返回错误信息。
 
 
 -------
-Example
+例子
 -------
 
 
@@ -492,26 +487,26 @@ newSymKey
 
     web3.shh.newSymKey([callback])
 
-Generates a random symmetric key and stores it under an ID, which is then returned.
-Will be used for encrypting and decrypting of messages where the sym key is known to both parties.
+生成随机对称密钥，保存后返回ID。
+该对称秘钥在对双方都可知的情况下用于消息加解密。
 
 ----------
-Parameters
+参数
 ----------
 
-1. ``Function`` - (optional) Optional callback, returns an error object as first parameter and the result as second.
+1. ``Function`` - (可选) 可选的回调函数，其第一个参数为错误对象，第二个参数为返回结果
 
 
 -------
-Returns
+返回值
 -------
 
 
-``String`` - Key ID on success and an error on failure.
+``String`` - 成功时返回密钥 ID，失败时返回错误信息。
 
 
 -------
-Example
+例子
 -------
 
 
@@ -531,26 +526,25 @@ addSymKey
 
     web3.shh.addSymKey(symKey, [callback])
 
-Stores the key, and returns its ID.
+保存对称密钥并返回其 ID。
 
 ----------
-Parameters
+参数
 ----------
 
-1. ``String`` - The raw key for symmetric encryption as HEX bytes.
-2. ``Function`` - (optional) Optional callback, returns an error object as first parameter and the result as second.
+1. ``String`` - 用于对称加密的密钥，用 16 进制字符串表示
+2. ``Function`` - (可选) 可选的回调函数，其第一个参数为错误对象，第二个参数为返回结果
 
 
 -------
-Returns
+返回值
 -------
 
 
-``String`` - Key ID on success and an error on failure.
-
+``String`` - 成功时返回密钥 ID，否则返回错误信息。
 
 -------
-Example
+例子
 -------
 
 
@@ -570,26 +564,26 @@ generateSymKeyFromPassword
 
     web3.shh.generateSymKeyFromPassword(password, [callback])
 
-Generates the key from password, stores it, and returns its ID.
+根据指定密码生成对称密钥，保存并返回其 ID。
 
 ----------
-Parameters
+参数
 ----------
 
-1. ``String`` - A password to generate the sym key from.
-2. ``Function`` - (optional) Optional callback, returns an error object as first parameter and the result as second.
+1. ``String`` - 用来生成对称密钥的密码。
+2. ``Function`` - (可选) 可选的回调函数，其第一个参数为错误对象，第二个参数为返回结果
 
 
 -------
-Returns
+返回值
 -------
 
 
-``Promise<string>|undefined`` - Returns the Key ID as Promise or undefined if a callback is defined.
+``Promise<string>|undefined`` - 如果设置了回调函数，返回作为 Promise 的密钥 ID 或者 undefined
 
 
 -------
-Example
+例子
 -------
 
 
@@ -609,26 +603,26 @@ hasSymKey
 
     web3.shh.hasSymKey(id, [callback])
 
-Checks if there is a symmetric key stored with the given ID.
+检查指定的 ID 是否存有对称密钥。
 
 ----------
-Parameters
+参数
 ----------
 
-1. ``String`` - The key pair ID, returned by the creation functions (``shh.newSymKey``, ``shh.addSymKey`` or ``shh.generateSymKeyFromPassword``).
-2. ``Function`` - (optional) Optional callback, returns an error object as first parameter and the result as second.
+1. ``String`` - 通过创建型函数 (``shh.newSymKey``, ``shh.addSymKey`` 或 ``shh.generateSymKeyFromPassword``) 返回的密钥 ID。
+2. ``Function`` - (可选) 可选的回调函数，其第一个参数为错误对象，第二个参数为返回结果
 
 
 -------
-Returns
+返回值
 -------
 
 
-``Boolean`` - ``true`` on if the symmetric key exist in the node, ``false`` if not. Error on failure.
+``Boolean`` - 如果该对称密钥在节点存在返回 ``true``, 否则返回 ``false``。
 
 
 -------
-Example
+例子
 -------
 
 
@@ -648,26 +642,26 @@ getSymKey
 
     web3.shh.getSymKey(id, [callback])
 
-Returns the symmetric key associated with the given ID.
+返回指定 ID 关联的对称密钥。
 
 ----------
-Parameters
+参数
 ----------
 
-1. ``String`` - The key pair ID, returned by the creation functions (``shh.newKeyPair`` and ``shh.addPrivateKey``).
-2. ``Function`` - (optional) Optional callback, returns an error object as first parameter and the result as second.
+1. ``String`` - 通过创建型函数 (``shh.newSymKey``, ``shh.addSymKey`` 或 ``shh.generateSymKeyFromPassword``) 返回的密钥 ID。
+2. ``Function`` - (可选) 可选的回调函数，其第一个参数为错误对象，第二个参数为返回结果
 
 
 -------
-Returns
+返回值
 -------
 
 
-``String`` - The raw symmetric key on success and an error on failure.
+``String`` - 成功时返回原始对称密钥，否则返回错误信息。
 
 
 -------
-Example
+例子
 -------
 
 
@@ -687,26 +681,26 @@ deleteSymKey
 
     web3.shh.deleteSymKey(id, [callback])
 
-Deletes the symmetric key associated with the given ID.
+删除指定 ID 对应的对称密钥。
 
 ----------
-Parameters
+参数
 ----------
 
-1. ``String`` - The key pair ID, returned by the creation functions (``shh.newKeyPair`` and ``shh.addPrivateKey``).
-2. ``Function`` - (optional) Optional callback, returns an error object as first parameter and the result as second.
+1. ``String`` - 通过创建型函数 (``shh.newSymKey``, ``shh.addSymKey`` 或 ``shh.generateSymKeyFromPassword``) 返回的密钥 ID。
+2. ``Function`` - (可选) 可选的回调函数，其第一个参数为错误对象，第二个参数为返回结果
 
 
 -------
-Returns
+返回值
 -------
 
 
-``Boolean`` - ``true`` on if the symmetric key was deleted, error on failure.
+``Boolean`` - 对称密钥被成功删除返回 true，否则返回 false。
 
 
 -------
-Example
+例子
 -------
 
 
@@ -727,35 +721,35 @@ post
 
    web3.shh.post(object [, callback])
 
-This method should be called, when we want to post whisper a message to the network.
+当我们想要往网络中发送一个 whisper 消息时调用该方法。
 
 ----------
-Parameters
+参数
 ----------
 
-1. ``Object`` - The post object:
-    - ``symKeyID`` - ``String`` (optional): ID of symmetric key for message encryption (Either ``symKeyID`` or ``pubKey`` must be present. Can not be both.).
-    - ``pubKey`` - ``String`` (optional): The public key for message encryption (Either ``symKeyID`` or ``pubKey`` must be present. Can not be both.).
-    - ``sig`` - ``String`` (optional): The ID of the signing key.
-    - ``ttl`` - ``Number``: Time-to-live in seconds.
-    - ``topic`` - ``String``: 4 Bytes (mandatory when key is symmetric): Message topic.
-    - ``payload`` - ``String``: The payload of the message to be encrypted.
-    - ``padding`` - ``Number`` (optional): Padding (byte array of arbitrary length).
-    - ``powTime`` - ``Number`` (optional)?: Maximal time in seconds to be spent on proof of work.
-    - ``powTarget`` - ``Number`` (optional)?: Minimal PoW target required for this message.
-    - ``targetPeer`` - ``Number`` (optional): Peer ID (for peer-to-peer message only).
-2. ``callback`` - ``Function``: (optional) Optional callback, returns an error object as first parameter and the result as second.
+1. ``Object`` - 消息发送对象：
+    - ``symKeyID`` - ``String`` (可选): 用于消息加密的对称秘钥 ID (``symKeyID`` 或 ``pubKey``)。
+    - ``pubKey`` - ``String`` (可选): 用于消息加密的公钥 (``symKeyID`` 或 ``pubKey``)。
+    - ``sig`` - ``String`` (可选): 签名密钥的 ID。
+    - ``ttl`` - ``Number``: 以秒为单位的消息存活时长。
+    - ``topic`` - ``String``: 4 Bytes (mandatory when key is symmetric): 4 个字节大小的消息主题（如果使用的密钥是对称密钥，该属性为必选项）。
+    - ``payload`` - ``String``: 消息中要加密的内容。
+    - ``padding`` - ``Number`` (可选): 对齐长度。
+    - ``powTime`` - ``Number`` (可选)?: POW时间上限，以秒为单位。
+    - ``powTarget`` - ``Number`` (可选)?: 消息发送对象为处理此消息需要的最小 PoW。
+    - ``targetPeer`` - ``Number`` (可选): 对方节点 ID，仅用于点对点消息。
+2. ``callback`` - ``Function``: (可选) 可选的回调函数，其第一个参数为错误对象，第二个参数为返回结果
 
 
 -------
-Returns
+返回值
 -------
 
-``Promise`` - returns a promise. Upon success, the ``then`` function will be passed a string representing the hash of the sent message. On error, the ``catch`` function will be passed a string containing the reason for the error.
+返回 Promise 对象，在发送成功时其解析值为所发送消息的哈希值字符串，出错时将解析为错误原因。
 
 
 -------
-Example
+例子
 -------
 
 .. code-block:: javascript
@@ -769,7 +763,7 @@ Example
 
     ]).then(() => {
 
-        // will receive also its own message send, below
+        // 也会收到自己的消息发送
         subscription = shh.subscribe("messages", {
             symKeyID: identities[0],
             topics: ['0xffaadd11']
@@ -777,8 +771,8 @@ Example
 
     }).then(() => {
        web3.shh.post({
-            symKeyID: identities[0], // encrypts using the sym key ID
-            sig: identities[1], // signs the message using the keyPair ID
+            symKeyID: identities[0], // 消息加密所用的密钥 ID
+            sig: identities[1], // 签名消息所用的密钥对 ID
             ttl: 10,
             topic: '0xffaadd11',
             payload: '0xffffffdddddd1122',
@@ -800,47 +794,46 @@ subscribe
 
     web3.shh.subscribe('messages', options [, callback])
 
-Subscribe for incoming whisper messages.
-
+订阅所要接收的 whisper 消息。
 
 .. _shh-subscribeoptions:
 
 ----------
-Parameters
+参数
 ----------
 
-1. ``"messages"`` - ``String``: Type of the subscription.
-2. ``Object`` - The subscription options:
-    - ``symKeyID`` - ``String``: ID of symmetric key for message decryption.
-    - ``privateKeyID`` - ``String``: ID of private (asymmetric) key for message decryption.
-    - ``sig`` - ``String`` (optional): Public key of the signature, to verify.
-    - ``topics``- ``Array`` (optional when "privateKeyID" key is given): Filters messages by this topic(s). Each topic must be a 4 bytes HEX string.
-    - ``minPow`` - ``Number`` (optional): Minimal PoW requirement for incoming messages.
-    - ``allowP2P`` - ``Boolean`` (optional):  Indicates if this filter allows processing of direct peer-to-peer messages (which are not to be forwarded any further, because they might be expired). This might be the case in some very rare cases, e.g. if you intend to communicate to MailServers, etc.
-3. ``callback`` - ``Function``: (optional) Optional callback, returns an error object as first parameter and the result as second. Will be called for each incoming subscription, and the subscription itself as 3 parameter.
+1. ``"messages"`` - ``String``: 订阅类型
+2. ``Object`` - 订阅选项:
+    - ``symKeyID`` - ``String``: 用于消息解密的对称密钥 ID
+    - ``privateKeyID`` - ``String``: 用于消息解密的私钥
+    - ``sig`` - ``String`` (可选): 签名用的公钥，用于验证
+    - ``topics``- ``Array`` (可选, 当使用 "privateKeyID" 时): 用于过滤消息的主题数组， 每个主题必须是 4 字节长的 16 进制字符串
+    - ``minPow`` - ``Number`` (可选): 处理收到的消息所需的最小 PoW
+    - ``allowP2P`` - ``Boolean`` (可选):  标示是否允许该过滤器处理直接对等消息(因为它们可能已过期，因此不再进一步转发)。这个标示在一些非常罕见的情况下才可能会用到，比如，你打算与邮件服务器通信等类似情况。
+3. ``callback`` - ``Function``: (可选) 可选的回调函数，其第一个参数为错误对象，第二个参数为返回结果，每次有订阅的消息进来都会被调用，订阅对象本身会作为第三个参数传进来。
 
 
 .. _shh-subscribenotificationreturns:
 
 ----------
-Notification Returns
+Notification 返回值
 ----------
 
-``Object`` - The incoming message:
+``Object`` -  接收到的消息:
 
-    - ``hash`` - ``String``: Hash of the enveloped message.
-    - ``sig`` - ``String``: Public key which signed this message.
-    - ``recipientPublicKey`` - ``String``: The recipients public key.
-    - ``timestamp`` - ``String``: Unix timestamp of the message genertion.
-    - ``ttl`` -  ``Number``: Time-to-live in seconds.
-    - ``topic`` - ``String``: 4 Bytes HEX string message topic.
-    - ``payload`` - ``String``: Decrypted payload.
-    - ``padding`` - ``Number``: Optional padding (byte array of arbitrary length).
-    - ``pow`` -  ``Number``: Proof of work value.
+    - ``hash`` - ``String``: 封装消息的哈希值
+    - ``sig`` - ``String``: 消息签名对应的公钥
+    - ``recipientPublicKey`` - ``String``: 接收人的公钥
+    - ``timestamp`` - ``String``: 消息生成时的 unix 时间戳
+    - ``ttl`` -  ``Number``: 消息存活时间，以秒为单位
+    - ``topic`` - ``String``: 消息主题，4 字节的 16 进制字符串来表示
+    - ``payload`` - ``String``: 解密的消息内容
+    - ``padding`` - ``Number``: 可选，用来补齐长度
+    - ``pow`` -  ``Number``: PoW 值
 
 
 ----------
-Example
+例子
 ----------
 
 .. code-block:: javascript
@@ -866,7 +859,7 @@ Example
             "ttl": 50
         }
     })
-    // or
+    // 或者
     .on('data', function(message){ ... });
 
 
@@ -880,24 +873,24 @@ clearSubscriptions
 
     web3.shh.clearSubscriptions()
 
-Resets subscriptions.
+重置订阅
 
-.. note:: This will not reset subscriptions from other packages like ``web3-eth``, as they use their own requestManager.
+.. 注意:: 该调用不会重置像 ``web3-eth`` 之类其它包的订阅, 它们用它们自己的 requestManager
 
 ----------
-Parameters
+参数
 ----------
 
-1. ``Boolean``: If ``true`` it keeps the ``"syncing"`` subscription.
+1. ``Boolean``: 如果传入 ``true`` 则保持对订阅的同步
 
 -------
-Returns
+返回值
 -------
 
 ``Boolean``
 
 -------
-Example
+例子
 -------
 
 .. code-block:: javascript
@@ -919,23 +912,23 @@ newMessageFilter
 
     web3.shh.newMessageFilter(options)
 
-Create a new filter within the node. This filter can be used to poll for new messages that match the set of criteria.
+在节点内创建一个新的过滤器，可用于轮询满足匹配条件的新消息。
 
 
 ----------
-Parameters
+参数
 ----------
 
-1. ``Object``: See :ref:`web3.shh.subscribe() options <shh-subscribeoptions>` for details.
+1. ``Object``: 订阅 :ref:`web3.shh.subscribe() options <shh-subscribeoptions>` for details.
 
 -------
-Returns
+返回值
 -------
 
 ``String``: The filter ID.
 
 -------
-Example
+例子
 -------
 
 .. code-block:: javascript
@@ -954,22 +947,22 @@ deleteMessageFilter
 
     web3.shh.deleteMessageFilter(id)
 
-Deletes a message filter in the node.
+删除节点内指定的消息过滤器。
 
 ----------
-Parameters
+参数
 ----------
 
-1. ``String``: The filter ID created with ``shh.newMessageFilter()``.
+1. ``String``: 通过 ``shh.newMessageFilter()`` 创建的过滤器 ID
 
 -------
-Returns
+返回值
 -------
 
-``Boolean``: ``true`` on success, error on failure.
+``Boolean``: 成功时返回 true，失败时返回 false
 
 -------
-Example
+例子
 -------
 
 .. code-block:: javascript
@@ -989,22 +982,22 @@ getFilterMessages
 
     web3.shh.getFilterMessages(id)
 
-Retrieve messages that match the filter criteria and are received between the last time this function was called and now.
+读取匹配指定过滤条件、并且在上次调用本方法之后接收到的消息。
 
 ----------
-Parameters
+参数
 ----------
 
-1. ``String``: The filter ID created with ``shh.newMessageFilter()``.
+1. ``String``: 使用 ``shh.newMessageFilter()`` 创建的消息对象 ID
 
 -------
-Returns
+返回值
 -------
 
-``Array``: Returns an array of message objects like :ref:`web3.shh.subscribe() notification returns <shh-subscribenotificationreturns>`
+``Array``: 像 :ref:`web3.shh.subscribe() notification returns <shh-subscribenotificationreturns>` 这样的消息对象数组
 
 -------
-Example
+例子
 -------
 
 .. code-block:: javascript
