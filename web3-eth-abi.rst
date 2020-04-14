@@ -4,8 +4,8 @@
 web3.eth.abi
 =========
 
-The ``web3.eth.abi`` functions let you de- and encode parameters to ABI (Application Binary Interface) for function calls to the EVM (Ethereum Virtual Machine).
 
+``web3.eth.abi`` 函数用来解码及编码为 ABI (Application Binary Interface应用程序二进制接口) 以用于 EVM（以太坊虚拟机）进行函数调用。
 
 
 ------------------------------------------------------------------------------
@@ -18,28 +18,29 @@ encodeFunctionSignature
 
     web3.eth.abi.encodeFunctionSignature(functionName);
 
-Encodes the function name to its ABI signature, which are the first 4 bytes of the sha3 hash of the function name including types.
+将函数名称编码为其ABI签名，即函数名称（包括参数类型）的sha3哈希的前4个字节。
+
 
 ----------
-Parameters
+参数
 ----------
 
-1. ``functionName`` - ``String|Object``: The function name to encode.
-or the :ref:`JSON interface <glossary-json-interface>` object of the function. If string it has to be in the form ``function(type,type,...)``, e.g: ``myFunction(uint256,uint32[],bytes10,bytes)``
+1. ``functionName`` - ``String|Object``: 需要编码的函数名字符串或者函数 :ref:`JSON 接口 <glossary-json-interface>` 对象。
+ 如果是字符串，这形式需要是 ``function(type,type,...)``,例如： ``myFunction(uint256,uint32[],bytes10,bytes)``
 
 -------
-Returns
+返回值
 -------
 
-``String`` - The ABI signature of the function.
+``String`` - 函数的ABI签名。
 
 -------
-Example
+示例
 -------
 
 .. code-block:: javascript
 
-    // From a JSON interface object
+    // 参数是 JSON 接口对象时
     web3.eth.abi.encodeFunctionSignature({
         name: 'myMethod',
         type: 'function',
@@ -53,7 +54,7 @@ Example
     })
     > 0x24ee0097
 
-    // Or string
+    // 参数是字符串
     web3.eth.abi.encodeFunctionSignature('myMethod(uint256,string)')
     > '0x24ee0097'
 
@@ -67,23 +68,24 @@ encodeEventSignature
 
     web3.eth.abi.encodeEventSignature(eventName);
 
-Encodes the event name to its ABI signature, which are the sha3 hash of the event name including input types.
+将事件名称编码为其ABI签名，该签名是事件名称包括输入参数类型的sha3哈希。
+
 
 ----------
-Parameters
+参数
 ----------
 
-1. ``eventName`` - ``String|Object``: The event name to encode.
-or the :ref:`JSON interface <glossary-json-interface>` object of the event. If string it has to be in the form ``event(type,type,...)``, e.g: ``myEvent(uint256,uint32[],bytes10,bytes)``
+1. ``eventName`` - ``String|Object``: 需要编码的事件名字符串或者事件 :ref:`JSON 接口 <glossary-json-interface>` 对象。
+ 如果是字符串，这形式需要是 ``event(type,type,...)``，如： ``myEvent(uint256,uint32[],bytes10,bytes)``
 
 -------
-Returns
+返回值
 -------
 
-``String`` - The ABI signature of the event.
+``String`` - 事件的ABI签名。
 
 -------
-Example
+示例
 -------
 
 .. code-block:: javascript
@@ -91,7 +93,7 @@ Example
     web3.eth.abi.encodeEventSignature('myEvent(uint256,bytes32)')
     > 0xf2eeb729e636a8cb783be044acf6b7b1e2c5863735b60d6daae84c366ee87d97
 
-    // or from a json interface object
+    // 或者 ABI 接口对象形式
     web3.eth.abi.encodeEventSignature({
         name: 'myEvent',
         type: 'event',
@@ -115,23 +117,26 @@ encodeParameter
 
     web3.eth.abi.encodeParameter(type, parameter);
 
-Encodes a parameter based on its type to its ABI representation.
+
+根据参数的类型将参数编码为其ABI表示形式。
+
 
 ----------
-Parameters
+参数
 ----------
 
-1. ``type`` - ``String|Object``: The type of the parameter, see the `solidity documentation <http://solidity.readthedocs.io/en/develop/types.html>`_  for a list of types.
-2. ``parameter`` - ``Mixed``: The actual parameter to encode.
+1. ``type`` - ``String|Object``: 参数的类型， 参考 `solidity 文档 <http://solidity.readthedocs.io/en/develop/types.html>`_  查看类型列表。（译者注，Solidity 中文文档 可以在`这里查看 <https://learnblockchain.cn/docs/solidity/types.html>`_ 。
+2. ``parameter`` - ``Mixed``: 要编码的实际参数。
 
 -------
-Returns
+返回值
 -------
 
-``String`` - The ABI encoded parameter.
+``String`` - ABI编码后的参数。
+
 
 -------
-Example
+示例
 -------
 
 .. code-block:: javascript
@@ -181,23 +186,23 @@ encodeParameters
 
     web3.eth.abi.encodeParameters(typesArray, parameters);
 
-Encodes a function parameters based on its :ref:`JSON interface <glossary-json-interface>` object.
+基于 :ref:`JSON 接口 <glossary-json-interface>` 对象编码函数参数。
 
 ----------
-Parameters
+参数
 ----------
 
-1. ``typesArray`` - ``Array<String|Object>|Object``: An array with types or a :ref:`JSON interface <glossary-json-interface>` of a function. See the `solidity documentation <http://solidity.readthedocs.io/en/develop/types.html>`_  for a list of types.
-2. ``parameters`` - ``Array``: The parameters to encode.
+1. ``typesArray`` - ``Array<String|Object>|Object``: 一个函数的类型的数组或者 :ref:`JSON 接口 <glossary-json-interface>` 。参考 `solidity 文档 <http://solidity.readthedocs.io/en/develop/types.html>`_  查看类型列表。（译者注，Solidity 中文文档 可以在`这里查看 <https://learnblockchain.cn/docs/solidity/types.html>`_ 。
+2. ``parameters`` - ``Array``: 需要编码的参数
 
 -------
-Returns
+返回值
 -------
 
-``String`` - The ABI encoded parameters.
+``String`` - ABI编码后的参数。
 
 -------
-Example
+示例
 -------
 
 .. code-block:: javascript
@@ -245,23 +250,23 @@ encodeFunctionCall
 
     web3.eth.abi.encodeFunctionCall(jsonInterface, parameters);
 
-Encodes a function call using its :ref:`JSON interface <glossary-json-interface>` object and given paramaters.
+用 :ref:`JSON 接口 <glossary-json-interface>` 及给定的参数编码函数调用
 
 ----------
-Parameters
+参数
 ----------
 
-1. ``jsonInterface`` - ``Object``: The :ref:`JSON interface <glossary-json-interface>` object of a function.
-2. ``parameters`` - ``Array``: The parameters to encode.
+1. ``jsonInterface`` - ``Object``: 函数的 :ref:`JSON 接口 <glossary-json-interface>` 对象
+2. ``parameters`` - ``Array``: 需要编码的参数
 
 -------
-Returns
+返回值
 -------
 
-``String`` - The ABI encoded function call. Means function signature + parameters.
+``String`` - ABI编码的函数调用。 表示为函数签名+参数。 
 
 -------
-Example
+示例
 -------
 
 .. code-block:: javascript
@@ -288,23 +293,24 @@ decodeParameter
 
     web3.eth.abi.decodeParameter(type, hexString);
 
-Decodes an ABI encoded parameter to its JavaScript type.
+将ABI编码参数解码为其对应的JavaScript类型。
+
 
 ----------
-Parameters
+参数
 ----------
 
-1. ``type`` - ``String|Object``: The type of the parameter, see the `solidity documentation <http://solidity.readthedocs.io/en/develop/types.html>`_  for a list of types.
-2. ``hexString`` - ``String``: The ABI byte code to decode.
+1. ``type`` - ``String|Object``: 参数的类型, 参考 `solidity 文档 <http://solidity.readthedocs.io/en/develop/types.html>`_  查看类型列表。（译者注，Solidity 中文文档可以在`这里查看 <https://learnblockchain.cn/docs/solidity/types.html>`_ 。 
+2. ``hexString`` - ``String``: 要解码的ABI字节码。
 
 -------
-Returns
+返回值
 -------
 
-``Mixed`` - The decoded parameter.
+``Mixed`` - 解码后的参数。
 
 -------
-Example
+示例
 -------
 
 .. code-block:: javascript
@@ -379,23 +385,24 @@ decodeParameters
 
     web3.eth.abi.decodeParameters(typesArray, hexString);
 
-Decodes ABI encoded parameters to its JavaScript types.
+将ABI编码参数解码为其对应JavaScript类型。
+
 
 ----------
-Parameters
+参数
 ----------
 
-1. ``typesArray`` - ``Array<String|Object>|Object``: An array with types or a :ref:`JSON interface <glossary-json-interface>` outputs array. See the `solidity documentation <http://solidity.readthedocs.io/en/develop/types.html>`_  for a list of types.
-2. ``hexString`` - ``String``: The ABI byte code to decode.
+1. ``typesArray`` - ``Array<String|Object>|Object``: 类型数组或者:ref:`JSON 接口 <glossary-json-interface>` 输出数组。 参考 `solidity 文档 <http://solidity.readthedocs.io/en/develop/types.html>`_  查看类型列表。（译者注，Solidity 中文文档可以在`这里查看 <https://learnblockchain.cn/docs/solidity/types.html>`_ 。 
+2. ``hexString`` - ``String``: 要解码的ABI字节码。
 
 -------
-Returns
+返回值
 -------
 
-``Object`` - The result object containing the decoded parameters.
+``Object`` - 已解码参数的结果对象。
 
 -------
-Example
+示例
 -------
 
 .. code-block:: javascript
@@ -464,24 +471,26 @@ decodeLog
 
     web3.eth.abi.decodeLog(inputs, hexString, topics);
 
-Decodes ABI encoded log data and indexed topic data.
+解码ABI编码的日志数据和索引主题数据。
+
 
 ----------
-Parameters
+参数
 ----------
 
-1. ``inputs`` - ``Object``: A :ref:`JSON interface <glossary-json-interface>` inputs array. See the `solidity documentation <http://solidity.readthedocs.io/en/develop/types.html>`_  for a list of types.
-2. ``hexString`` - ``String``: The ABI byte code in the ``data`` field of a log.
-3. ``topics`` - ``Array``: An array with the index parameter topics of the log, without the topic[0] if its a non-anonymous event, otherwise with topic[0].
+1. ``inputs`` - ``Object``:  :ref:`JSON 接口 <glossary-json-interface>` 输入数组. 参考 `solidity 文档 <http://solidity.readthedocs.io/en/develop/types.html>`_  查看类型列表。（译者注，Solidity 中文文档可以在`这里查看 <https://learnblockchain.cn/docs/solidity/types.html>`_ 。 
+2. ``hexString`` - ``String``: 日志的 ``data`` 字段中的 ABI 字节码 。
+3. ``topics`` - ``Array``: 日志中带有索引主题参数的数组，如果为非匿名事件，则不包含topic[0]，否则包含topic[0]。
+
 
 -------
-Returns
+返回值
 -------
 
-``Object`` - The result object containing the decoded parameters.
+``Object`` - 包含已解码参数的结果对象。
 
 -------
-Example
+示例
 -------
 
 .. code-block:: javascript
