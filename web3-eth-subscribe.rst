@@ -4,11 +4,9 @@
 web3.eth.subscribe
 =========
 
-The ``web3.eth.subscribe`` function lets you subscribe to specific events in the blockchain.
+``web3.eth.subscribe`` 方法让你可以订阅区块链中的指定事件
 
-
-
-subscribe
+订阅调用
 =====================
 
 .. code-block:: javascript
@@ -16,38 +14,38 @@ subscribe
     web3.eth.subscribe(type [, options] [, callback]);
 
 ----------
-Parameters
+参数
 ----------
 
-1. ``String`` - The subscription, you want to subscribe to.
-2. ``Mixed`` - (optional) Optional additional parameters, depending on the subscription type.
-3. ``Function`` - (optional) Optional callback, returns an error object as first parameter and the result as second. Will be called for each incoming subscription, and the subscription itself as 3 parameter.
+1. ``String`` - 订阅类型
+2. ``Mixed`` - (可选) 依赖于订阅类型的可选额外参数
+3. ``Function`` - (可选) 可选的回调函数，其第一个参数为错误对象，第二个参数为结果。该函数在每次订阅事件发生时都会被调用，订阅实例会作为第三个参数传递进来。
 
 .. _eth-subscription-return:
 
 -------
-Returns
+返回值
 -------
 
-``EventEmitter`` - A Subscription instance
+``EventEmitter`` - 一个订阅实例
 
-    - ``subscription.id``: The subscription id, used to identify and unsubscribing the subscription.
-    - ``subscription.subscribe([callback])``: Can be used to re-subscribe with the same parameters.
-    - ``subscription.unsubscribe([callback])``: Unsubscribes the subscription and returns `TRUE` in the callback if successfull.
-    - ``subscription.arguments``: The subscription arguments, used when re-subscribing.
-    - ``on("data")`` returns ``Object``: Fires on each incoming log with the log object as argument.
-    - ``on("changed")`` returns ``Object``: Fires on each log which was removed from the blockchain. The log will have the additional property ``"removed: true"``.
-    - ``on("error")`` returns ``Object``: Fires when an error in the subscription occurs.
-    - ``on("connected")`` returns ``String``: Fires once after the subscription successfully connected. Returns the subscription id.
+    - ``subscription.id``: 订阅 id 编号，用于标识一个订阅以及进行后续的取消订阅操作
+    - ``subscription.subscribe([callback])``: 可用于使用相同的参数进行再次订阅
+    - ``subscription.unsubscribe([callback])``: 取消订阅，如果成功取消的话，在回调函数中返回 `TRUE`
+    - ``subscription.arguments``: 订阅参数，在重新订阅时使用
+    - ``on("data")`` 返回 ``Object``: 每次有新的日志时都触发该事件，参数为日志对象
+    - ``on("changed")`` 返回 ``Object``: 每次有日志从区块链上移除时触发该事件，被移除的日志对象将添加额外的属性： ``"removed: true"``
+    - ``on("error")`` 返回 ``Object``: 当订阅发生错误时，触发此事件
+    - ``on("connected")`` 返回 ``String``: 一旦订阅成功就会触发该事件，返回订阅 id
 
 ----------------
-Notification returns
+通知返回值
 ----------------
 
-- ``Mixed`` - depends on the subscription, see the different subscriptions for more.
+- ``Mixed`` - 取决于订阅具体是什么，可以参考文档后面提到的不同订阅获取更多相关信息
 
 -------
-Example
+例子
 -------
 
 .. code-block:: javascript
@@ -60,7 +58,7 @@ Example
             console.log(result);
     });
 
-    // unsubscribes the subscription
+    // 取消订阅
     subscription.unsubscribe(function(error, success){
         if(success)
             console.log('Successfully unsubscribed!');
@@ -77,24 +75,25 @@ clearSubscriptions
 
     web3.eth.clearSubscriptions()
 
-Resets subscriptions.
+重置订阅
 
-.. note:: This will not reset subscriptions from other packages like ``web3-shh``, as they use their own requestManager.
+.. 注意:: 这不会重置像 ``web3-shh`` 这样其它包的订阅，因为这些包有自己的请求管理器
 
 ----------
-Parameters
+参数
 ----------
 
 1. ``Boolean``: If ``true`` it keeps the ``"syncing"`` subscription.
+1. ``Boolean``: 值为 ``true`` 则表示保持 ``同步`` 订阅
 
 -------
-Returns
+返回值
 -------
 
 ``Boolean``
 
 -------
-Example
+例子
 -------
 
 .. code-block:: javascript
@@ -116,33 +115,32 @@ subscribe("pendingTransactions")
 
     web3.eth.subscribe('pendingTransactions' [, callback]);
 
-Subscribes to incoming pending transactions.
-
+订阅 pending 状态的交易
 ----------
-Parameters
+参数
 ----------
 
-1. ``String`` - ``"pendingTransactions"``, the type of the subscription.
-2. ``Function`` - (optional) Optional callback, returns an error object as first parameter and the result as second. Will be called for each incoming subscription.
+1. ``String`` - ``"pendingTransactions"``, 订阅类型
+2. ``Function`` - (可选) 可选的回调函数，其第一个参数为错误对象，第二个参数为结果。
 
 -------
-Returns
+返回值
 -------
 
-``EventEmitter``: An :ref:`subscription instance <eth-subscription-return>` as an event emitter with the following events:
+``EventEmitter``: 下面事件的一个 :ref:`订阅实例 <eth-subscription-return>` 事件发生器:
 
-- ``"data"`` returns ``String``: Fires on each incoming pending transaction and returns the transaction hash.
-- ``"error"`` returns ``Object``: Fires when an error in the subscription occurs.
+- ``"data"`` 返回 ``String``: 当接收到 pending 状态的交易时触发并返回交易哈希
+- ``"error"`` 返回 ``Object``: 当订阅中发生错误时触发
 
 ----------------
-Notification returns
+通知返回值
 ----------------
 
-1. ``Object|Null`` - First parameter is an error object if the subscription failed.
-2. ``String`` - Second parameter is the transaction hash.
+1. ``Object|Null`` - 如果订阅失败第一个参数为错误对象
+2. ``String`` - 第二个参数为交易哈希
 
 -------
-Example
+例子
 -------
 
 
@@ -156,7 +154,7 @@ Example
         console.log(transaction);
     });
 
-    // unsubscribes the subscription
+    // 取消订阅
     subscription.unsubscribe(function(error, success){
         if(success)
             console.log('Successfully unsubscribed!');
@@ -173,51 +171,52 @@ subscribe("newBlockHeaders")
 
     web3.eth.subscribe('newBlockHeaders' [, callback]);
 
-Subscribes to incoming block headers. This can be used as timer to check for changes on the blockchain.
+订阅新的区块头生成事件， 可用作检查链上变化的计时器。
+
 
 ----------
-Parameters
+参数
 ----------
 
-1. ``String`` - ``"newBlockHeaders"``, the type of the subscription.
-2. ``Function`` - (optional) Optional callback, returns an error object as first parameter and the result as second. Will be called for each incoming subscription.
+1. ``String`` - ``"newBlockHeaders"``, 订阅类型。
+2. ``Function`` - (可选) 可选的回调函数，其第一个参数为错误对象，第二个参数为结果。每当有订阅事件发生时都会被调用。
 
 -------
-Returns
+返回值
 -------
 
-``EventEmitter``: An :ref:`subscription instance <eth-subscription-return>` as an event emitter with the following events:
+``EventEmitter``: 带有下面事件的一个 :ref:`订阅实例 <eth-subscription-return>` 事件发生器:
 
-- ``"data"`` returns ``Object``: Fires on each incoming block header.
-- ``"error"`` returns ``Object``: Fires when an error in the subscription occurs.
-- ``"connected"`` returns ``Number``: Fires once after the subscription successfully connected. Returns the subscription id.
+- ``"data"`` 返回 ``Object``: 当收到新的区块头时触发
+- ``"error"`` 返回 ``Object``: 当订阅中出现错误时触发
+- ``"connected"`` 返回 ``Number``: 订阅成功后触发，返回订阅 id
 
-The structure of a returned block header is as follows:
+返回的区块头对象结构如下：
 
-    - ``number`` - ``Number``: The block number. ``null`` when its pending block.
-    - ``hash`` 32 Bytes - ``String``: Hash of the block. ``null`` when its pending block.
-    - ``parentHash`` 32 Bytes - ``String``: Hash of the parent block.
-    - ``nonce`` 8 Bytes - ``String``: Hash of the generated proof-of-work. ``null`` when its pending block.
-    - ``sha3Uncles`` 32 Bytes - ``String``: SHA3 of the uncles data in the block.
-    - ``logsBloom`` 256 Bytes - ``String``: The bloom filter for the logs of the block. ``null`` when its pending block.
-    - ``transactionsRoot`` 32 Bytes - ``String``: The root of the transaction trie of the block
-    - ``stateRoot`` 32 Bytes - ``String``: The root of the final state trie of the block.
-    - ``receiptsRoot`` 32 Bytes - ``String``: The root of the receipts.
-    - ``miner`` - ``String``: The address of the beneficiary to whom the mining rewards were given.
-    - ``extraData`` - ``String``: The "extra data" field of this block.
-    - ``gasLimit`` - ``Number``: The maximum gas allowed in this block.
-    - ``gasUsed`` - ``Number``: The total used gas by all transactions in this block.
-    - ``timestamp`` - ``Number``: The unix timestamp for when the block was collated.
+    - ``number`` - ``Number``: 区块编号，对于 pending 状态的块该值为``null``。
+    - ``hash`` 32 Bytes - ``String``: 块的哈希值，对于 pending 状态的块该值为``null``。
+    - ``parentHash`` 32 Bytes - ``String``: 父区块哈希值。
+    - ``nonce`` 8 Bytes - ``String``: 用来生成工作量证明的 nonce 值. 对于 pending 状态的块该值为``null``。
+    - ``sha3Uncles`` 32 Bytes - ``String``: 区块中叔块数据的 sha3哈希值。
+    - ``logsBloom`` 256 Bytes - ``String``: 区块日志数据的布隆过滤器。对于 pending 状态的块该值为``null``。
+    - ``transactionsRoot`` 32 Bytes - ``String``: 区块中交易 trie 树的根节点。
+    - ``stateRoot`` 32 Bytes - ``String``: 区块中状态 trie 树的根节点。
+    - ``receiptsRoot`` 32 Bytes - ``String``: 收据根节点。
+    - ``miner`` - ``String``: 接收挖矿奖励的矿工地址。
+    - ``extraData`` - ``String``: 区块的额外数据字段。
+    - ``gasLimit`` - ``Number``: 该块允许的最大 gas 用量。
+    - ``gasUsed`` - ``Number``: 该块中所有交易使用的 gas 总量。
+    - ``timestamp`` - ``Number``: 区块时间戳。
 
 ----------------
-Notification returns
+通知返回值
 ----------------
 
-1. ``Object|Null`` - First parameter is an error object if the subscription failed.
-2. ``Object`` - The block header object like above.
+1. ``Object|Null`` - 如果订阅失败第一个参数为错误对象
+2. ``Object`` - 像上面那样的区块头对象
 
 -------
-Example
+例子
 -------
 
 
@@ -240,7 +239,7 @@ Example
     })
     .on("error", console.error);
 
-    // unsubscribes the subscription
+    // 取消订阅
     subscription.unsubscribe(function(error, success){
         if (success) {
             console.log('Successfully unsubscribed!');
@@ -257,36 +256,36 @@ subscribe("syncing")
 
     web3.eth.subscribe('syncing' [, callback]);
 
-Subscribe to syncing events. This will return an object when the node is syncing and when its finished syncing will return ``FALSE``.
+订阅同步事件。当节点正在同步数据时将返回一个同步对象，同步结束后返回 ``FALSE``。
 
 ----------
-Parameters
+参数
 ----------
 
-1. ``String`` - ``"syncing"``, the type of the subscription.
-2. ``Function`` - (optional) Optional callback, returns an error object as first parameter and the result as second. Will be called for each incoming subscription.
+1. ``String`` - ``"syncing"``, 订阅类型
+2. ``Function`` - (可选) 可选的回调函数，其第一个参数为错误对象，第二个参数为结果。每当有订阅事件发生时都会被调用。
 
 -------
-Returns
+返回值
 -------
 
-``EventEmitter``: An :ref:`subscription instance <eth-subscription-return>` as an event emitter with the following events:
+``EventEmitter``: 带有下面事件的一个 :ref:`订阅实例 <eth-subscription-return>` 事件发生器:
 
-- ``"data"`` returns ``Object``: Fires on each incoming sync object as argument.
-- ``"changed"`` returns ``Object``: Fires when the synchronisation is started with ``true`` and when finished with ``false``.
-- ``"error"`` returns ``Object``: Fires when an error in the subscription occurs.
+- ``"data"`` 返回 ``Object``: 收到同步对象时触发
+- ``"changed"`` 返回 ``Object``: 当同步状态由 ``true`` 变为 ``false`` 时触发
+- ``"error"`` 返回 ``Object``: 当订阅中出现错误时触发
 
-For the structure of a returned event ``Object`` see :ref:`web3.eth.isSyncing return values <eth-issyncing-return>`.
+要了解返回事件对象的结构，可查看 :ref:`web3.eth.isSyncing 返回值 <eth-issyncing-return>`。
 
 ----------------
-Notification returns
+通知返回值
 ----------------
 
-1. ``Object|Null`` - First parameter is an error object if the subscription failed.
-2. ``Object|Boolean`` - The syncing object, when started it will return ``true`` once or when finished it will return `false` once.
+1. ``Object|Null`` - 如果订阅失败第一个参数为错误对象
+2. ``Object|Boolean`` - 同步对象, 同步开始后返回 ``true``，同步结束后返回 `false`
 
 -------
-Example
+例子
 -------
 
 
@@ -297,17 +296,17 @@ Example
             console.log(sync);
     })
     .on("data", function(sync){
-        // show some syncing stats
+        // 一些同步状态数据
     })
     .on("changed", function(isSyncing){
         if(isSyncing) {
-            // stop app operation
+            // 暂停应用操作
         } else {
-            // regain app operation
+            // 重启应用操作
         }
     });
 
-    // unsubscribes the subscription
+    // 取消订阅
     subscription.unsubscribe(function(error, success){
         if(success)
             console.log('Successfully unsubscribed!');
@@ -323,42 +322,42 @@ subscribe("logs")
 
     web3.eth.subscribe('logs', options [, callback]);
 
-Subscribes to incoming logs, filtered by the given options.
-If a valid numerical ``fromBlock`` options property is set, Web3 will retrieve logs beginning from this point, backfilling the response as necessary.
+订阅日志，并按指定条件进行过滤。
+如果一个有效的 ``fromBlock`` 属性被指定，Web3 会提取从这个点开始的日志，必要时回填返回值。
 
 ----------
-Parameters
+参数
 ----------
 
-1. ``"logs"`` - ``String``, the type of the subscription.
-2. ``Object`` - The subscription options
-  - ``fromBlock`` - ``Number``: The number of the earliest block. By default ``null``.
-  - ``address`` - ``String|Array``: An address or a list of addresses to only get logs from particular account(s).
-  - ``topics`` - ``Array``: An array of values which must each appear in the log entries. The order is important, if you want to leave topics out use ``null``, e.g. ``[null, '0x00...']``. You can also pass another array for each topic with options for that topic e.g. ``[null, ['option1', 'option2']]``
-3. ``callback`` - ``Function``: (optional) Optional callback, returns an error object as first parameter and the result as second. Will be called for each incoming subscription.
+1. ``"logs"`` - ``String``, 订阅类型
+2. ``Object`` - 订阅选项
+  - ``fromBlock`` - ``Number``: 最早区块编号， 默认为 ``null``。
+  - ``address`` - ``String|Array``: 地址或地址列表，仅订阅来自这些指定账户地址的日志。
+  - ``topics`` - ``Array``: 一个主题数组，数组中每个元素都应出现在日志项中。 数组中主题的顺序是很重要的, 如果你不想监听某个主题可以用 ``null`` 值, 比如 ``[null, '0x00...']``. 你也可以为每个主题传入另外一个数组来表示主题选项， 比如 ``[null, ['option1', 'option2']]``
+3. ``callback`` - ``Function``: (可选) 可选的回调函数，其第一个参数为错误对象，第二个参数为结果。每当有订阅事件发生时都会被调用。
 
 -------
-Returns
+返回值
 -------
 
-``EventEmitter``: An :ref:`subscription instance <eth-subscription-return>` as an event emitter with the following events:
+``EventEmitter``: 带有下面事件的一个 :ref:`订阅实例 <eth-subscription-return>` 事件发生器:
 
-- ``"data"`` returns ``Object``: Fires on each incoming log with the log object as argument.
-- ``"changed"`` returns ``Object``: Fires on each log which was removed from the blockchain. The log will have the additional property ``"removed: true"``.
-- ``"error"`` returns ``Object``: Fires when an error in the subscription occurs.
-- ``"connected"`` returns ``Number``: Fires once after the subscription successfully connected. Returns the subscription id.
+- ``"data"`` 返回 ``Object``: 接收到新日志时触发，参数为日志对象
+- ``"changed"`` 返回 ``Object``: 日志从链上移除时触发，该日志同时带有附加属性 ``"removed: true"``
+- ``"error"`` 返回 ``Object``: 当订阅中出现错误时触发
+- ``"connected"`` 返回 ``Number``: 订阅成功后触发，返回订阅 id
 
-For the structure of a returned event ``Object`` see :ref:`web3.eth.getPastEvents return values <eth-getpastlogs-return>`.
+要了解返回的事件对象结构，可查看 :ref:`web3.eth.getPastEvents 返回值 <eth-getpastlogs-return>`.
 
 ----------------
-Notification returns
+通知返回值
 ----------------
 
-1. ``Object|Null`` - First parameter is an error object if the subscription failed.
-2. ``Object`` - The log object like in :ref:`web3.eth.getPastEvents return values <eth-getpastlogs-return>`.
+1. ``Object|Null`` - 如果订阅失败第一个参数为错误对象
+2. ``Object`` - 日志对象，类似于 :ref:`web3.eth.getPastEvents 返回值 <eth-getpastlogs-return>`.
 
 -------
-Example
+例子
 -------
 
 
@@ -380,7 +379,7 @@ Example
     .on("changed", function(log){
     });
 
-    // unsubscribes the subscription
+    // 取消订阅
     subscription.unsubscribe(function(error, success){
         if(success)
             console.log('Successfully unsubscribed!');
