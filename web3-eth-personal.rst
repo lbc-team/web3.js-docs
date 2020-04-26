@@ -5,20 +5,20 @@ web3.eth.personal
 ========
 
 
-The ``web3-eth-personal`` package allows you to interact with the Ethereum node's accounts.
+``web3-eth-personal`` 包让你可以同以太坊节点上的账户进行交互。
 
-.. note:: Many of these functions send sensitive information, like password. Never call these functions over a unsecured Websocket or HTTP provider, as your password will be sent in plain text!
+.. 注意:: 这个包中的许多函数都是要发送像密码这种敏感信息的，因此不要在不安全的 Websocket 或 HTTP 服务提供器上调用这些函数，因为你的密码是明文发送的！
 
 
 .. code-block:: javascript
 
     var Personal = require('web3-eth-personal');
 
-    // "Personal.providers.givenProvider" will be set if in an Ethereum supported browser.
+    // "Personal.providers.givenProvider" 在支持以太坊的浏览器上会被自动设置。
     var personal = new Personal(Personal.givenProvider || 'ws://some.local-or-remote.node:8546');
 
 
-    // or using the web3 umbrella package
+    // 或者使用 web3 包
 
     var Web3 = require('web3');
     var web3 = new Web3(Web3.givenProvider || 'ws://some.local-or-remote.node:8546');
@@ -44,24 +44,24 @@ newAccount
 
     web3.eth.personal.newAccount(password, [callback])
 
-Creates a new account.
+创建一个新的账户。
 
-.. note:: Never call this function over a unsecured Websocket or HTTP provider, as your password will be send in plain text!
+.. 注意:: 永远不要通过不安全的 Websocket 或 HTTP 服务提供器来调用这些函数，因为你的密码是明文发送的！
 
 ----------
-Parameters
+参数
 ----------
 
-1. ``password`` - ``String``: The password to encrypt this account with.
+1. ``password`` - ``String``: 用来加密账户的密码。
 
 -------
-Returns
+返回值
 -------
 
-``Promise`` returns ``String``: The address of the newly created account.
+``Promise<string>`` ：新创建账户地址
 
 -------
-Example
+例子
 -------
 
 .. code-block:: javascript
@@ -80,41 +80,38 @@ sign
 
     web3.eth.personal.sign(dataToSign, address, password [, callback])
 
-The sign method calculates an Ethereum specific signature with:
+该方法通过下面的方式计算一个以太坊特定签名：
 
 .. code-block:: javascript
 
     sign(keccak256("\x19Ethereum Signed Message:\n" + dataToSign.length + dataToSign)))
 
-Adding a prefix to the message makes the calculated signature recognisable as an Ethereum specific signature.
+在消息前加个前缀使得算出的签名可以被识别为以太坊特定签名。
 
-If you have the original message and the signed message, you can discover the signing account address
-using :ref:`web3.eth.personal.ecRecover <eth-personal-ecRecover>` (See example below)
+如果你同时有原始消息和签名消息，就可以使用 :ref:`web3.eth.personal.ecRecover <eth-personal-ecRecover>` (下面有示例) 来恢复签名账户地址
 
 
-.. note:: Sending your account password over an unsecured HTTP RPC connection is highly unsecure.
+.. 注意:: 通过不安全的 HTTP RPC 连接发送帐户密码非常危险。
 
 ----------
-Parameters
+参数
 ----------
 
 
-1. ``String`` - Data to sign. If String it will be converted using :ref:`web3.utils.utf8ToHex <utils-utf8tohex>`.
-2. ``String`` - Address to sign data with.
-3. ``String`` - The password of the account to sign data with.
-4. ``Function`` - (optional) Optional callback, returns an error object as first parameter and the result as second.
-
-
--------
-Returns
--------
-
-
-``Promise`` returns ``String`` - The signature.
-
+1. ``String`` - 要签名的数据。 如果是字符串会使用 :ref:`web3.utils.utf8ToHex <utils-utf8tohex>` 将其转换为 16 进制。
+2. ``String`` -  用来签名的账户地址。
+3. ``String`` - 用来签名的账户密码。
+4. ``Function`` - (可选) 可选的回调函数，其第一个参数为错误对象，第二个参数为签名结果。
 
 -------
-Example
+返回值
+-------
+
+
+``Promise<string>`` - 签名字符串。
+
+-------
+例子
 -------
 
 
@@ -124,12 +121,12 @@ Example
     .then(console.log);
     > "0x30755ed65396facf86c53e6217c52b4daebe72aa4941d89635409de4c9c7f9466d4e9aaec7977f05e923889b33c0d0dd27d7226b6e6f56ce737465c5cfd04be400"
 
-    // the below is the same
+    // 下面代码实现同样功能
     web3.eth.personal.sign(web3.utils.utf8ToHex("Hello world"), "0x11f4d0A3c12e86B4b5F39B213F7E19D048276DAe", "test password!")
     .then(console.log);
     > "0x30755ed65396facf86c53e6217c52b4daebe72aa4941d89635409de4c9c7f9466d4e9aaec7977f05e923889b33c0d0dd27d7226b6e6f56ce737465c5cfd04be400"
 
-    // recover the signing account address using original message and signed message
+    // 使用原始消息和签名消息来恢复签名账户地址
     web3.eth.personal.ecRecover("Hello world", "0x30755ed65396...etc...")
     .then(console.log);
     > "0x11f4d0A3c12e86B4b5F39B213F7E19D048276DAe"
@@ -145,28 +142,26 @@ ecRecover
 
     web3.eth.personal.ecRecover(dataThatWasSigned, signature [, callback])
 
-Recovers the account that signed the data.
+恢复数据签名帐户。
 
 ----------
-Parameters
+参数
 ----------
 
 
-1. ``String`` - Data that was signed. If String it will be converted using :ref:`web3.utils.utf8ToHex <utils-utf8tohex>`.
-2. ``String`` - The signature.
-3. ``Function`` - (optional) Optional callback, returns an error object as first parameter and the result as second.
-
-
--------
-Returns
--------
-
-
-``Promise`` returns ``String`` - The account.
-
+1. ``String`` - 被签名的数据。 如果是字符串会使用 :ref:`web3.utils.utf8ToHex <utils-utf8tohex>` 将其转换为 16 进制。
+2. ``String`` - 签名。
+3. ``Function`` - (可选) 可选的回调函数，其第一个参数为错误对象，第二个参数为签名结果。
 
 -------
-Example
+返回值
+-------
+
+
+``Promise<string>`` - 签名账户。
+
+-------
+例子
 -------
 
 
@@ -184,30 +179,29 @@ signTransaction
 
     web3.eth.personal.signTransaction(transaction, password [, callback])
 
-Signs a transaction. This account needs to be unlocked.
+对交易进行签名，账户必须先解锁。
 
-.. note:: Sending your account password over an unsecured HTTP RPC connection is highly unsecure.
+.. 注意:: 通过不安全的 HTTP RPC 连接发送帐户密码非常危险。
 
 ----------
-Parameters
+参数
 ----------
 
 
-1. ``Object`` - The transaction data to sign :ref:`web3.eth.sendTransaction() <eth-sendtransaction>` for more.
-2. ``String`` - The password of the ``from`` account, to sign the transaction with.
-3. ``Function`` - (optional) Optional callback, returns an error object as first parameter and the result as second.
+1. ``Object`` - 要签名的交易数据，更多详情请看 :ref:`web3.eth.sendTransaction() <eth-sendtransaction>` 。
+2. ``String`` - 用来签名交易的 ``from`` 账户密码。
+3. ``Function`` - (可选) 可选的回调函数，其第一个参数为错误对象，第二个参数为签名结果。
 
 
 -------
-Returns
+返回值
 -------
 
 
-``Promise`` returns ``Object`` - The RLP encoded transaction. The ``raw`` property can be used to send the transaction using :ref:`web3.eth.sendSignedTransaction <eth-sendsignedtransaction>`.
-
+``Promise<Object>`` - RLP 编码的交易对象，其 ``raw`` 属性可以用来通过 :ref:`web3.eth.sendSignedTransaction <eth-sendsignedtransaction>` 来发送交易。
 
 -------
-Example
+例子
 -------
 
 
@@ -246,30 +240,29 @@ sendTransaction
 
     web3.eth.personal.sendTransaction(transactionOptions, password [, callback])
 
-This method sends a transaction over the management API.
+该方法用来通过账户管理 API 来发送交易。
 
-.. note:: Sending your account password over an unsecured HTTP RPC connection is highly unsecure.
+.. 注意:: 通过不安全的 HTTP RPC 连接发送帐户密码非常危险。
 
 ----------
-Parameters
+参数
 ----------
 
 
-1. ``Object`` - The transaction options
-2. ``String`` - The passphrase for the current account
-3. ``Function`` - (optional) Optional callback, returns an error object as first parameter and the result as second.
+1. ``Object`` - 交易对象属性
+2. ``String`` - 当前帐户的密码
+3. ``Function`` - (可选) 可选的回调函数，其第一个参数为错误对象，第二个参数为签名结果。
 
 
 -------
-Returns
+返回值
 -------
 
 
-``Promise<string>`` - The transaction hash.
-
+``Promise<string>`` - 交易哈希
 
 -------
-Example
+例子
 -------
 
 
@@ -295,21 +288,21 @@ unlockAccount
 
     web3.eth.personal.unlockAccount(address, password, unlockDuraction [, callback])
 
-Signs data using a specific account.
+解锁账户
 
-.. note:: Sending your account password over an unsecured HTTP RPC connection is highly unsecure.
+.. 注意:: 通过不安全的 HTTP RPC 连接发送帐户密码非常危险。
 
 ----------
-Parameters
+参数
 ----------
 
 
-1. ``address`` - ``String``: The account address.
-2. ``password`` - ``String`` - The password of the account.
-3. ``unlockDuration`` - ``Number`` - The duration for the account to remain unlocked.
+1. ``address`` - ``String``: 要解锁的账户地址。
+2. ``password`` - ``String`` - 账户密码。
+3. ``unlockDuration`` - ``Number`` - 将帐户保持在解锁状态的持续时间。
 
 -------
-Example
+例子
 -------
 
 
@@ -328,21 +321,21 @@ lockAccount
 
     web3.eth.personal.lockAccount(address [, callback])
 
-Locks the given account.
+锁定给定帐户。
 
-.. note:: Sending your account password over an unsecured HTTP RPC connection is highly unsecure.
+.. 注意:: 通过不安全的 HTTP RPC 连接发送帐户密码非常危险。
 
 ----------
-Parameters
+参数
 ----------
 
 
-1. ``address`` - ``String``: The account address.
-4. ``Function`` - (optional) Optional callback, returns an error object as first parameter and the result as second.
+1. ``address`` - ``String``: 要锁定的账户地址。
+4. ``Function`` - (可选) 可选的回调函数，其第一个参数为错误对象，第二个参数为签名结果。
 
 
 -------
-Returns
+返回值
 -------
 
 
@@ -350,7 +343,7 @@ Returns
 
 
 -------
-Example
+例子
 -------
 
 
@@ -371,23 +364,20 @@ getAccounts
 
     web3.eth.personal.getAccounts([callback])
 
-Returns a list of accounts the node controls by using the provider and calling
-the RPC method ``personal_listAccounts``. Using :ref:`web3.eth.accounts.create() <accounts-create>`
-will not add accounts into this list. For that use
-:ref:`web3.eth.personal.newAccount() <personal-newaccount>`.
+通过使用服务提供器并调用 RPC 方法 ``personal_listAccounts`` 返回节点控制的账户列表。使用 :ref:`web3.eth.accounts.create() <accounts-create>`
+创建的账户不会被添加到这个列表中。这方面的更多信息可以查看 :ref:`web3.eth.personal.newAccount() <personal-newaccount>`。
 
-The results are the same as :ref:`web3.eth.getAccounts() <eth-getaccounts>` except that calls
-the RPC method ``eth_accounts``.
+结果和 :ref:`web3.eth.getAccounts() <eth-getaccounts>` 是一样的，只是它用的 RPC 方法是 ``eth_accounts``。
 
 -------
-Returns
+返回值
 -------
 
 
-``Promise<Array>`` - An array of addresses controlled by node.
+``Promise<Array>`` - 节点控制地址数组
 
 -------
-Example
+例子
 -------
 
 
@@ -406,30 +396,30 @@ importRawKey
 
     web3.eth.personal.importRawKey(privateKey, password)
 
-Imports the given private key into the key store, encrypting it with the passphrase.
+将给定的私钥导入密钥存储区，并使用密码对其进行加密。
 
-Returns the address of the new account.
+返回和导入私钥对应的新账户地址。
 
-.. note:: Sending your account password over an unsecured HTTP RPC connection is highly unsecure.
+.. 注意:: 通过不安全的 HTTP RPC 连接发送帐户密码非常危险。
 
 ----------
-Parameters
+参数
 ----------
 
 
-1. ``privateKey`` - ``String`` - An unencrypted private key (hex string).
-2. ``password`` - ``String`` - The password of the account.
+1. ``privateKey`` - ``String`` - 为加密的私钥 (16 进制字符串)。
+2. ``password`` - ``String`` - 账户密码。
 
 
 -------
-Returns
+返回值
 -------
 
 
-``Promise<string>`` - The address of the account.
+``Promise<string>`` - 账户地址。
 
 -------
-Example
+例子
 -------
 
 
