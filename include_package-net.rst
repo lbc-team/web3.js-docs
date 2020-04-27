@@ -46,7 +46,6 @@ isListening
     web3.bzz.net.isListening([callback])
     web3.shh.net.isListening([callback])
 
-Checks if the node is listening for peers.
 查看当前节点是否正在连接其它对等节点。
 
 ----------
@@ -82,7 +81,6 @@ getPeerCount
     web3.bzz.net.getPeerCount([callback])
     web3.shh.net.getPeerCount([callback])
 
-Get the number of peers connected to.
 获取正在连接的对等节点的数量。
 
 ----------
