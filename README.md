@@ -61,7 +61,7 @@ make html
 ## 译者
 
 * [Tiny熊](https://learnblockchain.cn/people/15)
-* 待添加
+* [Ashton](https://learnblockchain.cn/people/29) 
 
 
 ## 常见问题
