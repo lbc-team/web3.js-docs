@@ -12,6 +12,8 @@
 | include_package-core.rst     |Ashton(04/16 - 04/18) | Tiny熊 | 207 |
 | web3-eth-subscribe.rst     |Ashton(04/16 - 04/18) | Tiny熊 | 272 |
 | web3-eth-personal.rst     |Ashton(04/24 - 04/26) | Tiny熊 | 258 |
+| index.rst      |Tiny熊(04/27 - 04/27) | Ashton |  |
+| getting-started.rst      |Tiny熊(27/27 - 04/09) | Ashton |   |
 
 
 
