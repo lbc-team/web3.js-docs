@@ -7,13 +7,13 @@
 | web3.rst          |  Tiny熊(03/31 - 04/02)| Ashton   |   81  | 
 | web3-shh.rst      |Ashton(04/03 - 04/09) | Tiny熊 | 608 |
 | web3-eth-abi.rst      |Tiny熊(04/13 - 04/13) | Ashton |  392 |
-| web3-net.rst     |Ashton(04/16 - 04/18) | Tiny熊 |  |
+| web3-net.rst     |Ashton(04/16 - 04/18) | Tiny熊 | 18 |
 | include_package-net.rst     |Ashton(04/16 - 04/18) | Tiny熊 | 71 |
 | include_package-core.rst     |Ashton(04/16 - 04/18) | Tiny熊 | 207 |
 | web3-eth-subscribe.rst     |Ashton(04/16 - 04/18) | Tiny熊 | 272 |
 | web3-eth-personal.rst     |Ashton(04/24 - 04/26) | Tiny熊 | 258 |
-| index.rst      |Tiny熊(04/27 - 04/27) | Ashton |  |
-| getting-started.rst      |Tiny熊(27/27 - 04/09) | Ashton |   |
+| index.rst      |Tiny熊(04/27 - 04/27) | Ashton | 32 |
+| getting-started.rst      |Tiny熊(27/27 - 04/09) | Ashton | 25  |
 
 
 
