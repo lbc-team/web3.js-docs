@@ -10,19 +10,19 @@ web3.js 是一组使用HTTP或IPC连接来和本地或远程以太坊节点进�
 
 
 这份文档有两个部分： :ref:`安装和运行web3.js <adding-web3>` 指导我们如何导入web3.js ，而 
- :ref:`接口文档 API <web3-modules>` 说明了接口的时候，勇士也包含了大量的实例。
+ :ref:`接口文档 API <web3-modules>` 说明了接口的时候，同时也包含了大量的实例。
 
 内容:
 
 :ref:`关键字索引 <genindex>`, :ref:`搜索 <search>`
 
 .. toctree::
-   :maxdepth: 2
-   :caption: 文档说明
+    :maxdepth: 2
+    :caption: 文档说明
 
-   getting-started
-   callbacks-promises-events
-   glossary
+    getting-started
+    callbacks-promises-events
+    glossary
 
 
 .. toctree::

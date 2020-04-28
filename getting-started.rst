@@ -7,7 +7,7 @@ web3.js 库是一系列模块的集合，服务于以太坊生态系统的各个
 
 
 - ``web3-eth`` 用来与以太坊区块链及合约的交互；
-- ``web3-shh`` Whisper协议相关，进行p2p通信和广播；
+- ``web3-shh`` Whisper 协议相关，进行p2p通信和广播；
 - ``web3-bzz`` swarm 协议（去中心化文件存储）相关；
 - ``web3-utils`` 包含一些对 DApp 开发者有用的方法。
 
