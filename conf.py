@@ -48,7 +48,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'web3.js'
+project = u'web3.js 中文文档'
 copyright = u'2020, 登链社区'
 author = u'Fabian Vogelsteller, Marek Kotewicz, Jeffrey Wilcke, Marian Oancea, Gav Wood'
 
@@ -66,7 +66,7 @@ release = u'1.2.6'
 #
 # This is also used if you do content translation via gettext catalogs.
 # Usually you set "language" from the command line for these cases.
-language = None
+language = u'zh_CN'
 
 # There are two options for replacing |today|: either, you set today to some
 # non-false value, then it is used:
@@ -80,7 +80,7 @@ language = None
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
 # This patterns also effect to html_static_path and html_extra_path
-exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
+exclude_patterns = ['_build', '.history' 'Thumbs.db', '.DS_Store']
 
 # The reST default role (used for this markup: `text`) to use for all
 # documents.
@@ -133,7 +133,7 @@ html_theme = 'sphinx_rtd_theme'
 # The name for this set of Sphinx documents.
 # "<project> v<release> documentation" by default.
 #
-html_title = u'web3.js v1.2.6 中文文档'
+html_title = u'web3.js 中文文档 | 登链社区'
 
 # A shorter title for the navigation bar.  Default is the same as html_title.
 #
@@ -301,7 +301,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'web3js', u'web3.js Documentation',
+    (master_doc, 'web3js', u'web3.js 文档',
      [author], 1)
 ]
 
@@ -316,7 +316,7 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (master_doc, 'web3js', u'web3.js Documentation',
+    (master_doc, 'web3js', u'web3.js 文档',
      author, 'web3js', 'One line description of project.',
      'Miscellaneous'),
 ]
