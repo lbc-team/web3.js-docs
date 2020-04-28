@@ -5,8 +5,7 @@ web3.*.net
 ========
 
 
-The ``web3-net`` package allows you to interact with the Ethereum nodes network properties.
-``web3-net`` 包让你可以与以太坊节点网络属性进行交互
+``web3-net`` 包让你可以与以太坊节点交互来获取网络属性
 
 .. code-block:: javascript
 
@@ -17,7 +16,6 @@ The ``web3-net`` package allows you to interact with the Ethereum nodes network 
 
 
     // 或者使用 web3 包
-
     var Web3 = require('web3');
     var web3 = new Web3(Web3.givenProvider || 'ws://some.local-or-remote.node:8546');
 
