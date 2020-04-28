@@ -11,10 +11,9 @@ setProvider
     web3.bzz.setProvider(myProvider)
     ...
 
-Will change the provider for its module.
 将改变相应模块的 provider。
 
-.. 注意:: 当我们通过 ``web3`` 包调用它的时候，``web3.eth``, ``web3.shh`` 等子模块的 provider 也会被设置，``web3.bzz`` 这货是个例外，它总是需要一个单独的 provider。
+.. note:: 当我们通过 ``web3`` 包调用它的时候，``web3.eth``, ``web3.shh`` 等子模块的 provider 也会被设置，``web3.bzz`` 这货是个例外，它总是需要一个单独的 provider。
 
 ----------
 参数
@@ -221,7 +220,7 @@ extend
 
 用来扩展 web3 模块
 
-.. 注意:: 你也可以使用 ``*.extend.formatters`` 作为额外的格式化函数进行输入输出参数的格式化. 更多详情请看 `源文件 <https://github.com/ethereum/web3.js/blob/master/packages/web3-core-helpers/src/formatters.js>`_ 。
+.. note:: 你也可以使用 ``*.extend.formatters`` 作为额外的格式化函数进行输入输出参数的格式化. 更多详情请看 `源文件 <https://github.com/ethereum/web3.js/blob/master/packages/web3-core-helpers/src/formatters.js>`_ 。
 
 ----------
 参数

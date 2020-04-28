@@ -1,8 +1,8 @@
 .. _eth-net:
 
-=========
+=============
 web3.eth.net
-=========
+=============
 
 
 Contains functions to receive information about the current network.

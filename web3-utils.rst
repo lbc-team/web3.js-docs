@@ -33,7 +33,7 @@ web3.utils
 - `web3.utils.isInBloom <https://github.com/joshstevens19/ethereum-bloom-filters/blob/master/README.md#isinbloom>`_
 
 
-.. 注意:: 请在 `这里 <https://github.com/joshstevens19/ethereum-bloom-filters/issues>`_ 提出你遇到的任何问题
+.. note:: 请在 `这里 <https://github.com/joshstevens19/ethereum-bloom-filters/issues>`_ 提出你遇到的任何问题
 
 ------------------------------------------------------------------------------
 
@@ -126,7 +126,7 @@ BN
 
  `BN.js <https://github.com/indutny/bn.js/>`_ 用来在 JavaScript 中进行大数计算。更多详情查看 `BN.js 文档 <https://github.com/indutny/bn.js/>`_
 
-.. 注意:: 为了在不同类型之间进行安全的类型转换, 包括 `BigNumber.js <http://mikemcl.github.io/bignumber.js/>`_ 可以使用 :ref:`utils.toBN <utils-tobn>`
+.. note:: 为了在不同类型之间进行安全的类型转换, 包括 `BigNumber.js <http://mikemcl.github.io/bignumber.js/>`_ 可以使用 :ref:`utils.toBN <utils-tobn>`
 
 ----------
 参数
@@ -246,7 +246,7 @@ sha3
 
 将计算输入参数的 sha3 值。
 
-.. 注意::  要模拟 solidity 中使用 sha3，需要使用 :ref:`soliditySha3 <utils-soliditysha3>`
+.. note::  要模拟 solidity 中使用 sha3，需要使用 :ref:`soliditySha3 <utils-soliditysha3>`
 
 ----------
 参数
@@ -294,7 +294,7 @@ sha3Raw
 
 将计算输入字符串的 sha3 哈希值，如果传入的是空字符串，将返回空字符串的哈希值而不是 ``null``
 
-.. 注意::  更多详情可以查看这里 :ref:`sha3 <utils-sha3>`
+.. note::  更多详情可以查看这里 :ref:`sha3 <utils-sha3>`
 
 
 ------------------------------------------------------------------------------
@@ -395,7 +395,7 @@ soliditySha3Raw
 使用和 solidity 同样的方式对输入参数进行 sha3 哈希运算。这意味着对这些参数在进行哈希运算之前先进行 ABI 转换和紧凑打包编码。
 和 ``soliditySha3`` 不同的是，如果传入的是空字符串，将返回空字符串的哈希值而不是 ``null``
 
-.. 注意::  更多详情可以查看这里 :ref:`soliditySha3 <utils-soliditysha3>`
+.. note::  更多详情可以查看这里 :ref:`soliditySha3 <utils-soliditysha3>`
 
 
 ------------------------------------------------------------------------------
@@ -666,7 +666,7 @@ toBN
 
 将任何给定值安全转换为 (包括 `BigNumber.js <http://mikemcl.github.io/bignumber.js/>`_ 实例) 一个 `BN.js <https://github.com/indutny/bn.js/>`_ 实例, 以便于在 JavaScript 中处理大数.
 
-.. 注意:: 如果只是 `BN.js <https://github.com/indutny/bn.js/>`_ 类，可以直接使用 :ref:`utils.BN <utils-bn>`
+.. note:: 如果只是 `BN.js <https://github.com/indutny/bn.js/>`_ 类，可以直接使用 :ref:`utils.BN <utils-bn>`
 
 ----------
 参数
@@ -742,7 +742,7 @@ hexToNumber
 
 返回 16 进制字符串的数字表示
 
-.. 注意:: 这个对大数不适用, 大数应该使用 :ref:`utils.toBN <utils-tobn>`.
+.. note:: 这个对大数不适用, 大数应该使用 :ref:`utils.toBN <utils-tobn>`.
 
 ----------
 参数
@@ -1026,7 +1026,7 @@ toWei
 
 将任意 `ether <http://ethdocs.org/en/latest/ether.html>`_ 值转换为 `wei <http://ethereum.stackexchange.com/questions/253/the-ether-denominations-are-called-finney-szabo-and-wei-what-who-are-these-na>`_.
 
-.. 注意:: "wei" 是最小的以太币单位, 你应该总是用 wei 进行数值计算，仅由于显示原因进行换算.
+.. note:: "wei" 是最小的以太币单位, 你应该总是用 wei 进行数值计算，仅由于显示原因进行换算.
 
 ----------
 参数
@@ -1100,7 +1100,7 @@ fromWei
 
 将任意数量的 `wei <http://ethereum.stackexchange.com/questions/253/the-ether-denominations-are-called-finney-szabo-and-wei-what-who-are-these-na>`_ 转换为 `ether <http://ethdocs.org/en/latest/ether.html>`_.
 
-.. 注意:: "wei" 是最小的以太币单位, 你应该总是用 wei 进行数值计算，仅由于显示原因进行换算.
+.. note:: "wei" 是最小的以太币单位, 你应该总是用 wei 进行数值计算，仅由于显示原因进行换算.
 
 ----------
 参数

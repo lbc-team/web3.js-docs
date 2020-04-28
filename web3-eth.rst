@@ -343,7 +343,7 @@ Example
 .. _web3-module-transactionblocktimeout:
 
 transactionBlockTimeout
-=====================
+=========================
 
 .. code-block:: javascript
 
@@ -364,7 +364,7 @@ Returns
 .. _web3-module-transactionconfirmationblocks:
 
 transactionConfirmationBlocks
-=====================
+===================================
 
 .. code-block:: javascript
 
@@ -384,7 +384,7 @@ Returns
 .. _web3-module-transactionpollingtimeout:
 
 transactionPollingTimeout
-=====================
+============================
 
 .. code-block:: javascript
 
@@ -890,7 +890,7 @@ Example
 
 
 getBlockTransactionCount
-=====================
+============================
 
 .. code-block:: javascript
 
