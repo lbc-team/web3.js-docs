@@ -14,6 +14,8 @@
 | web3-eth-personal.rst     |Ashton(04/24 - 04/26) | Tiny熊 | 258 |
 | index.rst      |Tiny熊(04/27 - 04/27) | Ashton | 32 |
 | getting-started.rst      |Tiny熊(27/27 - 04/09) | Ashton | 25  |
+| web3-eth-net.rst     |Ashton(05/01 - 05/02) | Tiny熊 |  |
+| web3-eth-iban.rst     |Ashton(05/01 - 05/02) | Tiny熊 |  |
 
 
 
