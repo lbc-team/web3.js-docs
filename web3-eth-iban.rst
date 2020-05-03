@@ -4,15 +4,14 @@
 web3.eth.Iban
 =========
 
-The ``web3.eth.Iban`` function lets convert Ethereum addresses from and to IBAN and BBAN.
-
+``web3.eth.Iban`` 相关函数让我们可以将以太坊地址和 IBAN/BBAN 地址之间相互转换。
 
 ------------------------------------------------------------------------------
 
-Iban instance
+Iban 实例
 =====================
 
-This's instance of Iban
+这个就是 Iban 实例
 
 .. code-block:: javascript
 
@@ -20,14 +19,14 @@ This's instance of Iban
 
 ------------------------------------------------------------------------------
 
-Iban contructor
+Iban 构造器
 =====================
 
 .. code-block:: javascript
 
     new web3.eth.Iban(ibanAddress)
 
-Generates a iban object with conversion methods and validity checks. Also has singleton functions for conversion like
+生成带有转换方法和有效性检查的 iban 对象。其它带有转换功能的单例函数如下：
 :ref:`Iban.toAddress() <_eth-iban-toaddress>`,
 :ref:`Iban.toIban() <_eth-iban-toiban>`,
 :ref:`Iban.fromAddress() <_eth-iban-fromaddress>`,
@@ -36,19 +35,19 @@ Generates a iban object with conversion methods and validity checks. Also has si
 :ref:`Iban.isValid() <_eth-iban-isvalid>`.
 
 ----------
-Parameters
+参数
 ----------
 
-1. ``String``: the IBAN address to instantiate an Iban instance from.
+1.``String``：用来创建 Iban 实例的 IBAN 地址字符串。
 
 -------
-Returns
+返回值
 -------
 
-``Object`` - The Iban instance.
+``Object`` - Iban 实例。
 
 -------
-Example
+例子
 -------
 
 .. code-block:: javascript
@@ -64,30 +63,30 @@ Example
 toAddress
 =====================
 
-    static function
+    静态函数
 
 .. code-block:: javascript
 
     web3.eth.Iban.toAddress(ibanAddress)
 
-Singleton: Converts a direct IBAN address into an Ethereum address.
+单例: 将 direct IBAN 地址转换为以太坊地址。
 
-.. note:: This method also exists on the IBAN instance.
+.. note:: IBAN 实例对象也有此方法。
 
 ----------
-Parameters
+参数
 ----------
 
-1. ``String``: the IBAN address to convert.
+1.``String``：需要转换的 IBAN 地址。
 
 -------
-Returns
+返回值
 -------
 
-``String`` - The Ethereum address.
+``String`` - 以太坊地址。
 
 -------
-Example
+例子
 -------
 
 .. code-block:: javascript
@@ -103,28 +102,28 @@ Example
 toIban
 =====================
 
-    static function
+    静态函数
 
 .. code-block:: javascript
 
     web3.eth.Iban.toIban(address)
 
-Singleton: Converts an Ethereum address to a direct IBAN address.
+单例: 将以太坊地址转换为 direct IBAN 地址。
 
 ----------
-Parameters
+参数
 ----------
 
-1. ``String``: the Ethereum address to convert.
+1. ``String``: 需要进行转换的以太地址。
+
+----------
+返回值
+----------
+
+``String`` - IBAN 地址。
 
 -------
-Returns
--------
-
-``String`` - The IBAN address.
-
--------
-Example
+例子
 -------
 
 .. code-block:: javascript
@@ -137,7 +136,7 @@ Example
 
 .. _eth-iban-fromaddress:
 
-    static function, return IBAN instance
+    静态函数, 返回 IBAN 实例
 
 fromAddress
 =====================
@@ -146,22 +145,22 @@ fromAddress
 
     web3.eth.Iban.fromAddress(address)
 
-Singleton: Converts an Ethereum address to a direct IBAN instance.
+单例：将以太地址转换为 direct IBAN 实例。
 
 ----------
-Parameters
+参数
 ----------
 
-1. ``String``: the Ethereum address to convert.
+1. ``String``: 需要进行转换的以太地址。
+
+----------
+返回值
+----------
+
+``Object`` - IBAN 实例。
 
 -------
-Returns
--------
-
-``Object`` - The IBAN instance.
-
--------
-Example
+例子
 -------
 
 .. code-block:: javascript
@@ -174,7 +173,7 @@ Example
 
 .. _eth-iban-frombban:
 
-    static function, return IBAN instance
+    静态函数, 返回 IBAN 实例。
 
 fromBban
 =====================
@@ -183,22 +182,22 @@ fromBban
 
     web3.eth.Iban.fromBban(bbanAddress)
 
-Singleton: Converts an BBAN address to a direct IBAN instance.
+单例: 将 BBAN 地址转换为 direct IBAN 实例。
 
 ----------
-Parameters
+参数
 ----------
 
-1. ``String``: the BBAN address to convert.
+1. ``String``: 需要进行转换的 BBAN 地址。
+
+----------
+返回值
+----------
+
+``Object`` - IBAN 实例。
 
 -------
-Returns
--------
-
-``Object`` - The IBAN instance.
-
--------
-Example
+例子
 -------
 
 .. code-block:: javascript
@@ -211,7 +210,7 @@ Example
 
 .. _eth-iban-createindirect:
 
-    static function, return IBAN instance
+    静态函数, 返回 IBAN 实例。
 
 createIndirect
 =====================
@@ -220,24 +219,24 @@ createIndirect
 
     web3.eth.Iban.createIndirect(options)
 
-Singleton: Creates an indirect IBAN address from a institution and identifier.
+单例: 根据机构和标识符创建 indirect IBAN 地址。
 
 ----------
-Parameters
+参数
 ----------
 
-1. ``Object``: the options object as follows:
-    - ``institution`` - ``String``: the institution to be assigned
-    - ``identifier`` - ``String``: the identifier to be assigned
+1. ``Object``: 包含下面属性的 options 对象:
+    - ``institution`` - ``String``: 分配的机构名称
+    - ``identifier`` - ``String``: 分配的标识符
+
+----------
+返回值
+----------
+
+``Object`` - IBAN 实例。
 
 -------
-Returns
--------
-
-``Object`` - The IBAN instance.
-
--------
-Example
+例子
 -------
 
 .. code-block:: javascript
@@ -253,7 +252,7 @@ Example
 
 .. _eth-iban-isvalid:
 
-    static function, return boolean
+    静态函数, 返回布尔值
 
 isValid
 =====================
@@ -262,24 +261,24 @@ isValid
 
     web3.eth.Iban.isValid(ibanAddress)
 
-Singleton: Checks if an IBAN address is valid.
+单例: 检查 IBAN 地址是否有效。
 
-.. note:: This method also exists on the IBAN instance.
+.. note:: IBAN 实例也包含该方法。
 
 ----------
-Parameters
+参数
 ----------
 
-1. ``String``: the IBAN address to check.
+1. ``String``: 需要进行检查的 IBAN 地址。
 
--------
-Returns
--------
+----------
+返回值
+----------
 
 ``Boolean``
 
 -------
-Example
+例子
 -------
 
 .. code-block:: javascript
@@ -288,7 +287,7 @@ Example
     > true
 
     web3.eth.Iban.isValid("XE82ETHXREGGAVOFYORK");
-    > false // because the checksum is incorrect
+    > false // 因为校验值不对
 
 
 ------------------------------------------------------------------------------
@@ -296,30 +295,30 @@ Example
 prototype.isValid
 =====================
 
-    method of Iban instance
+    Iban 实例方法
 
 .. code-block:: javascript
 
     web3.eth.Iban.prototype.isValid()
 
-Singleton: Checks if an IBAN address is valid.
+单例: 检查 IBAN 地址是否有效
 
-.. note:: This method also exists on the IBAN instance.
+.. note:: 该方法也存在于 IBAN 实例中。
 
 ----------
-Parameters
+参数
 ----------
 
-1. ``String``: the IBAN address to check.
+1. ``String``: 需要检查的 IBAN 地址。
 
--------
-Returns
--------
+----------
+返回值
+----------
 
 ``Boolean``
 
 -------
-Example
+例子
 -------
 
 .. code-block:: javascript
@@ -334,28 +333,27 @@ Example
 prototype.isDirect
 =====================
 
-    method of Iban instance
+    Iban 实例方法
 
 .. code-block:: javascript
 
     web3.eth.Iban.prototype.isDirect()
 
-Checks if the IBAN instance is direct.
+检查当前 IBAN 实例是否使用了 direct 编码方式。
+----------
+参数
+----------
+
+无
 
 ----------
-Parameters
+返回值
 ----------
-
-none
-
--------
-Returns
--------
 
 ``Boolean``
 
 -------
-Example
+例子
 -------
 
 .. code-block:: javascript
@@ -369,28 +367,28 @@ Example
 prototype.isIndirect
 =====================
 
-    method of Iban instance
+    Iban 实例方法
 
 .. code-block:: javascript
 
     web3.eth.Iban.prototype.isIndirect()
 
-Checks if the IBAN instance is indirect.
+检查当前 IBAN 实例是否使用了 indirect 编码方式。
 
 ----------
-Parameters
+参数
 ----------
 
-none
+无
 
--------
-Returns
--------
+----------
+返回值
+----------
 
 ``Boolean``
 
 -------
-Example
+例子
 -------
 
 .. code-block:: javascript
@@ -404,28 +402,28 @@ Example
 prototype.checksum
 =====================
 
-    method of Iban instance
+    Iban 实例方法
 
 .. code-block:: javascript
 
     web3.eth.Iban.prototype.checksum()
 
-Returns the checksum of the IBAN instance.
+返回 IBAN 实例校验和。
 
 ----------
-Parameters
+参数
 ----------
 
-none
+无
+
+----------
+返回值
+----------
+
+``String``: IBAN 校验和。
 
 -------
-Returns
--------
-
-``String``: The checksum of the IBAN
-
--------
-Example
+例子
 -------
 
 .. code-block:: javascript
@@ -440,29 +438,29 @@ Example
 prototype.institution
 =====================
 
-    method of Iban instance
+    Iban 实例方法
 
 
 .. code-block:: javascript
 
     web3.eth.Iban.prototype.institution()
 
-Returns the institution of the IBAN instance.
+返回 IBAN 实例对应的机构名称。
 
 ----------
-Parameters
+参数
 ----------
 
-none
+无
+
+----------
+返回值
+----------
+
+``String``: IBAN 的机构名称。
 
 -------
-Returns
--------
-
-``String``: The institution of the IBAN
-
--------
-Example
+例子
 -------
 
 .. code-block:: javascript
@@ -477,28 +475,28 @@ Example
 prototype.client
 =====================
 
-    method of Iban instance
+    Iban 实例方法
 
 .. code-block:: javascript
 
     web3.eth.Iban.prototype.client()
 
-Returns the client of the IBAN instance.
+返回 IBAN 实例的客户标识。
 
 ----------
-Parameters
+参数
 ----------
 
-none
+无
+
+----------
+返回值
+----------
+
+``String``: IBAN 客户标识
 
 -------
-Returns
--------
-
-``String``: The client of the IBAN
-
--------
-Example
+例子
 -------
 
 .. code-block:: javascript
@@ -512,28 +510,28 @@ Example
 prototype.toAddress
 =====================
 
-    method of Iban instance
+    Iban 实例方法
 
 .. code-block:: javascript
 
     web3.eth.Iban.prototype.toString()
 
-Returns the Ethereum address of the IBAN instance.
+返回 IBAN 实例的以太坊地址。
 
 ----------
-Parameters
+参数
 ----------
 
-none
+无
+
+----------
+返回值
+----------
+
+``String``: 以太坊地址
 
 -------
-Returns
--------
-
-``String``: The Ethereum address of the IBAN
-
--------
-Example
+例子
 -------
 
 .. code-block:: javascript
@@ -548,28 +546,28 @@ Example
 prototype.toString
 =====================
 
-    method of Iban instance
+    Iban 实例方法
 
 .. code-block:: javascript
 
     web3.eth.Iban.prototype.toString()
 
-Returns the IBAN address of the IBAN instance.
+返回 IBAN 实例的 IBAN 地址。
 
 ----------
-Parameters
+参数
 ----------
 
-none
+无
+
+----------
+返回值
+----------
+
+``String``: IBAN 地址。
 
 -------
-Returns
--------
-
-``String``: The IBAN address.
-
--------
-Example
+例子
 -------
 
 .. code-block:: javascript
