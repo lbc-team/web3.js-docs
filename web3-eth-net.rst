@@ -5,8 +5,7 @@ web3.eth.net
 =============
 
 
-Contains functions to receive information about the current network.
-
+包含获取当前网络信息的一些函数。
 
 ------------------------------------------------------------------------------
 
@@ -23,23 +22,23 @@ getNetworkType
 
     web3.eth.net.getNetworkType([callback])
 
-Guesses the chain the node is connected by comparing the genesis hashes.
+通过比较创世区块哈希值来猜测当前节点连的是哪条链。
 
-.. note:: It's recommended to use the :ref:`web3.eth.getChainId <eth-chainId>` method to detect the currently connected chain.
-
--------
-Returns
--------
-
-``Promise`` returns ``String``:
-    - ``"main"`` for main network
-    - ``"morden"`` for the morden test network
-    - ``"ropsten"`` for the morden test network
-    - ``"private"`` for undetectable networks.
-
+.. note:: 推荐使用 :ref:`web3.eth.getChainId <eth-chainId>` 来检测现在所连的链。
 
 -------
-Example
+返回值
+-------
+
+``Promise<String>``:
+    - ``"main"`` 代表主网
+    - ``"morden"`` 代表 morden 测试网
+    - ``"ropsten"`` 代表 ropsten 测试网
+    - ``"private"`` 表示检测不到当前网络
+
+
+-------
+例子
 -------
 
 .. code-block:: javascript
