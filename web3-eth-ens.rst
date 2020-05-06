@@ -4,8 +4,7 @@
 web3.eth.ens
 =========
 
-The ``web3.eth.ens`` functions let you interacting with ENS.
-
+``web3.eth.ens`` 相关函数让你可以与 ENS 进行交互。
 ------------------------------------------------------------------------------
 
 registry
@@ -15,16 +14,16 @@ registry
 
     web3.eth.ens.registry;
 
-Returns the network specific ENS registry.
+返回指定网络的 ENS 注册表。
 
 -------
-Returns
+返回值
 -------
 
-``Registry`` - The current ENS registry.
+``Registry`` - 当前 ENS 注册表。
 
 -------
-Example
+例子
 -------
 
 .. code-block:: javascript
@@ -46,16 +45,16 @@ resolver
 
     web3.eth.ens.resolver(name);
 
-Returns the resolver contract to an Ethereum address.
+返回以太坊域名地址对应的 resolver 合约。
 
 -------
-Returns
+返回值
 -------
 
-``Reslver`` - The ENS resolver for this name.
+``Reslver`` - 该域名对应的 ENS resolver。
 
 -------
-Example
+例子
 -------
 
 .. code-block:: javascript
@@ -74,22 +73,22 @@ getAddress
 
     web3.eth.ens.getAddress(ENSName);
 
-Resolves an ENS name to an Ethereum address.
+将 ENS 域名解析为以太坊地址。
 
 ----------
-Parameters
+参数
 ----------
 
-1. ``ENSName`` - ``String``: The ENS name to resolve.
+1. ``ENSName`` - ``String``: 需哟解析的 ENS 域名。
 
 -------
-Returns
+返回值
 -------
 
-``String`` - The Ethereum address of the given name.
+``String`` - 给定域名的以太坊地址。
 
 -------
-Example
+例子
 -------
 
 .. code-block:: javascript
@@ -108,23 +107,23 @@ setAddress
 
     web3.eth.ens.setAddress(ENSName, address, options);
 
-Sets the address of an ENS name in his resolver.
+通过域名解析器（resolver）指定 ENS 域名对应的以太坊地址。
 
 ----------
-Parameters
+参数
 ----------
 
-1. ``ENSName`` - ``String``: The ENS name.
-2. ``address`` - ``String``: The address to set.
-3. ``options`` - ``Object``: The options used for sending.
-    * ``from`` - ``String``: The address the transaction should be sent from.
-    * ``gasPrice`` - ``String`` (optional): The gas price in wei to use for this transaction.
-    * ``gas`` - ``Number`` (optional): The maximum gas provided for this transaction (gas limit).
+1. ``ENSName`` - ``String``: ENS 域名。
+2. ``address`` - ``String``: 要设置的以太坊地址。
+3. ``options`` - ``Object``: 用于发送交易的参数选项。
+    * ``from`` - ``String``: 交易发出地址。
+    * ``gasPrice`` - ``String`` (可选): 用于此交易的燃料价格（以 wei 为单位）。
+    * ``gas`` - ``Number`` (可选): 用于此交易的最大燃料数量（gasLimit）。
 
-Emits an ``AddrChanged`` event.
+``AddrChanged`` 事件会被触发。
 
 -------
-Example
+例子
 -------
 
 .. code-block:: javascript
@@ -140,7 +139,7 @@ Example
     });
     > AddrChanged(...)
 
-    // Or using the event emitter
+    // 或者使用事件触发器
 
     web3.eth.ens.setAddress(
         'ethereum.eth',
@@ -176,7 +175,7 @@ Example
     });
 
 
-    For further information on the handling of contract events please see here contract-events_.
+    关于合约事件处理的更多信息，请看这里 contract-events_。
 
 ------------------------------------------------------------------------------
 
@@ -187,22 +186,22 @@ getPubkey
 
     web3.eth.ens.getPubkey(ENSName);
 
-Returns the X and Y coordinates of the curve point for the public key.
+返回公钥所在曲线点的 X 和 Y 坐标。
 
 ----------
-Parameters
+参数
 ----------
 
-1. ``ENSName`` - ``String``: The ENS name.
+1. ``ENSName`` - ``String``: ENS 域名。
 
 -------
-Returns
+返回值
 -------
 
-``Object<String, String>`` - The X and Y coordinates.
+``Object<String, String>`` - X 和 Y 坐标。
 
 -------
-Example
+例子
 -------
 
 .. code-block:: javascript
@@ -226,25 +225,25 @@ setPubkey
 
     web3.eth.ens.setPubkey(ENSName, x, y, options);
 
-Sets the SECP256k1 public key associated with an ENS node
+设置 ENS 节点对应的 SECP256k1 公钥。
 
 ----------
-Parameters
+参数
 ----------
 
-1. ``ENSName`` - ``String``: The ENS name.
-2. ``x`` - ``String``: The X coordinate of the public key.
-3. ``y`` - ``String``: The Y coordinate of the public key.
-4. ``options`` - ``Object``: The options used for sending.
-    * ``from`` - ``String``: The address the transaction should be sent from.
-    * ``gasPrice`` - ``String`` (optional): The gas price in wei to use for this transaction.
-    * ``gas`` - ``Number`` (optional): The maximum gas provided for this transaction (gas limit).
+1. ``ENSName`` - ``String``: ENS 域名。
+2. ``x`` - ``String``: 公钥的 X 坐标。
+3. ``y`` - ``String``: 公钥的 Y 坐标。
+4. ``options`` - ``Object``: 用于发送交易的参数选型。
+    * ``from`` - ``String``: 交易发出地址。
+    * ``gasPrice`` - ``String`` (可选): 用于此交易的燃料价格（以 wei 为单位）。
+    * ``gas`` - ``Number`` (可选): 用于此交易的最大燃料数量（gasLimit）。
 
 
-Emits an ``PubkeyChanged`` event.
+触发 ``PubkeyChanged`` 事件。
 
 -------
-Example
+例子
 -------
 
 .. code-block:: javascript
@@ -261,7 +260,7 @@ Example
     });
     > PubkeyChanged(...)
 
-    // Or using the event emitter
+    // 或者使用事件触发器
 
     web3.eth.ens.setPubkey(
         'ethereum.eth',
@@ -282,7 +281,8 @@ Example
     })
     .on('error', console.error);
 
-    // Or listen to the PubkeyChanged event on the resolver
+    // 或者监听与 resolver 关联的 PubkeyChanged 事件
+
 
     web3.eth.ens.resolver('ethereum.eth').then(function (resolver) {
         resolver.events.PubkeyChanged({fromBlock: 0}, function(error, event) {
@@ -298,7 +298,7 @@ Example
     });
 
 
-    For further information on the handling of contract events please see here contract-events_.
+    关于合约事件处理的更多信息，请看这里 contract-events_。
 
 ------------------------------------------------------------------------------
 
@@ -309,22 +309,22 @@ getContent
 
     web3.eth.ens.getContent(ENSName);
 
-Returns the content hash associated with an ENS node.
+返回与 ENS 节点关联的内容哈希。
 
 ----------
-Parameters
+参数
 ----------
 
-1. ``ENSName`` - ``String``: The ENS name.
+1. ``ENSName`` - ``String``: ENS 域名。
 
 -------
-Returns
+返回值
 -------
 
-``String`` - The content hash associated with an ENS node.
+``String`` - 与 ENS 节点关联的内容哈希。
 
 -------
-Example
+例子
 -------
 
 .. code-block:: javascript
@@ -343,24 +343,24 @@ setContent
 
     web3.eth.ens.setContent(ENSName, hash, options);
 
-Sets the content hash associated with an ENS node.
+设置与 ENS 节点关联的内容哈希。
 
 ----------
-Parameters
+参数
 ----------
 
-1. ``ENSName`` - ``String``: The ENS name.
-2. ``hash`` - ``String``: The content hash to set.
-3. ``options`` - ``Object``: The options used for sending.
-    * ``from`` - ``String``: The address the transaction should be sent from.
-    * ``gasPrice`` - ``String`` (optional): The gas price in wei to use for this transaction.
-    * ``gas`` - ``Number`` (optional): The maximum gas provided for this transaction (gas limit).
+1. ``ENSName`` - ``String``: ENS 域名。
+2. ``hash`` - ``String``: 要设置的内容哈希。
+3. ``options`` - ``Object``: 用于发送交易的参数选型。
+    * ``from`` - ``String``: 交易发出地址。
+    * ``gasPrice`` - ``String`` (可选): 用于此交易的燃料价格（以 wei 为单位）。
+    * ``gas`` - ``Number`` (可选): 用于此交易的最大燃料数量（gasLimit）。
 
 
-Emits an ``ContentChanged`` event.
+触发 ``ContentChanged`` 事件。
 
 -------
-Example
+例子
 -------
 
 .. code-block:: javascript
@@ -376,7 +376,7 @@ Example
      });
     > ContentChanged(...)
 
-    // Or using the event emitter
+    // 或者使用事件触发器
 
     web3.eth.ens.setContent(
         'ethereum.eth',
@@ -396,7 +396,7 @@ Example
     })
     .on('error', console.error);
 
-    // Or listen to the ContentChanged event on the resolver
+    // 或者监听 resolver 上的 ContentChanged 事件
 
     web3.eth.ens.resolver('ethereum.eth').then(function (resolver) {
         resolver.events.ContentChanged({fromBlock: 0}, function(error, event) {
@@ -406,13 +406,13 @@ Example
             console.log(event);
         })
         .on('changed', function(event){
-            // remove event from local database
+            // 从本地数据库中移除事件
         })
         .on('error', console.error);
     });
 
 
-    For further information on the handling of contract events please see here contract-events_.
+    关于合约事件处理的更多信息，请看这里 contract-events_。
 
 ------------------------------------------------------------------------------
 
@@ -423,22 +423,22 @@ getMultihash
 
     web3.eth.ens.getMultihash(ENSName);
 
-Returns the multihash associated with an ENS node.
+返回和 ENS 节点管理的 multihash。
 
 ----------
-Parameters
+参数
 ----------
 
-1. ``ENSName`` - ``String``: The ENS name.
+1. ``ENSName`` - ``String``: ENS 域名。
 
 -------
-Returns
+返回值
 -------
 
-``String`` - The associated multihash.
+``String`` - 关联的 multihash。
 
 -------
-Example
+例子
 -------
 
 .. code-block:: javascript
@@ -457,24 +457,24 @@ setMultihash
 
     web3.eth.ens.setMultihash(ENSName, hash, options);
 
-Sets the multihash associated with an ENS node.
+设置和 ENS 节点关联的 multihash。
 
 ----------
-Parameters
+参数
 ----------
 
-1. ``ENSName`` - ``String``: The ENS name.
-2. ``hash`` - ``String``: The multihash to set.
-3. ``options`` - ``Object``: The options used for sending.
-    * ``from`` - ``String``: The address the transaction should be sent from.
-    * ``gasPrice`` - ``String`` (optional): The gas price in wei to use for this transaction.
-    * ``gas`` - ``Number`` (optional): The maximum gas provided for this transaction (gas limit).
+1. ``ENSName`` - ``String``: ENS 域名。
+2. ``hash`` - ``String``: 要设置的 multihash。
+3. ``options`` - ``Object``: 用于发送交易的参数选型。
+    * ``from`` - ``String``: 交易发出地址。
+    * ``gasPrice`` - ``String`` (可选): 用于此交易的燃料价格（以 wei 为单位）。
+    * ``gas`` - ``Number`` (可选): 用于此交易的最大燃料数量（gasLimit）。
 
 
-Emits an ``MultihashChanged``event.
+触发 ``MultihashChanged`` 事件。
 
 -------
-Example
+例子
 -------
 
 .. code-block:: javascript
@@ -490,7 +490,7 @@ Example
     });
     > MultihashChanged(...)
 
-    // Or using the event emitter
+    // 或者使用事件触发器
 
     web3.eth.ens.setMultihash(
         'ethereum.eth',
@@ -511,17 +511,17 @@ Example
     .on('error', console.error);
 
 
-    For further information on the handling of contract events please see here contract-events_.
+    关于合约事件处理的更多信息，请看这里 contract-events_。
 
 ------------------------------------------------------------------------------
 
 ENS events
 =====================
 
-The ENS API provides the possibility for listening to all ENS related events.
+ENS 接口提供了监听所有 ENS 相关事件的可能性。
 
 ------------
-Known resolver events
+已知的 resolver 事件
 ------------
 
 1. AddrChanged(node bytes32, a address)
@@ -531,7 +531,7 @@ Known resolver events
 6. PubkeyChanged(node bytes32, x bytes32, y bytes32)
 
 -------
-Example
+例子
 -------
 
 .. code-block:: javascript
@@ -544,7 +544,7 @@ Example
             console.log(event);
         })
         .on('changed', function(event){
-            // remove event from local database
+            // 从本地数据库移除事件
         })
         .on('error', console.error);
     });
@@ -571,7 +571,7 @@ Example
     }
 
 ------------
-Known registry events
+已知的 registry 事件
 ------------
 
 1. Transfer(node bytes32, owner address)
@@ -580,7 +580,7 @@ Known registry events
 5. NewTTL(node bytes32, ttl uint64)
 
 -------
-Example
+例子
 -------
 
 .. code-block:: javascript
@@ -593,7 +593,7 @@ Example
               console.log(event);
           })
           .on('changed', function(event){
-              // remove event from local database
+              // 从本地数据库移除事件
           })
           .on('error', console.error);
     });
@@ -619,7 +619,7 @@ Example
         address: '0xde0B295669a9FD93d5F28D9Ec85E40f4cb697BAe'
     }
 
-For further information on the handling of contract events please see here contract-events_.
+关于合约事件处理的更多信息，请看这里 contract-events_。
 
 ------------------------------------------------------------------------------
 
