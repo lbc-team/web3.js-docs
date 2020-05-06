@@ -33,7 +33,7 @@ Web3.modules
 ``Object``: 模块构造函数列表:
     - ``Eth`` - ``Constructor``: 与以太坊网络交互的 Eth 模块，查看 :ref:`web3.eth <eth>` 了解更多。
     - ``Net`` - ``Constructor``: 与网络属性进行交互的 Net 模块，查看 :ref:`web3.eth.net <eth-net>` 了解更多。
-    - ``Personal`` - ``Constructor``: 与以太坊账户交互的 Personal 模块，查看  :ref:`web3.eth.personal <personal>` 了解更多。
+    - ``Personal`` - ``Constructor``: 与以太坊账户交互的 Personal 模块，查看  :ref:`web3.eth.personal <eth-personal>` 了解更多。
     - ``Shh`` - ``Constructor``: 与whisper协议交互的 Shh 模块，查看 :ref:`web3.shh <shh>` 了解更多。
     - ``Bzz`` - ``Constructor``: 与swarm网络交互的 Bzz 模块，查看 :ref:`web3.bzz <bzz>` 了解更多。
 

@@ -13,10 +13,10 @@
 | web3-eth-subscribe.rst     |Ashton(04/16 - 04/18) | Tiny熊 | 272 |
 | web3-eth-personal.rst     |Ashton(04/24 - 04/26) | Tiny熊 | 258 |
 | index.rst      |Tiny熊(04/27 - 04/27) | Ashton | 32 |
-| getting-started.rst      |Tiny熊(27/27 - 04/09) | Ashton | 25  |
-| web3-eth-net.rst     |Ashton(05/01 - 05/02) | Tiny熊 |  |
-| web3-eth-iban.rst     |Ashton(05/01 - 05/02) | Tiny熊 |  |
-| web3-eth-ens.rst     |Ashton(05/03 - 05/06) | Tiny熊 |  |
+| getting-started.rst      |Tiny熊(27/27 - 04/29) | Ashton | 25  |
+| web3-eth-net.rst     |Ashton(05/01 - 05/02) | Tiny熊 | 29 |
+| web3-eth-iban.rst     |Ashton(05/01 - 05/02) | Tiny熊 | 355 |
+| web3-eth-ens.rst     |Ashton(05/03 - 05/06) | Tiny熊 | 470 |
 
 
 
