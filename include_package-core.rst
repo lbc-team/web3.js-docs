@@ -131,6 +131,7 @@ web3.givenProvider 将返回浏览器设置的原生 provider ，否则返回 ``
 .. code-block:: javascript
     web3.setProvider(web3.givenProvider || "ws://remotenode.com:8546");
 
+
 ------------------------------------------------------------------------------
 
 
@@ -160,7 +161,9 @@ currentProvider
         web3.setProvider("http://localhost:8545");
     }
 
+
 ------------------------------------------------------------------------------
+
 
 BatchRequest
 =====================
