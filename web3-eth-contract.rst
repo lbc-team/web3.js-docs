@@ -4,18 +4,17 @@
 web3.eth.Contract
 ========
 
-The ``web3.eth.Contract`` object makes it easy to interact with smart contracts on the ethereum blockchain.
-When you create a new contract object you give it the json interface of the respective smart contract
-and web3 will auto convert all calls into low level ABI calls over RPC for you.
+``web3.eth.Contract`` 对象让你可以轻松地与以太坊区块链上的智能合约进行交互。
+当你创建一个新的合约对象时，只需要指定相应的智能合约 json 接口， web3 就会自动将所有的调用转换为基于 RPC 的底层 ABI 调用。
 
-This allows you to interact with smart contracts as if they were JavaScript objects.
+这使得你可以像 JavaScript 对象一样与智能合约进行交互。
 
-To use it standalone:
+要单独使用它：
 
 .. code-block:: javascript
     var Contract = require('web3-eth-contract');
 
-    // set provider for all later instances to use
+    // 设置 provider 以便为后面所有的实例所用
     Contract.setProvider('ws://localhost:8546');
 
     var contract = new Contract(jsonInterface, address);
@@ -38,43 +37,43 @@ new contract
 
     new web3.eth.Contract(jsonInterface[, address][, options])
 
-Creates a new contract instance with all its methods and events defined in its :ref:`json interface <glossary-json-interface>` object.
+创建新的合约实例，并在其 :ref:`json interface <glossary-js-interface>` 对象中定义所有的方法和事件。
 
 ----------
-Parameters
+参数
 ----------
 
-1. ``jsonInterface`` - ``Object``: The json interface for the contract to instantiate
-2. ``address`` - ``String`` (optional): The address of the smart contract to call.
-3. ``options`` - ``Object`` (optional): The options of the contract. Some are used as fallbacks for calls and transactions:
-    * ``from`` - ``String``: The address transactions should be made from.
-    * ``gasPrice`` - ``String``: The gas price in wei to use for transactions.
-    * ``gas`` - ``Number``: The maximum gas provided for a transaction (gas limit).
-    * ``data`` - ``String``: The byte code of the contract. Used when the contract gets :ref:`deployed <contract-deploy>`.
+1. ``jsonInterface`` - ``Object``: 所要实例化合约的 json 接口
+2. ``address`` - ``String`` （可选）: 要调用的智能合约地址
+3. ``options`` - ``Object`` （可选）: 合约配置选项。 其中某些选项被用作合约调用和交易的回调:
+    * ``from`` - ``String``: 交易发送方地址
+    * ``gasPrice`` - ``String``: 为交易指定的 gas 价格，以 wei 为单位
+    * ``gas`` - ``Number``: 交易可用的最大 gas 量（gas limit）。
+    * ``data`` - ``String``: 合约字节码。当合约被 :ref:`部署 <contract-deploy>`时需要使用。
+
+----------
+返回值
+----------
+
+``Object``: 带有所有方法和事件的合约实例
+
 
 -------
-Returns
--------
-
-``Object``: The contract instance with all its methods and events.
-
-
--------
-Example
+例子
 -------
 
 .. code-block:: javascript
 
     var myContract = new web3.eth.Contract([...], '0xde0B295669a9FD93d5F28D9Ec85E40f4cb697BAe', {
-        from: '0x1234567890123456789012345678901234567891', // default from address
-        gasPrice: '20000000000' // default gas price in wei, 20 gwei in this case
+        from: '0x1234567890123456789012345678901234567891', // 默认交易发送地址
+        gasPrice: '20000000000' // 以 wei 为单位的默认 gas 价格，当前价格为 20 gwei
     });
 
 
 ------------------------------------------------------------------------------
 
 
-= Properties =
+= 属性列表 =
 =========
 
 ------------------------------------------------------------------------------
@@ -87,9 +86,9 @@ defaultAccount
 .. code-block:: javascript
 
     web3.eth.Contract.defaultAccount
-    contract.defaultAccount // on contract instance
+    contract.defaultAccount // 合约实例上的默认账户
 
-This default address is used as the default ``"from"`` property, if no ``"from"`` property is specified in for the following methods:
+如果下面这些方法没有指定 ``"from"`` 属性，默认账户地址就会被用作默认的 ``"from"`` 属性：
 
 - :ref:`web3.eth.sendTransaction() <eth-sendtransaction>`
 - :ref:`web3.eth.call() <eth-call>`
@@ -97,15 +96,15 @@ This default address is used as the default ``"from"`` property, if no ``"from"`
 - :ref:`new web3.eth.Contract() -> myContract.methods.myMethod().send() <eth-contract-send>`
 
 --------
-Property
+属性
 --------
 
 
-``String`` - 20 Bytes: Any ethereum address. You should have the private key for that address in your node or keystore. (Default is ``undefined``)
+``String`` - 20 字节: 任意以太坊地址。 你应该在你的节点或 keystore 中拥有该地址的私钥。 (默认值为 ``undefined``)
 
 
 -------
-Example
+例子
 -------
 
 
@@ -114,7 +113,7 @@ Example
     web3.eth.defaultAccount;
     > undefined
 
-    // set the default account
+    // 设置默认账户
     web3.eth.defaultAccount = '0x11f4d0A3c12e86B4b5F39B213F7E19D048276DAe';
 
 
@@ -128,29 +127,30 @@ defaultBlock
 .. code-block:: javascript
 
     web3.eth.Contract.defaultBlock
-    contract.defaultBlock // on contract instance
+    contract.defaultBlock // 在合约实例上
 
-The default block is used for certain methods. You can override it by passing in the defaultBlock as last parameter.
-The default value of it is "latest".
+默认块在一些特定方法上使用。你可以通过传入 defaultBlock 作为最后一个参数来覆盖它。
+默认值为 "latest"。
 
 ----------
-Property
+属性
 ----------
 
 
-The default block parameters can be one of the following:
 
-- ``Number|BN|BigNumber``: A block number
-- ``"genesis"`` - ``String``: The genesis block
-- ``"latest"`` - ``String``: The latest block (current head of the blockchain)
-- ``"pending"`` - ``String``: The currently mined block (including pending transactions)
-- ``"earliest"`` - ``String``: The genesis block
+默认块参数的可能取值如下：
 
-Default is ``"latest"``
+- ``Number|BN|BigNumber``: 区块号
+- ``"genesis"`` - ``String``: 创世块
+- ``"latest"`` - ``String``: 最新块（也就是当前链头块）
+- ``"pending"`` - ``String``: 正在挖的块（包括 pending 状态交易）
+- ``"earliest"`` - ``String``: 创世块
+
+默认值为 ``"latest"``
 
 
 -------
-Example
+例子
 -------
 
 .. code-block:: javascript
@@ -158,7 +158,7 @@ Example
     contract.defaultBlock;
     > "latest"
 
-    // set the default block
+    // 设置默认块
     contract.defaultBlock = 231;
 
 
@@ -174,14 +174,14 @@ defaultHardfork
 
     contract.defaultHardfork
 
-The default hardfork property is used for signing transactions locally.
+本地签名交易时用的默认硬分叉属性
 
 ----------
-Property
+属性
 ----------
 
 
-The default hardfork property can be one of the following:
+默认硬分叉属性的可能取值如下：
 
 - ``"chainstart"`` - ``String``
 - ``"homestead"`` - ``String``
@@ -193,11 +193,10 @@ The default hardfork property can be one of the following:
 - ``"petersburg"`` - ``String``
 - ``"istanbul"`` - ``String``
 
-Default is ``"petersburg"``
-
+默认值为 ``"petersburg"``
 
 -------
-Example
+例子
 -------
 
 .. code-block:: javascript
@@ -205,7 +204,7 @@ Example
     contract.defaultHardfork;
     > "petersburg"
 
-    // set the default block
+    // 设置默认硬分叉
     contract.defaultHardfork = 'istanbul';
 
 
@@ -220,14 +219,14 @@ defaultChain
 
     contract.defaultChain
 
-The default chain property is used for signing transactions locally.
+默认链熟悉是本地签名交易的时候用的
 
 ----------
-Property
+属性
 ----------
 
 
-The default chain property can be one of the following:
+默认链属性可以是一下列表中之一：
 
 - ``"mainnet"`` - ``String``
 - ``"goerli"`` - ``String``
@@ -235,11 +234,10 @@ The default chain property can be one of the following:
 - ``"rinkeby"`` - ``String``
 - ``"ropsten"`` - ``String``
 
-Default is ``"mainnet"``
-
+默认值为 ``"mainnet"``
 
 -------
-Example
+例子
 -------
 
 .. code-block:: javascript
@@ -247,7 +245,7 @@ Example
     contract.defaultChain;
     > "mainnet"
 
-    // set the default chain
+    // 设置默认链
     contract.defaultChain = 'goerli';
 
 
@@ -262,28 +260,27 @@ defaultCommon
 
     contract.defaultCommon
 
-The default common property is used for signing transactions locally.
+默认通用属性是本地签名交易的时候用的
 
 ----------
-Property
+属性
 ----------
 
 
-The default common property does contain the following ``Common`` object:
+默认通用属性包含如下所示的  ``Common`` 对象：
 
-- ``customChain`` - ``Object``: The custom chain properties
-    - ``name`` - ``string``: (optional) The name of the chain
-    - ``networkId`` - ``number``: Network ID of the custom chain
-    - ``chainId`` - ``number``: Chain ID of the custom chain
-- ``baseChain`` - ``string``: (optional) ``mainnet``, ``goerli``, ``kovan``, ``rinkeby``, or ``ropsten``
-- ``hardfork`` - ``string``: (optional) ``chainstart``, ``homestead``, ``dao``, ``tangerineWhistle``, ``spuriousDragon``, ``byzantium``, ``constantinople``, ``petersburg``, or ``istanbul``
+- ``customChain`` - ``Object``: 自定义链属性
+    - ``name`` - ``string``: （可选） 链名字
+    - ``networkId`` - ``number``: 自定义链的网络 Id
+    - ``chainId`` - ``number``: 自定义链的链 Id
+- ``baseChain`` - ``string``: （可选） ``mainnet``, ``goerli``, ``kovan``, ``rinkeby``, or ``ropsten``
+- ``hardfork`` - ``string``: （可选） ``chainstart``, ``homestead``, ``dao``, ``tangerineWhistle``, ``spuriousDragon``, ``byzantium``, ``constantinople``, ``petersburg``, or ``istanbul``
 
 
-Default is ``undefined``.
-
+默认值为 ``undefined``。
 
 -------
-Example
+例子
 -------
 
 .. code-block:: javascript
@@ -291,7 +288,7 @@ Example
     contract.defaultCommon;
     > {customChain: {name: 'custom-network', chainId: 1, networkId: 1}, baseChain: 'mainnet', hardfork: 'petersburg'}
 
-    // set the default common
+    // 设置默认通用值
     contract.defaultCommon = {customChain: {name: 'custom-network', chainId: 1, networkId: 1}, baseChain: 'mainnet', hardfork: 'petersburg'};
 
 
@@ -305,17 +302,16 @@ transactionBlockTimeout
 .. code-block:: javascript
 
     web3.eth.Contract.transcationBlockTimeout
-    contract.transactionBlockTimeout // on contract instance
+    contract.transactionBlockTimeout // 在合约实例上
 
-The ``transactionBlockTimeout`` will be used over a socket based connection. This option does define the amount of new blocks it should wait until the first confirmation happens.
-This means the PromiEvent rejects with a timeout error when the timeout got exceeded.
+``transactionBlockTimeout`` 会被用在基于套接字的连接上。该属性定义了直到第一次确认发生它应该等待的区块数。
+这意味着当超时发生时，PromiEvent 会拒绝并显示超时错误。
 
+----------
+返回值
+----------
 
--------
-Returns
--------
-
-``number``: The current value of transactionBlockTimeout (default: 50)
+``number``: transactionBlockTimeout 当前设定的值 (默认值: 50)
 
 ------------------------------------------------------------------------------
 
@@ -327,16 +323,15 @@ transactionConfirmationBlocks
 .. code-block:: javascript
 
     web3.eth.Contract.transactionConfirmationBlocks
-    contract.transactionConfirmationBlocks // on contract instance
+    contract.transactionConfirmationBlocks // 在合约实例上
 
-This defines the number of blocks it requires until a transaction will be handled as confirmed.
+定义了确认交易所需要的区块确认数。
 
+----------
+返回值
+----------
 
--------
-Returns
--------
-
-``number``: The current value of transactionConfirmationBlocks (default: 24)
+``number``: transactionConfirmationBlocks 当前设定的值 (默认值: 24)
 
 ------------------------------------------------------------------------------
 
@@ -348,17 +343,16 @@ transactionPollingTimeout
 .. code-block:: javascript
 
     web3.eth.Contract.transactionPollingTimeout
-    contract.transactionPollingTimeout // on contract instance
+    contract.transactionPollingTimeout // 在合约实例上
 
-The ``transactionPollingTimeout``  will be used over a HTTP connection.
-This option defines the number of seconds Web3 will wait for a receipt which confirms that a transaction was mined by the network. NB: If this method times out, the transaction may still be pending.
+``transactionPollingTimeout`` 将通过 HTTP 连接使用。
+这个选项定义了 Web3 等待确认交易被网络挖出的收据的秒数。注意：当此种超时发生时，交易可能仍未完成。
 
+----------
+返回值
+----------
 
--------
-Returns
--------
-
-``number``: The current value of transactionPollingTimeout (default: 750)
+``number``: transactionPollingTimeout 当前设定的值 (默认值: 750)
 
 ------------------------------------------------------------------------------
 
@@ -370,52 +364,52 @@ handleRevert
 .. code-block:: javascript
 
     web3.eth.Contract.handleRevert
-    contract.handleRevert // on contract instance
+    contract.handleRevert // 在合约实例上
 
-The ``handleRevert`` options property does default to ``false`` and will return the revert reason string if enabled on :ref:`send <contract-send>` or :ref:`call <contract-call>` of a contract method.
+``handleRevert`选项属性默认值为`false``，如果在 :ref:`send <contract-send>`或者 :ref:`call <contract-call>`合约方法时启用，将返回回退原因字符串。
 
-.. note:: The revert reason string and the signature does exist as property on the returned error.
+.. note:: 回退原因字符串和签名是存在于返回错误的属性中的。
 
--------
-Returns
--------
+----------
+返回值
+----------
 
-``boolean``: The current value of ``handleRevert`` (default: false)
+``boolean``: ``handleRevert`` 的当前值 (默认值: false)
 
 ------------------------------------------------------------------------------
 
-options
+选项属性
 =========
 
 .. code-block:: javascript
 
     myContract.options
 
-The options ``object`` for the contract instance. ``from``, ``gas`` and ``gasPrice`` are used as fallback values when sending transactions.
+合约实例的选项属性 ``对象``。``from``、 ``gas`` 和 ``gasPrice``作为发送交易时的备用值使用。
 
 -------
-Properties
+属性
 -------
 
-``Object`` - options:
+``Object`` - 选项属性:
 
-- ``address`` - ``String``: The address where the contract is deployed. See :ref:`options.address <contract-address>`.
-- ``jsonInterface`` - ``Array``: The json interface of the contract. See :ref:`options.jsonInterface <contract-json-interface>`.
-- ``data`` - ``String``: The byte code of the contract. Used when the contract gets :ref:`deployed <contract-deploy>`.
-- ``from`` - ``String``: The address transactions should be made from.
-- ``gasPrice`` - ``String``: The gas price in wei to use for transactions.
-- ``gas`` - ``Number``: The maximum gas provided for a transaction (gas limit).
-- ``handleRevert`` - ``Boolean``: It will otherwise use the default value provided from the Eth module. See :ref:`handleRevert <eth-contract-module-handlerevert>`.
-- ``transactionBlockTimeout`` - ``Number``: It will otherwise use the default value provided from the Eth module. See :ref:`transactionBlockTimeout <eth-contract-transactionblocktimeout>`.
-- ``transactionConfirmationBlocks`` - ``Number``: It will otherwise use the default value provided from the Eth module. See :ref:`transactionConfirmationBlocks <eth-contract-module-transactionconfirmationblocks>`.
-- ``transactionPollingTimeout`` - ``Number``: It will otherwise use the default value provided from the Eth module. See :ref:`transactionPollingTimeout <eth-contract-module-transactionpollingtimeout>`.
-- ``chain`` - ``Number``: It will otherwise use the default value provided from the Eth module. See :ref:`defaultChain <eth-contract-defaultchain>`.
-- ``hardfork`` - ``Number``: It will otherwise use the default value provided from the Eth module. See :ref:`defaultHardfork <eth-contract-defaulthardfork>`.
-- ``common`` - ``Number``: It will otherwise use the default value provided from the Eth module. See :ref:`defaultCommon <eth-contract-defaultcommon>`.
+- ``address`` - ``String``: 合约的部署地址。 见 :ref:`options.address <contract-address>`.
+- ``jsonInterface`` - ``Array``: 合同的 json 接口。见 :ref:`options.jsonInterface <contract-json-interface>`.
+- ``data`` - ``String``: 合约字节码。 :ref:`部署 <contract-deploy>` 合约时使用。
+- ``from`` - ``String``: 交易发起方地址。
+- ``gasPrice`` - ``String``: 用于交易的 gas 价格。以 wei 为单位。
+- ``gas`` - ``Number``: 可用于该交易的 gas 用量上限 (gas limit)。
+- ``handleRevert`` - ``Boolean``: 如果这里不设置，将使用 Eth 模块提供的默认值。 见 :ref:`handleRevert <eth-contract-module-handlerevert>`.
+- ``transactionBlockTimeout`` - ``Number``: 如果这里不设置，将使用 Eth 模块提供的默认值。 见 :ref:`transactionBlockTimeout <eth-contract-transactionblocktimeout>`.
+- ``transactionConfirmationBlocks`` - ``Number``: 如果这里不设置，将使用 Eth 模块提供的默认值。 见 :ref:`transactionConfirmationBlocks <eth-contract-module-transactionconfirmationblocks>`.
+- ``transactionPollingTimeout`` - ``Number``: 如果这里不设置，将使用 Eth 模块提供的默认值。 见 :ref:`transactionPollingTimeout <eth-contract-module-transactionpollingtimeout>`.
+- ``chain`` - ``Number``: 如果这里不设置，将使用 Eth 模块提供的默认值。 见 :ref:`defaultChain <eth-contract-defaultchain>`.
+- ``hardfork`` - ``Number``: 如果这里不设置，将使用 Eth 模块提供的默认值。 见 :ref:`defaultHardfork <eth-contract-defaulthardfork>`.
+- ``common`` - ``Number``: 如果这里不设置，将使用 Eth 模块提供的默认值。 见 :ref:`defaultCommon <eth-contract-defaultcommon>`.
 
 
 -------
-Example
+例子
 -------
 
 .. code-block:: javascript
@@ -429,9 +423,9 @@ Example
         gas: 1000000
     }
 
-    myContract.options.from = '0x1234567890123456789012345678901234567891'; // default from address
-    myContract.options.gasPrice = '20000000000000'; // default gas price in wei
-    myContract.options.gas = 5000000; // provide as fallback always 5M gas
+    myContract.options.from = '0x1234567890123456789012345678901234567891'; // 默认交易发送方地址
+    myContract.options.gasPrice = '20000000000000'; // 默认 gas 价格，以 wei 为单位
+    myContract.options.gas = 5000000; // 5M gas 作为备用值
 
 
 ------------------------------------------------------------------------------
@@ -445,21 +439,20 @@ options.address
 
     myContract.options.address
 
-The address used for this contract instance.
-All transactions generated by web3.js from this contract will contain this address as the "to".
+用于本合约实例的地址。
+所有通过 web3.js 从这个合约生成的交易都将包含这个地址作为 "to" 地址（也就是交易接收方地址）。
 
-The address will be stored in lowercase.
+地址将以小写的方式保存。
+
+-------
+属性
+-------
+
+``address`` - ``String|null``: 本合约的地址, 如果未设置其值为 ``null``。
 
 
 -------
-Property
--------
-
-``address`` - ``String|null``: The address for this contract, or ``null`` if it's not yet set.
-
-
--------
-Example
+例子
 -------
 
 .. code-block:: javascript
@@ -467,7 +460,7 @@ Example
     myContract.options.address;
     > '0xde0b295669a9fd93d5f28d9ec85e40f4cb697bae'
 
-    // set a new address
+    // 设置新地址
     myContract.options.address = '0x1234FFDD...';
 
 
@@ -482,18 +475,17 @@ options.jsonInterface
 
     myContract.options.jsonInterface
 
-The :ref:`json interface <glossary-json-interface>` object derived from the `ABI <https://github.com/ethereum/wiki/wiki/Ethereum-Contract-ABI>`_ of this contract.
+从合约的 `ABI <https://github.com/ethereum/wiki/wiki/Ethereum-Contract-ABI>`_ 派生出来的 :ref:`json 接口 <glossary-json-interface>` 对象。
+
+-------
+属性
+-------
+
+``jsonInterface`` - ``Array``: 当前合约的 :ref:`json 接口 <glossary-json-interface>` 。重设该接口会导致合约实例方法和事件的重新生成。
 
 
 -------
-Property
--------
-
-``jsonInterface`` - ``Array``: The :ref:`json interface <glossary-json-interface>` for this contract. Re-setting this will regenerate the methods and events of the contract instance.
-
-
--------
-Example
+例子
 -------
 
 .. code-block:: javascript
@@ -510,14 +502,14 @@ Example
         "inputs": [{"name":"a","type":"uint256","indexed":true},{"name":"b","type":"bytes32","indexed":false}],
     }]
 
-    // set a new interface
+    // 设置新的接口
     myContract.options.jsonInterface = [...];
 
 
 ------------------------------------------------------------------------------
 
 
-= Methods =
+= 方法 =
 =========
 
 
@@ -530,23 +522,23 @@ clone
 
     myContract.clone()
 
-Clones the current contract instance.
+克隆当前合约实例。
 
 ----------
-Parameters
+参数
 ----------
 
-none
+无
+
+----------
+返回值
+----------
+
+
+``Object``: 新合约实例。
 
 -------
-Returns
--------
-
-
-``Object``: The new contract instance.
-
--------
-Example
+例子
 -------
 
 .. code-block:: javascript
@@ -573,33 +565,33 @@ deploy
 
     myContract.deploy(options)
 
-Call this function to deploy the contract to the blockchain.
-After successful deployment the promise will resolve with a new contract instance.
+调用此函数将合约部署到区块链上。
+成功部署后 promise 对象会被解析为新的合约实例。
 
 ----------
-Parameters
+参数
 ----------
 
-1. ``options`` - ``Object``: The options used for deployment.
-    * ``data`` - ``String``: The byte code of the contract.
-    * ``arguments`` - ``Array`` (optional): The arguments which get passed to the constructor on deployment.
+1. ``options`` - ``Object``: 用于合约部署的选项。
+    * ``data`` - ``String``: 合约字节码
+    * ``arguments`` - ``Array`` （可选）: 在部署合约时传递给构造函数的参数。
+
+----------
+返回值
+----------
+
+
+``Object``: 交易对象：
+
+- ``Array`` - 参数: 之前传递给方法的参数。它们是可以被改变的。
+- ``Function`` - :ref:`send <contract-send>`: 用来部署合约。promise 会被解析为合约实例而不是交易收据。
+- ``Function`` - :ref:`estimateGas <contract-estimateGas>`: 估算部署合约所需要的 gas 用量。
+- ``Function`` - :ref:`encodeABI <contract-encodeABI>`: 编码由合约数据和构造函数参数构成的合约部署 ABI。
+
+关于这些方法的更多详情，参见下面的文档。
 
 -------
-Returns
--------
-
-
-``Object``: The transaction object:
-
-- ``Array`` - arguments: The arguments passed to the method before. They can be changed.
-- ``Function`` - :ref:`send <contract-send>`: Will deploy the contract. The promise will resolve with the new contract instance, instead of the receipt!
-- ``Function`` - :ref:`estimateGas <contract-estimateGas>`: Will estimate the gas used for deploying.
-- ``Function`` - :ref:`encodeABI <contract-encodeABI>`: Encodes the ABI of the deployment, which is contract data + constructor parameters
-
- For details to the methods see the documentation below.
-
--------
-Example
+例子
 -------
 
 .. code-block:: javascript
@@ -616,15 +608,15 @@ Example
     .on('error', function(error){ ... })
     .on('transactionHash', function(transactionHash){ ... })
     .on('receipt', function(receipt){
-       console.log(receipt.contractAddress) // contains the new contract address
+       console.log(receipt.contractAddress) // 包含新合约地址
     })
     .on('confirmation', function(confirmationNumber, receipt){ ... })
     .then(function(newContractInstance){
-        console.log(newContractInstance.options.address) // instance with the new contract address
+        console.log(newContractInstance.options.address) // 带有新合约地址的合约实例
     });
 
 
-    // When the data is already set as an option to the contract itself
+    //数据已经设置为合约本身的选项
     myContract.options.data = '0x12345...';
 
     myContract.deploy({
@@ -636,11 +628,11 @@ Example
         gasPrice: '30000000000000'
     })
     .then(function(newContractInstance){
-        console.log(newContractInstance.options.address) // instance with the new contract address
+        console.log(newContractInstance.options.address) // 具有新合同地址的合约实例
     });
 
 
-    // Simply encoding
+    // 只是编码
     myContract.deploy({
         data: '0x12345...',
         arguments: [123, 'My String']
@@ -649,7 +641,7 @@ Example
     > '0x12345...0000012345678765432'
 
 
-    // Gas estimation
+    // gas 估算
     myContract.deploy({
         data: '0x12345...',
         arguments: [123, 'My String']
@@ -668,56 +660,55 @@ methods
 
     myContract.methods.myMethod([param1[, param2[, ...]]])
 
-Creates a transaction object for that method, which then can be :ref:`called <contract-call>`, :ref:`send <contract-send>`, :ref:`estimated  <contract-estimateGas>`or :ref:`ABI encoded <contract-encodeABI>`.
+为指定方法创建一个交易对象, 可以被用来 :ref:`called <contract-call>`, :ref:`send <contract-send>`, :ref:`estimated  <contract-estimateGas>`或者 :ref:`ABI encoded <contract-encodeABI>`.
 
-The methods of this smart contract are available through:
+该智能合约的方法可以通过下面几种方式得到:
 
-- The name: ``myContract.methods.myMethod(123)``
-- The name with parameters: ``myContract.methods['myMethod(uint256)'](123)``
-- The signature: ``myContract.methods['0x58cf5f10'](123)``
+- 方法名: ``myContract.methods.myMethod(123)``
+- 带参数的方法名: ``myContract.methods['myMethod(uint256)'](123)``
+- 方法签名: ``myContract.methods['0x58cf5f10'](123)``
 
-This allows calling functions with same name but different parameters from the JavaScript contract object.
+这样可以调用与 JavaScript 合约对象名称相同但参数不同的函数。
 
 ----------
-Parameters
+参数
 ----------
 
-Parameters of any method depend on the smart contracts methods, defined in the :ref:`JSON interface <glossary-json-interface>`.
+任何方法的参数都取决于在 :ref:`JSON 接口 <glossary-json-interface>` 中定义的智能合约方法。
+
+----------
+返回值
+----------
+
+``Object``: 交易对象:
+
+- ``Array`` - 参数: 之前传递给方法的参数。它们是可以被改变的。
+- ``Function`` - :ref:`call <contract-call>`: 将在不发送交易的情况下调用该“常量”方法并在 EVM 中执行其智能合约方法（无法更改智能合约状态）。
+- ``Function`` - :ref:`send <contract-send>`: 用来向合约发送交易并执行其方法（可以更改智能合约状态）。
+- ``Function`` - :ref:`estimateGas <contract-estimateGas>`: 将估算在链上执行该方法时所要消耗的 gas。
+- ``Function`` - :ref:`encodeABI <contract-encodeABI>`: 对合于方法进行 ABI 编码。得到的编码可以通过交易去 send，可以直接 call，也可以作为参数传给另外一个智能合约方法，
+
+关于这些方法的更多详情，参见下面的文档。
 
 -------
-Returns
--------
-
-``Object``: The transaction object:
-
-- ``Array`` - arguments: The arguments passed to the method before. They can be changed.
-- ``Function`` - :ref:`call <contract-call>`: Will call the "constant" method and execute its smart contract method in the EVM without sending a transaction (Can't alter the smart contract state).
-- ``Function`` - :ref:`send <contract-send>`: Will send a transaction to the smart contract and execute its method (Can alter the smart contract state).
-- ``Function`` - :ref:`estimateGas <contract-estimateGas>`: Will estimate the gas used when the method would be executed on chain.
-- ``Function`` - :ref:`encodeABI <contract-encodeABI>`: Encodes the ABI for this method. This can be send using a transaction, call the method or passing into another smart contracts method as argument.
-
- For details to the methods see the documentation below.
-
--------
-Example
+例子
 -------
 
 .. code-block:: javascript
 
-    // calling a method
+    // 对一个方法发起 call 调用
 
     myContract.methods.myMethod(123).call({from: '0xde0B295669a9FD93d5F28D9Ec85E40f4cb697BAe'}, function(error, result){
         ...
     });
 
-    // or sending and using a promise
+    // 或者发生交易并使用 promise
     myContract.methods.myMethod(123).send({from: '0xde0B295669a9FD93d5F28D9Ec85E40f4cb697BAe'})
     .then(function(receipt){
         // receipt can also be a new contract instance, when coming from a "contract.deploy({...}).send()"
     });
 
-    // or sending and using the events
-
+    // 或者发送交易并使用事件
     myContract.methods.myMethod(123).send({from: '0xde0B295669a9FD93d5F28D9Ec85E40f4cb697BAe'})
     .on('transactionHash', function(hash){
         ...
@@ -745,44 +736,44 @@ methods.myMethod.call
 
     myContract.methods.myMethod([param1[, param2[, ...]]]).call(options[, callback])
 
-Will call a "constant" method and execute its smart contract method in the EVM without sending any transaction. Note calling can not alter the smart contract state.
+将在不发送交易的情况下调用该“常量”方法并在 EVM 中执行其智能合约方法。注意此种调用方式无法改变智能合约状态。
 
 ----------
-Parameters
+参数
 ----------
 
-1. ``options`` - ``Object`` (optional): The options used for calling.
-    * ``from`` - ``String`` (optional): The address the call "transaction" should be made from.
-    * ``gasPrice`` - ``String`` (optional): The gas price in wei to use for this call "transaction".
-    * ``gas`` - ``Number`` (optional): The maximum gas provided for this call "transaction" (gas limit).
-2. ``callback`` - ``Function`` (optional): This callback will be fired with the result of the smart contract method execution as the second argument, or with an error object as the first argument.
+1. ``options`` - ``Object`` （可选）: 用于发起调用的选项。
+    * ``from`` - ``String`` （可选）: 调用“交易”的发起方地址。
+    * ``gasPrice`` - ``String`` （可选）: 用于该调用“交易”的 gas 价格。以 wei 为计量单位。
+    * ``gas`` - ``Number`` （可选）: 用于该调用“交易”的 gas 用量上限 (gas limit)。
+2. ``callback`` - ``Function`` （可选）: 回调函数，回调时将以智能合约方法执行结果作为第二个参数，以错误对象作为第一个参数。
+
+----------
+返回值
+----------
+
+``Promise`` 返回 ``Mixed``: 智能合约方法返回值。
+如果只返回一个值，则按原样返回。如果有多个返回值，则作为一个带有属性和索引的对象返回。
 
 -------
-Returns
--------
-
-``Promise`` returns ``Mixed``: The return value(s) of the smart contract method.
-If it returns a single value, it's returned as is. If it has multiple return values they are returned as an object with properties and indices:
-
--------
-Example
+例子
 -------
 
 .. code-block:: javascript
 
-    // using the callback
+    // 使用回调
     myContract.methods.myMethod(123).call({from: '0xde0B295669a9FD93d5F28D9Ec85E40f4cb697BAe'}, function(error, result){
         ...
     });
 
-    // using the promise
+    // 使用 promise
     myContract.methods.myMethod(123).call({from: '0xde0B295669a9FD93d5F28D9Ec85E40f4cb697BAe'})
     .then(function(result){
         ...
     });
 
 
-    // MULTI-ARGUMENT RETURN:
+    // 多返回值:
 
     // Solidity
     contract MyContract {
@@ -798,12 +789,12 @@ Example
     > Result {
         myNumber: '23456',
         myString: 'Hello!%',
-        0: '23456', // these are here as fallbacks if the name is not know or given
+        0: '23456', // 这里这些是作为属性名称时的备用值
         1: 'Hello!%'
     }
 
 
-    // SINGLE-ARGUMENT RETURN:
+    // 单参数返回:
 
     // Solidity
     contract MyContract {
@@ -832,52 +823,52 @@ methods.myMethod.send
 
     myContract.methods.myMethod([param1[, param2[, ...]]]).send(options[, callback])
 
-Will send a transaction to the smart contract and execute its method. Note this can alter the smart contract state.
+向合约发送交易来执行其方法。注意这会改变合约状态。
 
 ----------
-Parameters
+参数
 ----------
 
-1. ``options`` - ``Object``: The options used for sending.
-    * ``from`` - ``String``: The address the transaction should be sent from.
-    * ``gasPrice`` - ``String`` (optional): The gas price in wei to use for this transaction.
-    * ``gas`` - ``Number`` (optional): The maximum gas provided for this transaction (gas limit).
-    * ``value`` - ``Number|String|BN|BigNumber``(optional): The value transferred for the transaction in wei.
-2. ``callback`` - ``Function`` (optional): This callback will be fired first with the "transactionHash", or with an error object as the first argument.
+1. ``options`` - ``Object``: 用来发送交易的选项。
+    * ``from`` - ``String``: 交易发送方地址。
+    * ``gasPrice`` - ``String`` （可选）: 用于该交易的 gas 价格，以 wei 为单位。
+    * ``gas`` - ``Number`` （可选）: 该交易 gas 用量上限 (gas limit)。
+    * ``value`` - ``Number|String|BN|BigNumber``（可选）: 交易转账金额，以 wei 为单位。
+2. ``callback`` - ``Function`` （可选）: 回调函数，触发时其第二个参数为交易哈希，第一个参数为错误对象。
+
+----------
+返回值
+----------
+
+**回调** 将返回 32 字节的交易哈希值。
+
+``PromiEvent``: 一个 :ref:`整合了事件发生器 <promiEvent> promise`. 当收到交易*收据*时会被解析, 当该``send()``调用是从``someContract.deploy()``发出时，promise 会解析为*新合约地址*。重设该接口会导致合约实例方法和事件的重新生成。 此外也存在下面这些事件:
+
+- ``"transactionHash"`` 返回 ``String``: 发送交易且得到交易哈希值后立即触发。
+- ``"receipt"`` 返回 ``Object``: 当收到交易*收据*时触发。合约收据带有的不是``logs``，而是以事件名称为健，以事件本身为属性值的``events``。 关于返回事件对象的详情，参见 :ref:`getPastEvents 返回值 <contract-events-return>` 。
+- ``"confirmation"`` 返回 ``Number``, ``Object``: 从区块被挖到的第一个区块确认开始，每次确认都会触发，直到第 24 次确认。触发时第一个参数为收到的确认数，第二个参数为收到交易收据。 
+- ``"error"`` 返回 ``Error`` 和 ``Object|undefined``: 交易发送过程中出错时触发。如果交易被网络拒绝且带有交易收据，第二个参数就是该交易收据。
+
 
 -------
-Returns
--------
-
-The **callback** will return the 32 bytes transaction hash.
-
-``PromiEvent``: A :ref:`promise combined event emitter <promiEvent>`. Will be resolved when the transaction *receipt* is available, OR if this ``send()`` is called from a ``someContract.deploy()``, then the promise will resolve with the *new contract instance*. Additionally the following events are available:
-
-- ``"transactionHash"`` returns ``String``: is fired right after the transaction is sent and a transaction hash is available.
-- ``"receipt"`` returns ``Object``: is fired when the transaction *receipt* is available. Receipts from contracts will have no ``logs`` property, but instead an ``events`` property with event names as keys and events as properties. See :ref:`getPastEvents return values <contract-events-return>` for details about the returned event object.
-- ``"confirmation"`` returns ``Number``, ``Object``: is fired for every confirmation up to the 24th confirmation. Receives the confirmation number as the first and the receipt as the second argument. Fired from confirmation 1 on, which is the block where it's minded.
-- ``"error"`` returns ``Error`` and ``Object|undefined``: Is fired if an error occurs during sending. If the transaction was rejected by the network with a receipt, the second parameter will be the receipt.
-
-
--------
-Example
+例子
 -------
 
 .. code-block:: javascript
 
-    // using the callback
+    // 使用回调
     myContract.methods.myMethod(123).send({from: '0xde0B295669a9FD93d5F28D9Ec85E40f4cb697BAe'}, function(error, transactionHash){
         ...
     });
 
-    // using the promise
+    // 使用 promise
     myContract.methods.myMethod(123).send({from: '0xde0B295669a9FD93d5F28D9Ec85E40f4cb697BAe'})
     .then(function(receipt){
-        // receipt can also be a new contract instance, when coming from a "contract.deploy({...}).send()"
+        // 当这个 receipt 对象来自于 "contract.deploy({...}).send()" 这么个调用时，它也可以是一个新合约实例
     });
 
 
-    // using the event emitter
+    // 使用事件触发器
     myContract.methods.myMethod(123).send({from: '0xde0B295669a9FD93d5F28D9Ec85E40f4cb697BAe'})
     .on('transactionHash', function(hash){
         ...
@@ -886,7 +877,7 @@ Example
         ...
     })
     .on('receipt', function(receipt){
-        // receipt example
+        // receipt 相关例子
         console.log(receipt);
         > {
             "transactionHash": "0x9fc76417374aa880d4449a1f7f31ec597f00b1f6f3dd2d66f4c9c6c445836d8b",
@@ -919,11 +910,11 @@ Example
                 "MyOtherEvent": {
                     ...
                 },
-                "MyMultipleEvent":[{...}, {...}] // If there are multiple of the same event, they will be in an array
+                "MyMultipleEvent":[{...}, {...}] // 如果同一事件有多个，则它们将被组装到数组中
             }
         }
     })
-    .on('error', function(error, receipt) { // If the transaction was rejected by the network with a receipt, the second parameter will be the receipt.
+    .on('error', function(error, receipt) { // 如果交易被网络拒绝并带有交易收据，则第二个参数将是交易收据。
         ...
     });
 
@@ -939,38 +930,38 @@ methods.myMethod.estimateGas
 
     myContract.methods.myMethod([param1[, param2[, ...]]]).estimateGas(options[, callback])
 
-Will call estimate the gas a method execution will take when executed in the EVM without.
-The estimation can differ from the actual gas used when later sending a transaction, as the state of the smart contract can be different at that time.
+通过在 EVM 中执行方法来估算链上执行是需要的 gas 用量。
+由于彼时合约状态的不同，当前估算的 gas 用量和随后通过真实交易所得到的实际 gas 用量可能会有所出入。
 
 ----------
-Parameters
+参数
 ----------
 
-1. ``options`` - ``Object`` (optional): The options used for calling.
-    * ``from`` - ``String`` (optional): The address the call "transaction" should be made from.
-    * ``gas`` - ``Number`` (optional): The maximum gas provided for this call "transaction" (gas limit). Setting a specific value helps to detect out of gas errors. If all gas is used it will return the same number.
-    * ``value`` - ``Number|String|BN|BigNumber``(optional): The value transferred for the call "transaction" in wei.
-2. ``callback`` - ``Function`` (optional): This callback will be fired with the result of the gas estimation as the second argument, or with an error object as the first argument.
+1. ``options`` - ``Object`` （可选）: 用于调用的选项。
+    * ``from`` - ``String`` （可选）: 交易发起方地址。
+    * ``gas`` - ``Number`` （可选）: 交易 gas 用量上限 (gas limit)。设置特定的值有助于检测 gas 耗尽相关错误，gas 耗尽时会返回相同的值。
+    * ``value`` - ``Number|String|BN|BigNumber``（可选）: 交易转账金额，以 wei 为单位。
+2. ``callback`` - ``Function`` （可选）: 回调函数，触发时其第二个参数为 gas 估算量，第一个参数为错误对象。
+
+----------
+返回值
+----------
+
+``Promise`` 返回 ``Number``: 估算的 gas 用量
 
 -------
-Returns
--------
-
-``Promise`` returns ``Number``: The gas amount estimated.
-
--------
-Example
+例子
 -------
 
 .. code-block:: javascript
 
-    // using the callback
+    // 使用回调
     myContract.methods.myMethod(123).estimateGas({gas: 5000000}, function(error, gasAmount){
         if(gasAmount == 5000000)
             console.log('Method ran out of gas');
     });
 
-    // using the promise
+    // 使用 promise
     myContract.methods.myMethod(123).estimateGas({from: '0xde0B295669a9FD93d5F28D9Ec85E40f4cb697BAe'})
     .then(function(gasAmount){
         ...
@@ -992,23 +983,23 @@ methods.myMethod.encodeABI
 
     myContract.methods.myMethod([param1[, param2[, ...]]]).encodeABI()
 
-Encodes the ABI for this method. This can be used to send a transaction, call a method, or pass it into another smart contracts method as arguments.
+为指定的合约方法进行 ABI 编码，可用于发送交易、调用方法或向另一个合约方法传递参数。
 
 
 ----------
-Parameters
+参数
 ----------
 
-none
+无
+
+----------
+返回值
+----------
+
+``String``: 编码后的 ABI 字节码，可用于交易发送或方法调用。
 
 -------
-Returns
--------
-
-``String``: The encoded ABI byte code to send via a transaction or call.
-
--------
-Example
+例子
 -------
 
 .. code-block:: javascript
@@ -1020,7 +1011,7 @@ Example
 ------------------------------------------------------------------------------
 
 
-= Events =
+= 事件 =
 =========
 
 
@@ -1034,36 +1025,36 @@ once
 
     myContract.once(event[, options], callback)
 
-Subscribes to an event and unsubscribes immediately after the first event or error. Will only fire for a single event.
+订阅一个事件并在第一次事件触发或错误发生后立即取消订阅。一个事件仅触发一次。
 
 ----------
-Parameters
+参数
 ----------
 
-1. ``event`` - ``String``: The name of the event in the contract, or ``"allEvents"`` to get all events.
-2. ``options`` - ``Object`` (optional): The options used for deployment.
-    * ``filter`` - ``Object`` (optional): Lets you filter events by indexed parameters, e.g. ``{filter: {myNumber: [12,13]}}`` means all events where "myNumber" is 12 or 13.
-    * ``topics`` - ``Array`` (optional): This allows you to manually set the topics for the event filter. If given the filter property and event signature, (topic[0]) will not be set automatically.
-3. ``callback`` - ``Function``: This callback will be fired for the first *event* as the second argument, or an error as the first argument. See :ref:`getPastEvents return values <contract-events-return>` for details about the event structure.
+1. ``event`` - ``String``: 要订阅的合约事件名, 或者用 ``"allEvents"`` 来订阅所有事件。
+2. ``options`` - ``Object`` （可选）: 用于部署的选项。
+    * ``filter`` - ``Object`` （可选）: 按索引参数过滤事件, 例如 ``{filter: {myNumber: [12,13]}}`` 表示 "myNumber" 为 12 或 13 的所有事件。
+    * ``topics`` - ``Array`` （可选）: 手动设置事件过滤器的主题。如果提供了过滤器属性和事件签名，则不会自动设置（topic [0]）
+3. ``callback`` - ``Function``: 回调函数，触发时把*事件*对象作为第二个参数，错误作为第一个参数。 关于详细事件结构，参见 :ref:`getPastEvents 返回值 <contract-events-return>` 。
 
--------
-Returns
--------
+----------
+返回值
+----------
 
 ``undefined``
 
 -------
-Example
+例子
 -------
 
 .. code-block:: javascript
 
     myContract.once('MyEvent', {
-        filter: {myIndexedParam: [20,23], myOtherIndexedParam: '0x123456789...'}, // Using an array means OR: e.g. 20 or 23
+        filter: {myIndexedParam: [20,23], myOtherIndexedParam: '0x123456789...'}, // 使用数组表示 或：比如 20 或 23。
         fromBlock: 0
     }, function(error, event){ console.log(event); });
 
-    // event output example
+    // 事件输入的例子
     > {
         returnValues: {
             myIndexedParam: 20,
@@ -1096,70 +1087,70 @@ events
 
     myContract.events.MyEvent([options][, callback])
 
-Subscribe to an event
+订阅指定的合约事件
 
 ----------
-Parameters
+参数
 ----------
 
-1. ``options`` - ``Object`` (optional): The options used for deployment.
-    * ``filter`` - ``Object`` (optional): Let you filter events by indexed parameters, e.g. ``{filter: {myNumber: [12,13]}}`` means all events where "myNumber" is 12 or 13.
-    * ``fromBlock`` - ``Number|String|BN|BigNumber`` (optional): The block number (greater than or equal to) from which to get events on. Pre-defined block numbers as ``"latest"``, ``"earlist"``, ``"pending"``, and ``"genesis"`` can also be used.
-    * ``topics`` - ``Array`` (optional): This allows to manually set the topics for the event filter. If given the filter property and event signature, (topic[0]) will not be set automatically.
-2. ``callback`` - ``Function`` (optional): This callback will be fired for each *event* as the second argument, or an error as the first argument.
+1. ``options`` - ``Object`` （可选）: 用于部署的选项。
+    * ``filter`` - ``Object`` （可选）: 按索引参数过滤事件, 例如 ``{filter: {myNumber: [12,13]}}`` 表示 "myNumber" 为 12 或 13 的所有事件。
+    * ``fromBlock`` - ``Number|String|BN|BigNumber`` （可选）: 读取从该编号开始的区块中的事件（大于或等于该区块号）。 也可以使用预先定义的区块号，比如 ``"latest"``, ``"earlist"``, ``"pending"``, ``"genesis"`` 等。
+    * ``topics`` - ``Array`` （可选）: 手动设置事件过滤器的主题。如果提供了过滤器属性和事件签名，则不会自动设置（topic [0]）。
+2. ``callback`` - ``Function`` （可选）: 回调函数，触发时把*事件*对象作为第二个参数，错误作为第一个参数。
 
 .. _contract-events-return:
 
+----------
+返回值
+----------
+
+``EventEmitter``: 该事件发生器有以下事件：
+
+- ``"data"`` 返回 ``Object``: 接收到新传入的事件时触发，参数为事件对象。
+- ``"changed"`` 返回 ``Object``: 当事件从区块链上移除时触发。 该事件带有额外属性 ``"removed: true"``。
+- ``"error"`` 返回 ``Object``: 当订阅中出现错误时触发。
+- ``"connected"`` 返回 ``String``: 当订阅成功连接时触发一次。返回订阅 id。
+
+
+返回的事件 "对象" 结构如下：
+
+- ``event`` - ``String``: 事件名称。
+- ``signature`` - ``String|Null``: 事件签名，如果是匿名事件，其值为 ``null``。
+- ``address`` - ``String``: 该事件的发源地地址。
+- ``returnValues`` - ``Object``: 事件返回值， 比如 ``{myVar: 1, myVar2: '0x234...'}``.
+- ``logIndex`` - ``Number``: 事件在区块中的索引位置。
+- ``transactionIndex`` - ``Number``: 事件所在交易在区块中的索引位置。
+- ``transactionHash`` 32 Bytes - ``String``: 事件所在交易的哈希值。
+- ``blockHash`` 32 Bytes - ``String``: 事件所在区块链的哈希值。区块处于 pending 状态时其值为 ``null`` 。
+- ``blockNumber`` - ``Number``: 事件所在区块的区块号。 区块处于 pending 状态时其值为 ``null`` 。
+- ``raw.data`` - ``String``: 包含未索引的日志参数。
+- ``raw.topics`` - ``Array``: 最大可保存 4 个 32 字节长的主题数组，主题 1-3 包含事件的索引参数。
+
 -------
-Returns
--------
-
-``EventEmitter``: The event emitter has the following events:
-
-- ``"data"`` returns ``Object``: Fires on each incoming event with the event object as argument.
-- ``"changed"`` returns ``Object``: Fires on each event which was removed from the blockchain. The event will have the additional property ``"removed: true"``.
-- ``"error"`` returns ``Object``: Fires when an error in the subscription occours.
-- ``"connected"`` returns ``String``: Fires once after the subscription successfully connected. Returns the subscription id.
-
-
-The structure of the returned event ``Object`` looks as follows:
-
-- ``event`` - ``String``: The event name.
-- ``signature`` - ``String|Null``: The event signature, ``null`` if it's an anonymous event.
-- ``address`` - ``String``: Address this event originated from.
-- ``returnValues`` - ``Object``: The return values coming from the event, e.g. ``{myVar: 1, myVar2: '0x234...'}``.
-- ``logIndex`` - ``Number``: Integer of the event index position in the block.
-- ``transactionIndex`` - ``Number``: Integer of the transaction's index position the event was created in.
-- ``transactionHash`` 32 Bytes - ``String``: Hash of the transaction this event was created in.
-- ``blockHash`` 32 Bytes - ``String``: Hash of the block this event was created in. ``null`` when it's still pending.
-- ``blockNumber`` - ``Number``: The block number this log was created in. ``null`` when still pending.
-- ``raw.data`` - ``String``: The data containing non-indexed log parameter.
-- ``raw.topics`` - ``Array``: An array with max 4 32 Byte topics, topic 1-3 contains indexed parameters of the event.
-
--------
-Example
+例子
 -------
 
 .. code-block:: javascript
 
     myContract.events.MyEvent({
-        filter: {myIndexedParam: [20,23], myOtherIndexedParam: '0x123456789...'}, // Using an array means OR: e.g. 20 or 23
+        filter: {myIndexedParam: [20,23], myOtherIndexedParam: '0x123456789...'}, // 使用数组表示 或：如 20 或 23。
         fromBlock: 0
     }, function(error, event){ console.log(event); })
     .on("connected", function(subscriptionId){
         console.log(subscriptionId);
     })
     .on('data', function(event){
-        console.log(event); // same results as the optional callback above
+        console.log(event); // 与上述可选的回调结果相同
     })
     .on('changed', function(event){
-        // remove event from local database
+        // 从本地数据库中删除事件
     })
-    .on('error', function(error, receipt) { // If the transaction was rejected by the network with a receipt, the second parameter will be the receipt.
+    .on('error', function(error, receipt) { // 如果交易被网络拒绝并带有交易收据，第二个参数将是交易收据。
         ...
     });
 
-    // event output example
+    // 事件输出例子
     > {
         returnValues: {
             myIndexedParam: 20,
@@ -1190,8 +1181,8 @@ events.allEvents
 
     myContract.events.allEvents([options][, callback])
 
-Same as :ref:`events <contract-events>` but receives all events from this smart contract.
-Optionally the filter property can filter those events.
+和 :ref:`事件 <contract-events>` 相同，只是会接收合约的所有事件。
+过滤属性可以选择性地过滤这些事件。
 
 
 ------------------------------------------------------------------------------
@@ -1204,42 +1195,42 @@ getPastEvents
 
     myContract.getPastEvents(event[, options][, callback])
 
-Gets past events for this contract.
+读取合约历史事件。
 
 ----------
-Parameters
+参数
 ----------
 
-1. ``event`` - ``String``: The name of the event in the contract, or ``"allEvents"`` to get all events.
-2. ``options`` - ``Object`` (optional): The options used for deployment.
-    * ``filter`` - ``Object`` (optional): Lets you filter events by indexed parameters, e.g. ``{filter: {myNumber: [12,13]}}`` means all events where "myNumber" is 12 or 13.
-    * ``fromBlock`` - ``Number|String|BN|BigNumber`` (optional): The block number (greater than or equal to) from which to get events on. Pre-defined block numbers as ``"latest"``, ``"earlist"``, ``"pending"``, and ``"genesis"`` can also be used.
-    * ``toBlock`` - ``Number|String|BN|BigNumber`` (optional): The block number (less than or equal to) to get events up to (Defaults to ``"latest"``). Pre-defined block numbers as ``"latest"``, ``"earlist"``, ``"pending"``, and ``"genesis"`` can also be used.
-    * ``topics`` - ``Array`` (optional): This allows manually setting the topics for the event filter. If given the filter property and event signature, (topic[0]) will not be set automatically.
-3. ``callback`` - ``Function`` (optional): This callback will be fired with an array of event logs as the second argument, or an error as the first argument.
+1. ``event`` - ``String``: 合约事件名，或者用 ``"allEvents"`` 读取所有事件。
+2. ``options`` - ``Object`` （可选）: 用于部署的选项。
+    * ``filter`` - ``Object`` （可选）: 按索引参数过滤事件, 例如 ``{filter: {myNumber: [12,13]}}`` 表示 "myNumber" 为 12 或 13 的所有事件。
+    * ``fromBlock`` - ``Number|String|BN|BigNumber`` （可选）: 读取从该编号开始的区块中的历史事件（大于或等于该区块号）。 也可以使用预先定义的区块编号，比如 ``"latest"``, ``"earlist"``, ``"pending"``, ``"genesis"`` 。
+    * ``toBlock`` - ``Number|String|BN|BigNumber`` （可选）: 读取截止到该编号的区块中的历史事件（小于或等于该区块号）（默认值为 "latest"）。 也可以使用预先定义的区块编号，比如 ``"latest"``, ``"earlist"``, ``"pending"``, ``"genesis"`` 。
+    * ``topics`` - ``Array`` （可选）: 用来手动设置事件过滤器的主题。如果设置了 filter 属性和事件签名，则不会自动设置（topic [0]）。
+3. ``callback`` - ``Function`` （可选）: 回调函数，触发时其第一个参数为错误对象，第二个参数为历史事件日志数组。
 
+
+----------
+返回值
+----------
+
+``Promise`` 返回 ``Array``: 满足给定事件或过滤条件的历史事件对象数组。
+
+对于返回的事件对象结构，参见 :ref:`getPastEvents 返回值 <contract-events-return>`。
 
 -------
-Returns
--------
-
-``Promise`` returns ``Array``: An array with the past event ``Objects``, matching the given event name and filter.
-
-For the structure of a returned event ``Object`` see :ref:`getPastEvents return values <contract-events-return>`.
-
--------
-Example
+例子
 -------
 
 .. code-block:: javascript
 
     myContract.getPastEvents('MyEvent', {
-        filter: {myIndexedParam: [20,23], myOtherIndexedParam: '0x123456789...'}, // Using an array means OR: e.g. 20 or 23
+        filter: {myIndexedParam: [20,23], myOtherIndexedParam: '0x123456789...'}, // 使用数组表示 或：如 20 或 23。
         fromBlock: 0,
         toBlock: 'latest'
     }, function(error, events){ console.log(events); })
     .then(function(events){
-        console.log(events) // same results as the optional callback above
+        console.log(events) // 与上述可选回调结果相同
     });
 
     > [{
