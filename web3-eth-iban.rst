@@ -1,8 +1,8 @@
 .. _eth-iban:
 
-=========
+==================
 web3.eth.Iban
-=========
+==================
 
 ``web3.eth.Iban`` 相关函数让我们可以将以太坊地址和 IBAN/BBAN 地址之间相互转换。
 
@@ -340,6 +340,7 @@ prototype.isDirect
     web3.eth.Iban.prototype.isDirect()
 
 检查当前 IBAN 实例是否使用了 direct 编码方式。
+
 ----------
 参数
 ----------

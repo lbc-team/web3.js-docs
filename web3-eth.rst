@@ -24,7 +24,7 @@ The ``web3-eth`` package allows you to interact with an Ethereum blockchain and 
 
 
 Note on checksum addresses
-=======
+============================
 
 All Ethereum addresses returned by functions of this package are returned as checksum addresses.
 This means some letters are uppercase and some are lowercase.
@@ -1161,7 +1161,7 @@ Example
 ------------------------------------------------------------------------------
 
 getTransactionFromBlock
-=====================
+========================
 
 .. code-block:: javascript
 

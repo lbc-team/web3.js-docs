@@ -1,8 +1,8 @@
 .. _eth-accounts:
 
-=========
+==================
 web3.eth.accounts
-=========
+==================
 
 The ``web3.eth.accounts`` contains functions to generate Ethereum accounts and sign transactions and data.
 

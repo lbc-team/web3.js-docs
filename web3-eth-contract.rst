@@ -1,8 +1,8 @@
 .. _eth-contract:
 
-========
+====================
 web3.eth.Contract
-========
+====================
 
 ``web3.eth.Contract`` 对象让你可以轻松地与以太坊区块链上的智能合约进行交互。
 当你创建一个新的合约对象时，只需要指定相应的智能合约 json 接口， web3 就会自动将所有的调用转换为基于 RPC 的底层 ABI 调用。
@@ -29,7 +29,7 @@ web3.eth.Contract
 
 
 new contract
-=========
+==================
 
 .. index:: JSON interface
 
@@ -37,7 +37,7 @@ new contract
 
     new web3.eth.Contract(jsonInterface[, address][, options])
 
-创建新的合约实例，并在其 :ref:`json interface <glossary-js-interface>` 对象中定义所有的方法和事件。
+创建新的合约实例，并在其 :ref:`json interface <glossary-json-interface>` 对象中定义所有的方法和事件。
 
 ----------
 参数
@@ -74,7 +74,7 @@ new contract
 
 
 = 属性列表 =
-=========
+============
 
 ------------------------------------------------------------------------------
 
@@ -219,7 +219,7 @@ defaultChain
 
     contract.defaultChain
 
-默认链熟悉是本地签名交易的时候用的
+默认链属性是本地签名交易的时候用的
 
 ----------
 属性
@@ -297,7 +297,7 @@ defaultCommon
 .. _eth-contract-transactionblocktimeout:
 
 transactionBlockTimeout
-=====================
+=============================
 
 .. code-block:: javascript
 
@@ -318,7 +318,7 @@ transactionBlockTimeout
 .. _eth-contract-module-transactionconfirmationblocks:
 
 transactionConfirmationBlocks
-=====================
+===============================
 
 .. code-block:: javascript
 
@@ -338,7 +338,7 @@ transactionConfirmationBlocks
 .. _eth-contract-module-transactionpollingtimeout:
 
 transactionPollingTimeout
-=====================
+===========================
 
 .. code-block:: javascript
 
@@ -359,7 +359,7 @@ transactionPollingTimeout
 .. _eth-contract-module-handlerevert:
 
 handleRevert
-============
+=============
 
 .. code-block:: javascript
 
@@ -433,7 +433,7 @@ handleRevert
 .. _contract-address:
 
 options.address
-=========
+==================
 
 .. code-block:: javascript
 
@@ -469,7 +469,7 @@ options.address
 .. _contract-json-interface:
 
 options.jsonInterface
-=========
+===========================
 
 .. code-block:: javascript
 
@@ -924,7 +924,7 @@ methods.myMethod.send
 .. _contract-estimateGas:
 
 methods.myMethod.estimateGas
-=====================
+==============================
 
 .. code-block:: javascript
 
@@ -977,7 +977,7 @@ methods.myMethod.estimateGas
 .. _contract-encodeABI:
 
 methods.myMethod.encodeABI
-=====================
+=============================
 
 .. code-block:: javascript
 

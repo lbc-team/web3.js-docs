@@ -1,8 +1,8 @@
 .. _eth-subscribe:
 
-=========
+=====================
 web3.eth.subscribe
-=========
+=====================
 
 ``web3.eth.subscribe`` 方法让你可以订阅区块链中的指定事件
 
@@ -109,13 +109,15 @@ clearSubscriptions
 
 
 subscribe("pendingTransactions")
-=====================
+===================================
 
 .. code-block:: javascript
 
     web3.eth.subscribe('pendingTransactions' [, callback]);
 
-订阅 pending 状态的交易
+订阅 pending 状态的交易。
+
+
 ----------
 参数
 ----------
@@ -165,7 +167,7 @@ subscribe("pendingTransactions")
 
 
 subscribe("newBlockHeaders")
-=====================
+===================================
 
 .. code-block:: javascript
 

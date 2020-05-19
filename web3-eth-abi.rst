@@ -1,8 +1,8 @@
 .. _eth-abi:
 
-=========
+============
 web3.eth.abi
-=========
+============
 
 
 ``web3.eth.abi`` 函数用来解码及编码为 ABI (Application Binary Interface应用程序二进制接口) 以用于 EVM（以太坊虚拟机）进行函数调用。
@@ -12,7 +12,7 @@ web3.eth.abi
 
 
 encodeFunctionSignature
-=====================
+========================
 
 .. code-block:: javascript
 

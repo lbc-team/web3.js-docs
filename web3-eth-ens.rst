@@ -1,8 +1,8 @@
 .. _eth-ens:
 
-=========
+=============
 web3.eth.ens
-=========
+=============
 
 ``web3.eth.ens`` 相关函数让你可以与 ENS 进行交互。
 ------------------------------------------------------------------------------
@@ -372,8 +372,8 @@ setContent
             from: '0x9CC9a2c777605Af16872E0997b3Aeb91d96D5D8c'
         }
     ).then(function (result) {
-             console.log(result.events);
-     });
+        console.log(result.events);
+    });
     > ContentChanged(...)
 
     // 或者使用事件触发器
@@ -520,9 +520,9 @@ ENS events
 
 ENS 接口提供了监听所有 ENS 相关事件的可能性。
 
-------------
+---------------------
 已知的 resolver 事件
-------------
+---------------------
 
 1. AddrChanged(node bytes32, a address)
 2. ContentChanged(node bytes32, hash bytes32)
@@ -570,9 +570,9 @@ ENS 接口提供了监听所有 ENS 相关事件的可能性。
         address: '0xde0B295669a9FD93d5F28D9Ec85E40f4cb697BAe'
     }
 
-------------
+---------------------
 已知的 registry 事件
-------------
+---------------------
 
 1. Transfer(node bytes32, owner address)
 2. NewOwner(node bytes32, label bytes32, owner address)

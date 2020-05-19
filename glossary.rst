@@ -16,9 +16,9 @@ The json interface is a json object describing the `Application Binary Interface
 
 Using this json interface web3.js is able to create JavaScript object representing the smart contract and its methods and events using the :ref:`web3.eth.Contract object <eth-contract>`.
 
--------
+--------------
 Specification
--------
+--------------
 
 Functions:
 
@@ -45,9 +45,9 @@ Events:
 - ``anonymous``: ``true`` if the event was declared as ``anonymous``.
 
 
--------
+--------
 Example
--------
+--------
 
 .. code-block:: javascript
 
