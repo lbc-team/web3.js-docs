@@ -18,6 +18,7 @@
 | web3-eth-iban.rst     |Ashton(05/01 - 05/02) | Tiny熊 | 355 |
 | web3-eth-ens.rst     |Ashton(05/03 - 05/06) | Tiny熊 | 470 |
 | web3-eth-contract.rst     |Ashton(05/07 - 05/19) | Tiny熊 | 863 |
+| web3-eth-accounts.rst |Ashton(06/13 - 06/20) | Tiny熊 ||
 
 
 
