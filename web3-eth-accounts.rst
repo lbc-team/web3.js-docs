@@ -4,19 +4,17 @@
 web3.eth.accounts
 ==================
 
-The ``web3.eth.accounts`` contains functions to generate Ethereum accounts and sign transactions and data.
+``web3.eth.accounts`` 包中包含用于生成以太坊账户和用来签名交易与数据的一系列函数。
 
-.. note:: This package has NOT been audited and might potentially be unsafe. Take precautions to clear memory properly, store the private keys safely, and test transaction receiving and sending functionality properly before using in production!
+.. note:: 该程序包尚未经过安全评审，可能存在安全隐患。在用于生产环境之前，请采取必要的措施来合理的清理内存，安全的存储私钥并完整测试交易的接收和发送功能！
 
-To use this package standalone use:
-
+可参照以下代码来独立使用这个包：
 
 .. code-block:: javascript
 
     var Accounts = require('web3-eth-accounts');
 
-    // Passing in the eth or web3 package is necessary to allow retrieving chainId, gasPrice and nonce automatically
-    // for accounts.signTransaction().
+    // 必须传入 eth 或 web3 包才能自动获取调用 account.signTransaction() 所需要的 chainId，gasPrice 和 nonce。
     var accounts = new Accounts('ws://localhost:8546');
 
 
@@ -32,29 +30,29 @@ create
 
     web3.eth.accounts.create([entropy]);
 
-Generates an account object with private key and public key.
+生成具有公私钥的账户对象。
 
 ----------
-Parameters
+参数
 ----------
 
-1. ``entropy`` - ``String`` (optional): A random string to increase entropy. If given it should be at least 32 characters. If none is given a random string will be generated using :ref:`randomhex <randomhex>`.
+1. ``entropy`` - ``String`` (可选): 用于增加混淆度的随机字符串，至少 32 字符长。如果未设定将使用 :ref:`randomhex <randomhex>` 生成一个随机字符串。
 
 .. _eth-accounts-create-return:
 
 -------
-Returns
+返回值
 -------
 
-``Object`` - The account object with the following structure:
+``Object`` - 账户对象，具有如下结构：
 
-    - ``address`` - ``string``: The account address.
-    - ``privateKey`` - ``string``: The accounts private key. This should never be shared or stored unencrypted in localstorage! Also make sure to ``null`` the memory after usage.
-    - ``signTransaction(tx [, callback])`` - ``Function``: The function to sign transactions. See :ref:`web3.eth.accounts.signTransaction() <eth-accounts-signtransaction>` for more.
-    - ``sign(data)`` - ``Function``: The function to sign transactions. See :ref:`web3.eth.accounts.sign() <eth-accounts-sign>` for more.
+    - ``address`` - ``string``: 账户地址。
+    - ``privateKey`` - ``string``: 帐户私钥。绝对不要将其共享或以未加密的形式存储在 localstorage 中，并确保使用后将内存``清空``。
+    - ``signTransaction(tx [, callback])`` - ``Function``: 用来签名交易的函数对象. 更多信息可参考 :ref:`web3.eth.accounts.signTransaction() <eth-accounts-signtransaction>` 。
+    - ``sign(data)`` - ``Function``: 用来签名数据的函数对象. 更多信息可参考 :ref:`web3.eth.accounts.sign() <eth-accounts-sign>` 。
 
 -------
-Example
+示例代码
 -------
 
 .. code-block:: javascript
@@ -96,22 +94,22 @@ privateKeyToAccount
 
     web3.eth.accounts.privateKeyToAccount(privateKey);
 
-Creates an account object from a private key.
+通过私钥来创建账户对象。
 
 ----------
-Parameters
+参数
 ----------
 
-1. ``privateKey`` - ``String``: The private key to convert.
+1. ``privateKey`` - ``String``: 用来创建账户的私钥。
 
 -------
-Returns
+返回值
 -------
 
-``Object`` - The account object with the :ref:`structure seen here <eth-accounts-create-return>`.
+``Object`` - 账户对象， :ref:`数据结构见这里 <eth-accounts-create-return>`.
 
 -------
-Example
+示例代码
 -------
 
 .. code-block:: javascript
@@ -136,48 +134,47 @@ signTransaction
 
     web3.eth.accounts.signTransaction(tx, privateKey [, callback]);
 
-Signs an Ethereum transaction with a given private key.
+使用给定的私钥签名以太坊交易。
 
 ----------
-Parameters
+参数
 ----------
 
-1. ``tx`` - ``Object``: The transaction object as follows:
-    - ``nonce`` - ``String``: (optional) The nonce to use when signing this transaction. Default will use :ref:`web3.eth.getTransactionCount() <eth-gettransactioncount>`.
-    - ``chainId`` - ``String``: (optional) The chain id to use when signing this transaction. Default will use :ref:`web3.eth.net.getId() <net-getid>`.
-    - ``to`` - ``String``: (optional) The recevier of the transaction, can be empty when deploying a contract.
-    - ``data`` - ``String``: (optional) The call data of the transaction, can be empty for simple value transfers.
-    - ``value`` - ``String``: (optional) The value of the transaction in wei.
-    - ``gasPrice`` - ``String``: (optional) The gas price set by this transaction, if empty, it will use :ref:`web3.eth.gasPrice() <eth-gasprice>`
-    - ``gas`` - ``String``: The gas provided by the transaction.
-    - ``chain`` - ``String``: (optional) Defaults to ``mainnet``.
-    - ``hardfork`` - ``String``: (optional) Defaults to ``petersburg``.
-    - ``common`` - ``Object``: (optional) The common object
-        - ``customChain`` - ``Object``: The custom chain properties
-            - ``name`` - ``string``: (optional) The name of the chain
-            - ``networkId`` - ``number``: Network ID of the custom chain
-            - ``chainId`` - ``number``: Chain ID of the custom chain
-        - ``baseChain`` - ``string``: (optional) ``mainnet``, ``goerli``, ``kovan``, ``rinkeby``, or ``ropsten``
-        - ``hardfork`` - ``string``: (optional) ``chainstart``, ``homestead``, ``dao``, ``tangerineWhistle``, ``spuriousDragon``, ``byzantium``, ``constantinople``, ``petersburg``, or ``istanbul``
-2. ``privateKey`` - ``String``: The private key to sign with.
-3. ``callback`` - ``Function``: (optional) Optional callback, returns an error object as first parameter and the result as second.
+1. ``tx`` - ``Object``: 交易对象，具有如下结构：
+    - ``nonce`` - ``String``: (可选) 签名交易时所用的 nonce 值。默认使用 :ref:`web3.eth.getTransactionCount() <eth-gettransactioncount>`.
+    - ``chainId`` - ``String``: (可选) 签名交易时所用的 chain id。 默认使用 :ref:`web3.eth.net.getId() <net-getid>`.
+    - ``to`` - ``String``: (可选) 交易接受者，部署合约时其值为空。
+    - ``data`` - ``String``: (可选) 交易调用数据，对简单转账交易来说其值为空。
+    - ``value`` - ``String``: (可选) 以 wei 为单位的以太币转账数量。
+    - ``gasPrice`` - ``String``: (可选) 交易所用的燃料价格，如果传入为空值则会使用 :ref:`web3.eth.gasPrice() <eth-gasprice>`
+    - ``gas`` - ``String``: 交易可用的燃料上限。
+    - ``chain`` - ``String``: (可选) 默认值为 ``mainnet``.
+    - ``hardfork`` - ``String``: (可选) 默认值为 ``petersburg``.
+    - ``common`` - ``Object``: (可选) common 对象。
+        - ``customChain`` - ``Object``: 自定义链属性
+            - ``name`` - ``string``: (可选) 链名称
+            - ``networkId`` - ``number``: 自定义链的网络 id
+            - ``chainId`` - ``number``: 自定义链的 chain id
+        - ``baseChain`` - ``string``: (可选) ``mainnet``, ``goerli``, ``kovan``, ``rinkeby``, 或 ``ropsten``
+        - ``hardfork`` - ``string``: (可选) ``chainstart``, ``homestead``, ``dao``, ``tangerineWhistle``, ``spuriousDragon``, ``byzantium``, ``constantinople``, ``petersburg``, 或 ``istanbul``
+2. ``privateKey`` - ``String``: 签名交易所用的私钥。
+3. ``callback`` - ``Function``: (可选) 可选的回调函数, 其第一个返回值为错误对象，第二个返回值为调用结果。
 
 
 -------
-Returns
+返回值
 -------
 
-``Promise`` returning ``Object``: The signed data RLP encoded transaction, or if ``returnSignature`` is ``true`` the signature values as follows:
-    - ``messageHash`` - ``String``: The hash of the given message.
-    - ``r`` - ``String``: First 32 bytes of the signature
-    - ``s`` - ``String``: Next 32 bytes of the signature
-    - ``v`` - ``String``: Recovery value + 27
-    - ``rawTransaction`` - ``String``: The RLP encoded transaction, ready to be send using :ref:`web3.eth.sendSignedTransaction <eth-sendsignedtransaction>`.
-    - ``transactionHash`` - ``String``: The transaction hash for the RLP encoded transaction.
-
+``Promise`` 返回 ``Object``: RLP 编码的交易对象：
+    - ``messageHash`` - ``String``: 给定消息的哈希值。
+    - ``r`` - ``String``: 签名的头 32 个字节。
+    - ``s`` - ``String``: 签名接下来的 32 个字节。
+    - ``v`` - ``String``: 恢复值 + 27。
+    - ``rawTransaction`` - ``String``: RLP 编码的交易, 可使用 :ref:`web3.eth.sendSignedTransaction <eth-sendsignedtransaction>` 直接发送。
+    - ``transactionHash`` - ``String``: RLP 编码交易的交易哈希。
 
 -------
-Example
+示例代码
 -------
 
 .. code-block:: javascript
@@ -215,7 +212,7 @@ Example
         transactionHash: '0xd8f64a42b57be0d565f385378db2f6bf324ce14a594afc05de90436e9ce01f60'
     }
 
-    // or with a common
+    // 或者带有 common 对象
     web3.eth.accounts.signTransaction({
         to: '0xF0109fC8DF283027b6285cc889F5aA624EaC1F55',
         value: '1000000000',
@@ -245,23 +242,23 @@ recoverTransaction
 
     web3.eth.accounts.recoverTransaction(rawTransaction);
 
-Recovers the Ethereum address which was used to sign the given RLP encoded transaction.
+恢复用于签名给定 RLP 编码交易的以太坊地址。
 
 ----------
-Parameters
+参数
 ----------
 
-1. ``signature`` - ``String``: The RLP encoded transaction.
+1. ``signature`` - ``String``: RLP 编码的交易。
 
 
 -------
-Returns
+返回值
 -------
 
-``String``: The Ethereum address used to sign this transaction.
+``String``: 用于签名该交易的以太坊地址。
 
 -------
-Example
+示例代码
 -------
 
 .. code-block:: javascript
@@ -280,23 +277,23 @@ hashMessage
 
     web3.eth.accounts.hashMessage(message);
 
-Hashes the given message to be passed :ref:`web3.eth.accounts.recover() <accounts-recover>` function. The data  will be UTF-8 HEX decoded and enveloped as follows: ``"\x19Ethereum Signed Message:\n" + message.length + message`` and hashed using keccak256.
+计算给定消息的哈希值，以便于用于 :ref:`web3.eth.accounts.recover() <accounts-recover>` 函数。 数据采用 UTF-8 十六进制解码封装: ``"\x19Ethereum Signed Message:\n" + message.length + message``，并使用 keccak256 进行哈希运算。
 
 ----------
-Parameters
+参数
 ----------
 
-1. ``message`` - ``String``: A message to hash, if its HEX it will be UTF8 decoded before.
+1. ``message`` - ``String``: 要进行哈希运算的消息，如果是 16 进制字符串，首先对其进行 UTF-8 解码。
 
 
 -------
-Returns
+返回值
 -------
 
-``String``: The hashed message
+``String``: 哈希运算后的消息
 
 -------
-Example
+示例代码
 -------
 
 .. code-block:: javascript
@@ -304,7 +301,7 @@ Example
     web3.eth.accounts.hashMessage("Hello World")
     > "0xa1de988600a42c4b4ab089b619297c17d53cffae5d5120d82d8a92d0bb3b78f2"
 
-    // the below results in the same hash
+    // 下面这种方式可以得到同样的哈希值
     web3.eth.accounts.hashMessage(web3.utils.utf8ToHex("Hello World"))
     > "0xa1de988600a42c4b4ab089b619297c17d53cffae5d5120d82d8a92d0bb3b78f2"
 
@@ -321,30 +318,30 @@ sign
 
     web3.eth.accounts.sign(data, privateKey);
 
-Signs arbitrary data.
+签名任意数据。
 
 ----------
-Parameters
+参数
 ----------
 
-1. ``data`` - ``String``: The data to sign.
-2. ``privateKey`` - ``String``: The private key to sign with.
+1. ``data`` - ``String``: 要签名的数据。
+2. ``privateKey`` - ``String``: 用以签名的私钥。
 
-.. note:: The value passed as  the `data` parameter will be UTF-8 HEX decoded and wrapped as follows: ``"\x19Ethereum Signed Message:\n" + message.length + message``.
-
--------
-Returns
--------
-
-``Object``: The signature object
-    - ``message`` - ``String``: The the given message.
-    - ``messageHash`` - ``String``: The hash of the given message.
-    - ``r`` - ``String``: First 32 bytes of the signature
-    - ``s`` - ``String``: Next 32 bytes of the signature
-    - ``v`` - ``String``: Recovery value + 27
+.. note:: 传入的 `data` 参数将用这种方式进行 UTF-8 十六进制解码封装: ``"\x19Ethereum Signed Message:\n" + message.length + message``.
 
 -------
-Example
+返回值
+-------
+
+``Object``: 签名对象
+    - ``message`` - ``String``: 给定消息。
+    - ``messageHash`` - ``String``: 给定消息的哈希值。
+    - ``r`` - ``String``: 签名的头 32 个字节。
+    - ``s`` - ``String``: 签名接下来的 32 个字节。
+    - ``v`` - ``String``: 恢复值 + 27。
+
+-------
+示例代码
 -------
 
 .. code-block:: javascript
@@ -374,29 +371,29 @@ recover
     web3.eth.accounts.recover(message, signature [, preFixed]);
     web3.eth.accounts.recover(message, v, r, s [, preFixed]);
 
-Recovers the Ethereum address which was used to sign the given data.
+恢复用于签名给定数据的以太坊地址。
 
 ----------
-Parameters
+参数
 ----------
 
-1. ``message|signatureObject`` - ``String|Object``: Either signed message or hash, or the signature object as following values:
-    - ``messageHash`` - ``String``: The hash of the given message already prefixed with ``"\x19Ethereum Signed Message:\n" + message.length + message``.
-    - ``r`` - ``String``: First 32 bytes of the signature
-    - ``s`` - ``String``: Next 32 bytes of the signature
-    - ``v`` - ``String``: Recovery value + 27
-2. ``signature`` - ``String``: The raw RLP encoded signature, OR parameter 2-4 as v, r, s values.
-3. ``preFixed`` - ``Boolean`` (optional, default: ``false``): If the last parameter is ``true``, the given message will NOT automatically be prefixed with ``"\x19Ethereum Signed Message:\n" + message.length + message``, and assumed to be already prefixed.
+1. ``message|signatureObject`` - ``String|Object``: 要么是签名消息或哈希，要么是带有下面属性的签名对象：
+    - ``messageHash`` - ``String``: 给定消息的哈希值，该消息已加前缀 ``"\x19Ethereum Signed Message:\n" + message.length + message``。
+    - ``r`` - ``String``: 签名的头 32 个字节。
+    - ``s`` - ``String``: 签名接下来的 32 个字节。
+    - ``v`` - ``String``: 恢复值 + 27。
+2. ``signature`` - ``String``: 原始 RLP 编码签名或者通过第 2-4 号参数指定 v，r，s 值。
+3. ``preFixed`` - ``Boolean`` (可选, 默认值: ``false``): 如果其值为 ``true``, 给定的消息不会自动添加前缀 ``"\x19Ethereum Signed Message:\n" + message.length + message``, 假定给定消息已经带了该前缀。
 
 
 -------
-Returns
+返回值
 -------
 
-``String``: The Ethereum address used to sign this data.
+``String``: 用于签名此数据的以太坊地址。
 
 -------
-Example
+示例代码
 -------
 
 .. code-block:: javascript
@@ -409,11 +406,11 @@ Example
     })
     > "0x2c7536E3605D9C16a7a3D7b1898e529396a65c23"
 
-    // message, signature
+    // 签名消息, 签名
     web3.eth.accounts.recover('Some data', '0xb91467e570a6466aa9e9876cbcd013baba02900b8979d43fe208a4a4f339f5fd6007e74cd82e037b800186422fc2da167c747ef045e5d18a5f5d4300f8e1a0291c');
     > "0x2c7536E3605D9C16a7a3D7b1898e529396a65c23"
 
-    // message, v, r, s
+    // 签名消息, v, r, s
     web3.eth.accounts.recover('Some data', '0x1c', '0xb91467e570a6466aa9e9876cbcd013baba02900b8979d43fe208a4a4f339f5fd', '0x6007e74cd82e037b800186422fc2da167c747ef045e5d18a5f5d4300f8e1a029');
     > "0x2c7536E3605D9C16a7a3D7b1898e529396a65c23"
 
@@ -429,24 +426,24 @@ encrypt
 
     web3.eth.accounts.encrypt(privateKey, password);
 
-Encrypts a private key to the web3 keystore v3 standard.
+将私钥加密变换为 keystore v3 标准格式。
 
 ----------
-Parameters
+参数
 ----------
 
-1. ``privateKey`` - ``String``: The private key to encrypt.
-2. ``password`` - ``String``: The password used for encryption.
+1. ``privateKey`` - ``String``: 要加密的私钥。
+2. ``password`` - ``String``: 用于加密的密码。
 
 
 -------
-Returns
+返回值
 -------
 
-``Object``: The encrypted keystore v3 JSON.
+``Object``: 加密后的 keystore v3 JSON。
 
 -------
-Example
+示例代码
 -------
 
 .. code-block:: javascript
@@ -483,24 +480,24 @@ decrypt
 
     web3.eth.accounts.decrypt(keystoreJsonV3, password);
 
-Decrypts a keystore v3 JSON, and creates the account.
+解密 keystore v3 JSON，并创建账户。
 
 ----------
-Parameters
+参数
 ----------
 
-1. ``encryptedPrivateKey`` - ``String``: The encrypted private key to decrypt.
-2. ``password`` - ``String``: The password used for encryption.
+1. ``encryptedPrivateKey`` - ``String``: 要进行解密的加密私钥。
+2. ``password`` - ``String``: 用于加密的密码。
 
 
 -------
-Returns
+返回值
 -------
 
-``Object``: The decrypted account.
+``Object``: 解密的帐户对象。
 
 -------
-Example
+示例代码
 -------
 
 .. code-block:: javascript
@@ -547,7 +544,7 @@ wallet
 Contains an in memory wallet with multiple accounts. These accounts can be used when using :ref:`web3.eth.sendTransaction() <eth-sendtransaction>`.
 
 -------
-Example
+示例代码
 -------
 
 .. code-block:: javascript
@@ -584,21 +581,21 @@ wallet.create
 Generates one or more accounts in the wallet. If wallets already exist they will not be overridden.
 
 ----------
-Parameters
+参数
 ----------
 
 1. ``numberOfAccounts`` - ``Number``: Number of accounts to create. Leave empty to create an empty wallet.
-2. ``entropy`` - ``String`` (optional): A string with random characters as additional entropy when generating accounts. If given it should be at least 32 characters.
+2. ``entropy`` - ``String`` (可选): A string with random characters as additional entropy when generating accounts. If given it should be at least 32 characters.
 
 
 -------
-Returns
+返回值
 -------
 
 ``Object``: The wallet object.
 
 -------
-Example
+示例代码
 -------
 
 .. code-block:: javascript
@@ -625,20 +622,20 @@ wallet.add
 Adds an account using a private key or account object to the wallet.
 
 ----------
-Parameters
+参数
 ----------
 
 1. ``account`` - ``String|Object``: A private key or account object created with :ref:`web3.eth.accounts.create() <accounts-create>`.
 
 
 -------
-Returns
+返回值
 -------
 
 ``Object``: The added account.
 
 -------
-Example
+示例代码
 -------
 
 .. code-block:: javascript
@@ -680,20 +677,20 @@ wallet.remove
 Removes an account from the wallet.
 
 ----------
-Parameters
+参数
 ----------
 
 1. ``account`` - ``String|Number``: The account address, or index in the wallet.
 
 
 -------
-Returns
+返回值
 -------
 
 ``Boolean``: ``true`` if the wallet was removed. ``false`` if it couldn't be found.
 
 -------
-Example
+示例代码
 -------
 
 .. code-block:: javascript
@@ -728,19 +725,19 @@ wallet.clear
 Securely empties the wallet and removes all its accounts.
 
 ----------
-Parameters
+参数
 ----------
 
 none
 
 -------
-Returns
+返回值
 -------
 
 ``Object``: The wallet object.
 
 -------
-Example
+示例代码
 -------
 
 .. code-block:: javascript
@@ -769,20 +766,20 @@ wallet.encrypt
 Encrypts all wallet accounts to an array of encrypted keystore v3 objects.
 
 ----------
-Parameters
+参数
 ----------
 
 1. ``password`` - ``String``: The password which will be used for encryption.
 
 
 -------
-Returns
+返回值
 -------
 
 ``Array``: The encrypted keystore v3.
 
 -------
-Example
+示例代码
 -------
 
 .. code-block:: javascript
@@ -823,7 +820,7 @@ wallet.decrypt
 Decrypts keystore v3 objects.
 
 ----------
-Parameters
+参数
 ----------
 
 1. ``keystoreArray`` - ``Array``: The encrypted keystore v3 objects to decrypt.
@@ -831,13 +828,13 @@ Parameters
 
 
 -------
-Returns
+返回值
 -------
 
 ``Object``: The wallet object.
 
 -------
-Example
+示例代码
 -------
 
 .. code-block:: javascript
@@ -898,21 +895,21 @@ Stores the wallet encrypted and as string in local storage.
 .. note::  Browser only.
 
 ----------
-Parameters
+参数
 ----------
 
 1. ``password`` - ``String``: The password to encrypt the wallet.
-2. ``keyName`` - ``String``: (optional) The key used for the local storage position, defaults to ``"web3js_wallet"``.
+2. ``keyName`` - ``String``: (可选) The key used for the local storage position, defaults to ``"web3js_wallet"``.
 
 
 -------
-Returns
+返回值
 -------
 
 ``Boolean``
 
 -------
-Example
+示例代码
 -------
 
 .. code-block:: javascript
@@ -935,21 +932,21 @@ Loads a wallet from local storage and decrypts it.
 .. note::  Browser only.
 
 ----------
-Parameters
+参数
 ----------
 
 1. ``password`` - ``String``: The password to decrypt the wallet.
-2. ``keyName`` - ``String``: (optional) The key used for the localstorage position, defaults to ``"web3js_wallet"``.
+2. ``keyName`` - ``String``: (可选) The key used for the localstorage position, defaults to ``"web3js_wallet"``.
 
 
 -------
-Returns
+返回值
 -------
 
 ``Object``: The wallet object.
 
 -------
-Example
+示例代码
 -------
 
 .. code-block:: javascript
