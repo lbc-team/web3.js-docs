@@ -541,7 +541,7 @@ wallet
 
     web3.eth.accounts.wallet;
 
-Contains an in memory wallet with multiple accounts. These accounts can be used when using :ref:`web3.eth.sendTransaction() <eth-sendtransaction>`.
+一个多账户内存钱包，这些账户可以用于 :ref:`web3.eth.sendTransaction() <eth-sendtransaction>`。
 
 -------
 示例代码
@@ -551,9 +551,9 @@ Contains an in memory wallet with multiple accounts. These accounts can be used 
 
     web3.eth.accounts.wallet;
     > Wallet {
-        0: {...}, // account by index
-        "0xF0109fC8DF283027b6285cc889F5aA624EaC1F55": {...},  // same account by address
-        "0xf0109fc8df283027b6285cc889f5aa624eac1f55": {...},  // same account by address lowercase
+        0: {...}, // 账户索引
+        "0xF0109fC8DF283027b6285cc889F5aA624EaC1F55": {...},  // 账户地址
+        "0xf0109fc8df283027b6285cc889f5aa624eac1f55": {...},  // 全小写账户地址
         1: {...},
         "0xD0122fC8DF283027b6285cc889F5aA624EaC1d23": {...},
         "0xd0122fc8df283027b6285cc889f5aa624eac1d23": {...},
@@ -578,21 +578,21 @@ wallet.create
 
     web3.eth.accounts.wallet.create(numberOfAccounts [, entropy]);
 
-Generates one or more accounts in the wallet. If wallets already exist they will not be overridden.
+在钱包中创建一个或多个账户。不会覆盖已经存在的钱包。
 
 ----------
 参数
 ----------
 
-1. ``numberOfAccounts`` - ``Number``: Number of accounts to create. Leave empty to create an empty wallet.
-2. ``entropy`` - ``String`` (可选): A string with random characters as additional entropy when generating accounts. If given it should be at least 32 characters.
+1. ``numberOfAccounts`` - ``Number``: 要创建的账户数量。设为空值时创建空钱包。
+2. ``entropy`` - ``String`` (可选): 创建账户时为增加随机性而使用的随机字符串，至少 32 个字符长。
 
 
 -------
 返回值
 -------
 
-``Object``: The wallet object.
+``Object``: 钱包对象。
 
 -------
 示例代码
@@ -619,20 +619,20 @@ wallet.add
 
     web3.eth.accounts.wallet.add(account);
 
-Adds an account using a private key or account object to the wallet.
+使用私钥或账户对象向钱包中添加账户。
 
 ----------
 参数
 ----------
 
-1. ``account`` - ``String|Object``: A private key or account object created with :ref:`web3.eth.accounts.create() <accounts-create>`.
+1. ``account`` - ``String|Object``: 私钥或者通过 :ref:`web3.eth.accounts.create() <accounts-create>` 创建的账户对象。
 
 
 -------
 返回值
 -------
 
-``Object``: The added account.
+``Object``: 所添加的账户。
 
 -------
 示例代码
@@ -674,20 +674,20 @@ wallet.remove
 
     web3.eth.accounts.wallet.remove(account);
 
-Removes an account from the wallet.
+从钱包中移除账户。
 
 ----------
 参数
 ----------
 
-1. ``account`` - ``String|Number``: The account address, or index in the wallet.
+1. ``account`` - ``String|Number``: 账户地址，或者账户在钱包中的索引。
 
 
 -------
 返回值
 -------
 
-``Boolean``: ``true`` if the wallet was removed. ``false`` if it couldn't be found.
+``Boolean``: 移除成功则返回 ``true`` ，否则返回 ``false`` 。
 
 -------
 示例代码
@@ -722,19 +722,19 @@ wallet.clear
 
     web3.eth.accounts.wallet.clear();
 
-Securely empties the wallet and removes all its accounts.
+安全地清空钱包并移除全部账户。
 
 ----------
 参数
 ----------
 
-none
+无
 
 -------
 返回值
 -------
 
-``Object``: The wallet object.
+``Object``: 钱包对象。
 
 -------
 示例代码
@@ -763,20 +763,20 @@ wallet.encrypt
 
     web3.eth.accounts.wallet.encrypt(password);
 
-Encrypts all wallet accounts to an array of encrypted keystore v3 objects.
+加密所有的钱包账户为 keystore v3 对象。
 
 ----------
 参数
 ----------
 
-1. ``password`` - ``String``: The password which will be used for encryption.
+1. ``password`` - ``String``: 用于加密的密钥。
 
 
 -------
 返回值
 -------
 
-``Array``: The encrypted keystore v3.
+``Array``: 已加密的 keystore v3 对象。
 
 -------
 示例代码
@@ -817,21 +817,21 @@ wallet.decrypt
 
     web3.eth.accounts.wallet.decrypt(keystoreArray, password);
 
-Decrypts keystore v3 objects.
+解密 keystore v3 对象。
 
 ----------
 参数
 ----------
 
-1. ``keystoreArray`` - ``Array``: The encrypted keystore v3 objects to decrypt.
-2. ``password`` - ``String``: The password which will be used for encryption.
+1. ``keystoreArray`` - ``Array``: 要解密的加密 keystore v3 对象。
+2. ``password`` - ``String``: 用来加密的密钥。
 
 
 -------
 返回值
 -------
 
-``Object``: The wallet object.
+``Object``: 钱包对象。
 
 -------
 示例代码
@@ -890,16 +890,16 @@ wallet.save
 
     web3.eth.accounts.wallet.save(password [, keyName]);
 
-Stores the wallet encrypted and as string in local storage.
+将钱包加密并在 local storage 中保存为字符串。
 
-.. note::  Browser only.
+.. note::  仅在浏览器中可用。
 
 ----------
 参数
 ----------
 
-1. ``password`` - ``String``: The password to encrypt the wallet.
-2. ``keyName`` - ``String``: (可选) The key used for the local storage position, defaults to ``"web3js_wallet"``.
+1. ``password`` - ``String``: 用来加密钱包的密钥。
+2. ``keyName`` - ``String``: (可选) 用来在 local storage 中寻址的健值, 默认值为 ``"web3js_wallet"``。
 
 
 -------
@@ -927,23 +927,23 @@ wallet.load
 
     web3.eth.accounts.wallet.load(password [, keyName]);
 
-Loads a wallet from local storage and decrypts it.
+从 local storage 中载入钱包并解密。
 
-.. note::  Browser only.
+.. note::  仅限于浏览器使用。
 
 ----------
 参数
 ----------
 
-1. ``password`` - ``String``: The password to decrypt the wallet.
-2. ``keyName`` - ``String``: (可选) The key used for the localstorage position, defaults to ``"web3js_wallet"``.
+1. ``password`` - ``String``: 用来解密钱包的密钥。
+2. ``keyName`` - ``String``: (可选) 用来在 local storage 中寻址的健值, 默认值为 ``"web3js_wallet"``。
 
 
 -------
 返回值
 -------
 
-``Object``: The wallet object.
+``Object``: 钱包对象。
 
 -------
 示例代码
