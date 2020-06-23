@@ -940,7 +940,7 @@ methods.myMethod.estimateGas
 1. ``options`` - ``Object`` （可选）: 用于调用的选项。
     * ``from`` - ``String`` （可选）: 交易发起方地址。
     * ``gas`` - ``Number`` （可选）: 交易 gas 用量上限 (gas limit)。设置特定的值有助于检测 gas 耗尽相关错误，gas 耗尽时会返回相同的值。
-    * ``value`` - ``Number|String|BN|BigNumber``（可选）: 交易转账金额，以 wei 为单位。
+    * ``value`` - ``Number|String|BN|BigNumber`` （可选）: 交易转账金额，以 wei 为单位。
 2. ``callback`` - ``Function`` （可选）: 回调函数，触发时其第二个参数为 gas 估算量，第一个参数为错误对象。
 
 ----------

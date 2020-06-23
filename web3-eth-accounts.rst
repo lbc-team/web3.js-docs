@@ -47,9 +47,9 @@ create
 ``Object`` - 账户对象，具有如下结构：
 
     - ``address`` - ``string``: 账户地址。
-    - ``privateKey`` - ``string``: 帐户私钥。绝对不要将其共享或以未加密的形式存储在 localstorage 中，并确保使用后将内存``清空``。
-    - ``signTransaction(tx [, callback])`` - ``Function``: 用来签名交易的函数对象. 更多信息可参考 :ref:`web3.eth.accounts.signTransaction() <eth-accounts-signtransaction>` 。
-    - ``sign(data)`` - ``Function``: 用来签名数据的函数对象. 更多信息可参考 :ref:`web3.eth.accounts.sign() <eth-accounts-sign>` 。
+    - ``privateKey`` - ``string``: 帐户私钥。绝对不要将其共享或以未加密的形式存储在 localstorage 中，并确保使用后将内存 ``清空`` 。
+    - ``signTransaction(tx [, callback])`` - ``Function``: 用来签名交易的函数. 更多信息可参考 :ref:`web3.eth.accounts.signTransaction() <eth-accounts-signtransaction>` 。
+    - ``sign(data)`` - ``Function``: 用来签名数据的函数. 更多信息可参考 :ref:`web3.eth.accounts.sign() <eth-accounts-sign>` 。
 
 -------
 示例代码
@@ -338,7 +338,7 @@ sign
     - ``messageHash`` - ``String``: 给定消息的哈希值。
     - ``r`` - ``String``: 签名的头 32 个字节。
     - ``s`` - ``String``: 签名接下来的 32 个字节。
-    - ``v`` - ``String``: 恢复值 + 27。
+    - ``v`` - ``String``: 恢复值(Recovery) + 27。
 
 -------
 示例代码
