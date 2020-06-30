@@ -4,18 +4,17 @@
 web3.eth
 ========
 
-The ``web3-eth`` package allows you to interact with an Ethereum blockchain and Ethereum smart contracts.
-
+``web3-eth`` 包用来与以太坊区块链和以太坊智能合约进行交互。
 
 .. code-block:: javascript
 
     var Eth = require('web3-eth');
 
-    // "Eth.providers.givenProvider" will be set if in an Ethereum supported browser.
+    // "Eth.providers.givenProvider" 在支持以太坊的浏览器上会被设置
     var eth = new Eth(Eth.givenProvider || 'ws://some.local-or-remote.node:8546');
 
 
-    // or using the web3 umbrella package
+    // 或者使用 web3 旗下的包
 
     var Web3 = require('web3');
     var web3 = new Web3(Web3.givenProvider || 'ws://some.local-or-remote.node:8546');
@@ -26,15 +25,14 @@ The ``web3-eth`` package allows you to interact with an Ethereum blockchain and 
 Note on checksum addresses
 ============================
 
-All Ethereum addresses returned by functions of this package are returned as checksum addresses.
-This means some letters are uppercase and some are lowercase.
-Based on that it will calculate a checksum for the address and prove its correctness.
-Incorrect checksum addresses will throw an error when passed into functions.
-If you want to circumvent the checksum check you can make an address all lower- or uppercase.
-
+本包中函数所返回的以太坊地址均为校验和地址。
+这意味着地址中有些字母是大写的而有些是小些的。
+基于此可以计算地址的校验和并以此证明它的正确性。
+校验和不正确的地址在传入函数时会抛错。
+你可以使用全大写或全小写的地址来绕过校验和检查。
 
 -------
-Example
+代码示例
 -------
 
 .. code-block:: javascript
@@ -49,8 +47,7 @@ Example
 subscribe
 =====================
 
-For ``web3.eth.subscribe`` see the :ref:`Subscribe reference documentation <eth-subscribe>`
-
+关于 ``web3.eth.subscribe``，可以参考 :ref:`Subscribe reference documentation <eth-subscribe>`
 
 ------------------------------------------------------------------------------
 
@@ -58,8 +55,7 @@ For ``web3.eth.subscribe`` see the :ref:`Subscribe reference documentation <eth-
 Contract
 =====================
 
-For ``web3.eth.Contract`` see the :ref:`Contract reference documentation <eth-contract>`
-
+关于 ``web3.eth.Contract``，可以参考 :ref:`Contract reference documentation <eth-contract>`
 
 ------------------------------------------------------------------------------
 
@@ -67,7 +63,7 @@ For ``web3.eth.Contract`` see the :ref:`Contract reference documentation <eth-co
 Iban
 =====================
 
-For ``web3.eth.Iban`` see the :ref:`Iban reference documentation <eth-iban>`
+关于 ``web3.eth.Iban``，可以参考 :ref:`Iban reference documentation <eth-iban>`
 
 
 ------------------------------------------------------------------------------
@@ -76,7 +72,7 @@ For ``web3.eth.Iban`` see the :ref:`Iban reference documentation <eth-iban>`
 personal
 =====================
 
-For ``web3.eth.personal`` see the :ref:`personal reference documentation <eth-personal>`
+关于 ``web3.eth.personal``， 可以参考 :ref:`personal reference documentation <eth-personal>`
 
 
 ------------------------------------------------------------------------------
@@ -84,7 +80,7 @@ For ``web3.eth.personal`` see the :ref:`personal reference documentation <eth-pe
 accounts
 =====================
 
-For ``web3.eth.accounts`` see the :ref:`accounts reference documentation <eth-accounts>`
+关于 ``web3.eth.accounts``， 可以参考 :ref:`accounts reference documentation <eth-accounts>`
 
 
 ------------------------------------------------------------------------------
@@ -92,7 +88,7 @@ For ``web3.eth.accounts`` see the :ref:`accounts reference documentation <eth-ac
 ens
 =====================
 
-For ``web3.eth.ens`` see the :ref:`ENS reference documentation <eth-ens>`
+关于 ``web3.eth.ens``， 可以参考 :ref:`ENS reference documentation <eth-ens>`
 
 
 
@@ -101,7 +97,7 @@ For ``web3.eth.ens`` see the :ref:`ENS reference documentation <eth-ens>`
 abi
 =====================
 
-For ``web3.eth.abi`` see the :ref:`ABI reference documentation <eth-abi>`
+关于 ``web3.eth.abi``， 可以参考 :ref:`ABI reference documentation <eth-abi>`
 
 
 ------------------------------------------------------------------------------
@@ -110,7 +106,7 @@ For ``web3.eth.abi`` see the :ref:`ABI reference documentation <eth-abi>`
 net
 =====================
 
-For ``web3.eth.net`` see the :ref:`net reference documentation <eth-net>`
+关于 ``web3.eth.net``， 可以参考 :ref:`net reference documentation <eth-net>`
 
 
 ------------------------------------------------------------------------------
@@ -130,7 +126,7 @@ defaultAccount
 
     web3.eth.defaultAccount
 
-This default address is used as the default ``"from"`` property, if no ``"from"`` property is specified in for the following methods:
+如果下面这些方法没有指定 ``"from"`` 属性，则使用该地址作为默认的 ``"from"`` 属性值。
 
 - :ref:`web3.eth.sendTransaction() <eth-sendtransaction>`
 - :ref:`web3.eth.call() <eth-call>`
@@ -138,15 +134,15 @@ This default address is used as the default ``"from"`` property, if no ``"from"`
 - :ref:`new web3.eth.Contract() -> myContract.methods.myMethod().send() <eth-contract-send>`
 
 --------
-Property
+属性
 --------
 
 
-``String`` - 20 Bytes: Any ethereum address. You should have the private key for that address in your node or keystore. (Default is ``undefined``)
+``String`` - 20 字节: 任意以太坊地址。 该地址对应的私钥应该保存在你的以太坊节点或 keystore 文件中。 (默认值为 ``undefined``)
 
 
 -------
-Example
+代码示例
 -------
 
 
@@ -155,7 +151,7 @@ Example
     web3.eth.defaultAccount;
     > undefined
 
-    // set the default account
+    // 设置默认账号
     web3.eth.defaultAccount = '0x11f4d0A3c12e86B4b5F39B213F7E19D048276DAe';
 
 
@@ -170,8 +166,8 @@ defaultBlock
 
     web3.eth.defaultBlock
 
-The default block is used for certain methods. You can override it by passing in the defaultBlock as last parameter.
-The default value is "latest".
+一些特定方法所使用的默认区块号。 你可以通过这些方法的最后一个参数传递一个值来覆盖这个默认设置。
+默认值为 "latest"。
 
 - :ref:`web3.eth.getBalance() <eth-getbalance>`
 - :ref:`web3.eth.getCode() <eth-getcode>`
@@ -181,23 +177,23 @@ The default value is "latest".
 - :ref:`new web3.eth.Contract() -> myContract.methods.myMethod().call() <eth-contract-call>`
 
 ----------
-Property
+属性
 ----------
 
 
-Default block parameters can be one of the following:
+默认区块参数值可以下面中的一个：
 
-- ``Number|BN|BigNumber``: A block number
-- ``"genesis"`` - ``String``: The genesis block
-- ``"latest"`` - ``String``: The latest block (current head of the blockchain)
-- ``"pending"`` - ``String``: The currently mined block (including pending transactions)
-- ``"earliest"`` - ``String``: The genesis block
+- ``Number|BN|BigNumber``: 指定区块号
+- ``"genesis"`` - ``String``: 创世区块
+- ``"latest"`` - ``String``: 最新区块 (区块链的头号区块)
+- ``"pending"`` - ``String``: 正要挖到的区块 (包括待处理交易)
+- ``"earliest"`` - ``String``: 创世区块
 
-Default is ``"latest"``
+默认值为 ``"latest"``
 
 
 -------
-Example
+代码示例
 -------
 
 .. code-block:: javascript
@@ -205,7 +201,7 @@ Example
     web3.eth.defaultBlock;
     > "latest"
 
-    // set the default block
+    // 设置默认区块
     web3.eth.defaultBlock = 231;
 
 
@@ -219,14 +215,14 @@ defaultHardfork
 
     web3.eth.defaultHardfork
 
-The default hardfork property is used for signing transactions locally.
+签名交易时所使用的硬分叉属性。
 
 ----------
-Property
+属性
 ----------
 
 
-The default hardfork property can be one of the following:
+默认硬分叉属性可以是下面中的一个：
 
 - ``"chainstart"`` - ``String``
 - ``"homestead"`` - ``String``
@@ -238,11 +234,11 @@ The default hardfork property can be one of the following:
 - ``"petersburg"`` - ``String``
 - ``"istanbul"`` - ``String``
 
-Default is ``"petersburg"``
+默认值为 ``"petersburg"``
 
 
 -------
-Example
+代码示例
 -------
 
 .. code-block:: javascript
@@ -250,7 +246,7 @@ Example
     web3.eth.defaultHardfork;
     > "petersburg"
 
-    // set the default block
+    // 设置默认硬分叉
     web3.eth.defaultHardfork = 'istanbul';
 
 
@@ -264,14 +260,14 @@ defaultChain
 
     web3.eth.defaultChain
 
-The default chain property is used for signing transactions locally.
+签名交易时所用的默认链属性
 
 ----------
-Property
+属性
 ----------
 
 
-The default chain property can be one of the following:
+默认链属性可以是下面中的一个：
 
 - ``"mainnet"`` - ``String``
 - ``"goerli"`` - ``String``
@@ -279,11 +275,11 @@ The default chain property can be one of the following:
 - ``"rinkeby"`` - ``String``
 - ``"ropsten"`` - ``String``
 
-Default is ``"mainnet"``
+默认值为 ``"mainnet"``
 
 
 -------
-Example
+代码示例
 -------
 
 .. code-block:: javascript
@@ -291,7 +287,7 @@ Example
     web3.eth.defaultChain;
     > "mainnet"
 
-    // set the default chain
+    // 设置默认链
     web3.eth.defaultChain = 'goerli';
 
 
@@ -305,28 +301,28 @@ defaultCommon
 
     web3.eth.defaultCommon
 
-The default common property is used for signing transactions locally.
+签名交易时所使用的默认通用属性。
 
 ----------
-Property
+属性
 ----------
 
 
-The default common property does contain the following ``Common`` object:
+默认通用属性包含下面这样的 ``Common`` 对象：
 
-- ``customChain`` - ``Object``: The custom chain properties
-    - ``name`` - ``string``: (optional) The name of the chain
-    - ``networkId`` - ``number``: Network ID of the custom chain
-    - ``chainId`` - ``number``: Chain ID of the custom chain
-- ``baseChain`` - ``string``: (optional) ``mainnet``, ``goerli``, ``kovan``, ``rinkeby``, or ``ropsten``
-- ``hardfork`` - ``string``: (optional) ``chainstart``, ``homestead``, ``dao``, ``tangerineWhistle``, ``spuriousDragon``, ``byzantium``, ``constantinople``, ``petersburg``, or ``istanbul``
+- ``customChain`` - ``Object``: 自定义链属性
+    - ``name`` - ``string``: (可选) 链名称
+    - ``networkId`` - ``number``: 自定义链的网络 ID
+    - ``chainId`` - ``number``: 自定义链的链 ID
+- ``baseChain`` - ``string``: (可选) ``mainnet``, ``goerli``, ``kovan``, ``rinkeby``, or ``ropsten``
+- ``hardfork`` - ``string``: (可选) ``chainstart``, ``homestead``, ``dao``, ``tangerineWhistle``, ``spuriousDragon``, ``byzantium``, ``constantinople``, ``petersburg``, or ``istanbul``
 
 
-Default is ``undefined``.
+默认值为 ``undefined``。
 
 
 -------
-Example
+代码示例
 -------
 
 .. code-block:: javascript
@@ -334,7 +330,7 @@ Example
     web3.eth.defaultCommon;
     > {customChain: {name: 'custom-network', chainId: 1, networkId: 1}, baseChain: 'mainnet', hardfork: 'petersburg'}
 
-    // set the default common
+    // 设置默认通用属性
     web3.eth.defaultCommon = {customChain: {name: 'custom-network', chainId: 1, networkId: 1}, baseChain: 'mainnet', hardfork: 'petersburg'};
 
 
@@ -349,15 +345,14 @@ transactionBlockTimeout
 
     web3.eth.transactionBlockTimeout
 
-The ``transactionBlockTimeout`` will be used over a socket based connection. This option does define the amount of new blocks it should wait until the first confirmation happens.
-This means the PromiEvent rejects with a timeout error when the timeout got exceeded.
-
+``transactionBlockTimeout`` 会被用在基于套接字的连接上。该属性定义了直到第一次确认发生交易应该等待的区块数。
+这意味着当超时发生时，PromiEvent 会拒绝并显示超时错误。
 
 -------
-Returns
+返回值
 -------
 
-``number``: The current value of transactionBlockTimeout (default: 50)
+``number``: transactionBlockTimeout 当前值 (默认值: 50)
 
 ------------------------------------------------------------------------------
 
@@ -370,14 +365,13 @@ transactionConfirmationBlocks
 
     web3.eth.transactionConfirmationBlocks
 
-This defines the number of blocks it requires until a transaction will be handled as confirmed.
-
+一笔交易被认为已确认所需要的区块数
 
 -------
-Returns
+返回值
 -------
 
-``number``: The current value of transactionConfirmationBlocks (default: 24)
+``number``: transactionConfirmationBlocks 当前值 (默认值: 24)
 
 ------------------------------------------------------------------------------
 
@@ -390,15 +384,14 @@ transactionPollingTimeout
 
     web3.eth.transactionPollingTimeout
 
-The ``transactionPollingTimeout``  will be used over a HTTP connection.
-This option defines the number of seconds Web3 will wait for a receipt which confirms that a transaction was mined by the network. NB: If this method times out, the transaction may still be pending.
-
+``transactionPollingTimeout``  在基于 HTTP 的连接上使用。
+这个选项定义了 Web3 等待网络挖出交易的确认收据的秒数。注意：当此种超时发生时，交易可能仍未完成。
 
 -------
-Returns
+返回值
 -------
 
-``number``: The current value of transactionPollingTimeout (default: 750)
+``number``: transactionPollingTimeout 当前值 (默认值: 750)
 
 ------------------------------------------------------------------------------
 
@@ -411,20 +404,20 @@ handleRevert
 
     web3.eth.handleRevert
 
-The ``handleRevert`` options property does default to ``false`` and will return the revert reason string if enabled for the following methods:
+``handleRevert`` 默认值为 ``false``，如果在调用下面这些方法时启用，将返回回退原因字符串:
 
 - :ref:`web3.eth.call() <eth-call>`
 - :ref:`web3.eth.sendTransaction() <eth-sendtransaction>`
 - :ref:`contract.methods.myMethod(...).send(...) <contract-send>`
 - :ref:`contract.methods.myMethod(...).call(...) <contract-call>`
 
-.. note:: The revert reason string and the signature does exist as property on the returned error.
+.. note:: 回退原因字符串和签名会作为返回错误的属性存在。
 
 -------
-Returns
+返回值
 -------
 
-``boolean``: The current value of ``handleRevert`` (default: false)
+``boolean``: ``handleRevert`` 当前值 (默认值: false)
 
 ------------------------------------------------------------------------------
 
@@ -435,17 +428,17 @@ getProtocolVersion
 
     web3.eth.getProtocolVersion([callback])
 
-Returns the ethereum protocol version of the node.
+返回节点的以太坊协议版本。
 
 -------
-Returns
+返回值
 -------
 
-``Promise`` returns ``String``: the protocol version.
+``Promise`` 返回 ``String``: 协议版本。
 
 
 -------
-Example
+代码示例
 -------
 
 .. code-block:: javascript
@@ -465,25 +458,25 @@ isSyncing
 
     web3.eth.isSyncing([callback])
 
-Checks if the node is currently syncing and returns either a syncing object, or ``false``.
+检测当前节点是否正在进行数据同步，返回一个同步对象或``false``。
 
 .. _eth-issyncing-return:
 
 -------
-Returns
+返回值
 -------
 
-``Promise`` returns ``Object|Boolean`` - A sync object when the node is currently syncing or ``false``:
+``Promise`` 返回 ``Object|Boolean`` - 当节点正在进行数据同步时返回同步对象，否则返回 ``false``：
 
-    - ``startingBlock`` - ``Number``: The block number where the sync started.
-    - ``currentBlock`` - ``Number``: The block number where at which block the node currently synced to already.
-    - ``highestBlock`` - ``Number``: The estimated block number to sync to.
-    - ``knownStates`` - ``Number``: The estimated states to download
-    - ``pulledStates`` - ``Number``: The already downloaded states
+    - ``startingBlock`` - ``Number``: 同步开启时的区块号。
+    - ``currentBlock`` - ``Number``: 节点已经同步到的区块号。
+    - ``highestBlock`` - ``Number``: 预计会同步到的区块号。
+    - ``knownStates`` - ``Number``: 预计要下载的状态数据。
+    - ``pulledStates`` - ``Number``: 已经下载的状态数据。
 
 
 -------
-Example
+代码示例
 -------
 
 .. code-block:: javascript
@@ -510,17 +503,17 @@ getCoinbase
 
     getCoinbase([callback])
 
-Returns the coinbase address to which mining rewards will go.
+返回用来收取挖矿奖励的 coinbase 地址。
 
 -------
-Returns
+返回值
 -------
 
-``Promise`` returns ``String`` - bytes 20: The coinbase address set in the node for mining rewards.
+``Promise`` 返回 ``String`` - 20 个字节： 在节点中设置的用来挖矿的 coinbase 地址。
 
 
 -------
-Example
+代码示例
 -------
 
 .. code-block:: javascript
@@ -540,17 +533,17 @@ isMining
     web3.eth.isMining([callback])
 
 
-Checks whether the node is mining or not.
+检测节点是否正在挖矿。
 
 -------
-Returns
+返回值
 -------
 
-``Promise`` returns ``Boolean``: ``true`` if the node is mining, otherwise ``false``.
+``Promise`` 返回 ``Boolean``: 如果节点正在挖矿返回 ``true`` ，否则返回 ``false``。
 
 
 -------
-Example
+代码示例
 -------
 
 .. code-block:: javascript
@@ -569,16 +562,16 @@ getHashrate
 
     web3.eth.getHashrate([callback])
 
-Returns the number of hashes per second that the node is mining with.
+返回节点每秒所挖的哈希数。
 
 -------
-Returns
+返回值
 -------
 
-``Promise`` returns ``Number``: Number of hashes per second.
+``Promise`` 返回 ``Number``: 每秒哈希数。
 
 -------
-Example
+代码示例
 -------
 
 
@@ -602,19 +595,19 @@ getGasPrice
     web3.eth.getGasPrice([callback])
 
 
-Returns the current gas price oracle.
-The gas price is determined by the last few blocks median gas price.
+返回当前 gas 价格预言机。
+gas 价格由最后几个区块 gas 价格的中位数确定。
 
 -------
-Returns
+返回值
 -------
 
-``Promise`` returns ``String`` - Number string of the current gas price in :ref:`wei <what-is-wei>`.
+``Promise`` 返回 ``String`` - 当前以 :ref:`wei <what-is-wei>` 为单位的 gas 价格。
 
-See the :ref:`A note on dealing with big numbers in JavaScript <utils-bn>`.
+可以参考 :ref:`关于使用 JavaScript 大数处理的注解 <utils-bn>`.
 
 -------
-Example
+代码示例
 -------
 
 
@@ -635,17 +628,17 @@ getAccounts
 
     web3.eth.getAccounts([callback])
 
-Returns a list of accounts the node controls.
+返回节点所控制的账户列表。
 
 -------
-Returns
+返回值
 -------
 
 
-``Promise`` returns ``Array`` - An array of addresses controlled by node.
+``Promise`` 返回 ``Array`` - 节点所控制的节点数组。
 
 -------
-Example
+代码示例
 -------
 
 
@@ -666,16 +659,16 @@ getBlockNumber
 
     web3.eth.getBlockNumber([callback])
 
-Returns the current block number.
+返回当前区块号。
 
 -------
-Returns
+返回值
 -------
 
-``Promise`` returns ``Number`` - The number of the most recent block.
+``Promise`` 返回 ``Number`` - 最近区块号。
 
 -------
-Example
+代码示例
 -------
 
 
@@ -697,27 +690,27 @@ getBalance
 
     web3.eth.getBalance(address [, defaultBlock] [, callback])
 
-Get the balance of an address at a given block.
+返回地址在指定区块的余额。
 
 ----------
-Parameters
+参数
 ----------
 
-1. ``String`` - The address to get the balance of.
-2. ``Number|String|BN|BigNumber`` - (optional) If you pass this parameter it will not use the default block set with :ref:`web3.eth.defaultBlock <eth-defaultblock>`. Pre-defined block numbers as ``"latest"``, ``"earliest"``, ``"pending"``, and ``"genesis"`` can also be used.
-3. ``Function`` - (optional) Optional callback, returns an error object as first parameter and the result as second.
+1. ``String`` - 要获取余额的地址。
+2. ``Number|String|BN|BigNumber`` - (可选) 如果传入该参数，则会覆盖通过 :ref:`web3.eth.defaultBlock <eth-defaultblock>` 设置的默认区块。 也可以使用像 ``"latest"``, ``"earliest"``, ``"pending"``, and ``"genesis"`` 这种预先设置的区块号。
+3. ``Function`` - (可选) 可选的回调函数，其第一个参数为错误对象，第二个参数为函数运行结果。
 
 -------
-Returns
+返回值
 -------
 
 
-``Promise`` returns ``String`` - The current balance for the given address in :ref:`wei <what-is-wei>`.
+``Promise`` 返回 ``String`` - 给定地址的当前账户余额，以 :ref:`wei <what-is-wei>` 为单位。
 
-See the :ref:`A note on dealing with big numbers in JavaScript <big-numbers-in-javascript>`.
+可以参考 :ref:`使用 Javascript 进行大数运算 <big-numbers-in-javascript>`.
 
 -------
-Example
+代码示例
 -------
 
 
@@ -737,26 +730,26 @@ getStorageAt
 
     web3.eth.getStorageAt(address, position [, defaultBlock] [, callback])
 
-Get the storage at a specific position of an address.
+获取地址在某个特定位置的存储值。
 
 ----------
-Parameters
+参数
 ----------
 
-1. ``String`` - The address to get the storage from.
-2. ``Number|String|BN|BigNumber`` - The index position of the storage.
-3. ``Number|String|BN|BigNumber`` - (optional) If you pass this parameter it will not use the default block set with :ref:`web3.eth.defaultBlock <eth-defaultblock>`. Pre-defined block numbers as ``"latest"``, ``"earliest"``, ``"pending"``, and ``"genesis"`` can also be used.
-4. ``Function`` - (optional) Optional callback, returns an error object as first parameter and the result as second.
+1. ``String`` - 用来获取存储值的地址。
+2. ``Number|String|BN|BigNumber`` - 存储的索引位置。
+3. ``Number|String|BN|BigNumber`` - (可选) 如果传入值则会覆盖通过 :ref:`web3.eth.defaultBlock <eth-defaultblock>` 设置的默认区块号。预定义的区块号可以使用 ``"latest"``, ``"earliest"`` ``"pending"``, 和 ``"genesis"`` 等值。
+4. ``Function`` - (可选) 可选的回调函数，其第一个参数为错误对象，第二个参数为函数运行结果。
 
 
 -------
-Returns
+返回值
 -------
 
-``Promise`` returns ``String`` - The value in storage at the given position.
+``Promise`` 返回 ``String`` - 给定位置的存储值。
 
 -------
-Example
+代码示例
 -------
 
 
@@ -776,25 +769,25 @@ getCode
 
     web3.eth.getCode(address [, defaultBlock] [, callback])
 
-Get the code at a specific address.
+获取特定地址关联的代码。
 
 ----------
-Parameters
+参数
 ----------
 
-1. ``String`` - The address to get the code from.
-2. ``Number|String|BN|BigNumber`` - (optional) If you pass this parameter it will not use the default block set with :ref:`web3.eth.defaultBlock <eth-defaultblock>`. Pre-defined block numbers as ``"latest"``, ``"earliest"``, ``"pending"``, and ``"genesis"`` can also be used.
-3. ``Function`` - (optional) Optional callback, returns an error object as first parameter and the result as second.
+1. ``String`` - 获取代码所需要的地址。
+2. ``Number|String|BN|BigNumber`` - (可选) 如果传入值则会覆盖通过 :ref:`web3.eth.defaultBlock <eth-defaultblock>` 设置的默认区块号。预定义的区块号 ``"latest"``, ``"earliest"`` ``"pending"``, 和 ``"genesis"`` 等也可以使用。
+3. ``Function`` - (可选) 可选的回调函数，其第一个参数为错误对象，第二个参数为函数运行结果。
 
 -------
-Returns
+返回值
 -------
 
 
-``Promise`` returns ``String`` - The data at given address ``address``.
+``Promise`` 返回 ``String`` - 给定地址的代码数据。
 
 -------
-Example
+代码示例
 -------
 
 
@@ -816,44 +809,44 @@ getBlock
 
      web3.eth.getBlock(blockHashOrBlockNumber [, returnTransactionObjects] [, callback])
 
-Returns a block matching the block number or block hash.
+返回与区块号或区块哈希匹配的区块。
 
 ----------
-Parameters
+参数
 ----------
 
-1. ``String|Number|BN|BigNumber`` - The block number or block hash. Or the string ``"genesis"``, ``"latest"``, ``"earliest"``, or ``"pending"`` as in the :ref:`default block parameter <eth-defaultblock>`.
-2. ``Boolean`` - (optional, default ``false``) If specified ``true``, the returned block will contain all transactions as objects. By default it is ``false`` so, there is no need to explictly specify false. And, if ``false`` it will only contains the transaction hashes.
-3. ``Function`` - (optional) Optional callback, returns an error object as first parameter and the result as second.
+1. ``String|Number|BN|BigNumber`` - 区块号或区块哈希。 或者是 ``"genesis"``、 ``"latest"``、 ``"earliest"`` 、 ``"pending"`` 等在 :ref:`默认区块参数 <eth-defaultblock>` 中定义的字符串。
+2. ``Boolean`` - (可选, 默认值 ``false``) 如果设定为 ``true``，返回的区块会包含完整的交易对象。 默认值为 ``false`` ，没必要特别设置为 false 了。 如果设置为 false，则返回的区块中仅包含交易哈希值。
+3. ``Function`` - (可选) 可选的回调函数，其第一个参数为错误对象，第二个参数为函数运行结果。
 
 -------
-Returns
+返回值
 -------
 
 
-``Promise`` returns ``Object`` - The block object:
+``Promise`` 返回 ``Object`` - 区块对象:
 
-  - ``number`` - ``Number``: The block number. ``null`` when its pending block.
-  - ``hash`` 32 Bytes - ``String``: Hash of the block. ``null`` when its pending block.
-  - ``parentHash`` 32 Bytes - ``String``: Hash of the parent block.
-  - ``nonce`` 8 Bytes - ``String``: Hash of the generated proof-of-work. ``null`` when its pending block.
-  - ``sha3Uncles`` 32 Bytes - ``String``: SHA3 of the uncles data in the block.
-  - ``logsBloom`` 256 Bytes - ``String``: The bloom filter for the logs of the block. ``null`` when its pending block.
-  - ``transactionsRoot`` 32 Bytes - ``String``: The root of the transaction trie of the block
-  - ``stateRoot`` 32 Bytes - ``String``: The root of the final state trie of the block.
-  - ``miner`` - ``String``: The address of the beneficiary to whom the mining rewards were given.
-  - ``difficulty`` - ``String``: Integer of the difficulty for this block.
-  - ``totalDifficulty`` - ``String``: Integer of the total difficulty of the chain until this block.
-  - ``extraData`` - ``String``: The "extra data" field of this block.
-  - ``size`` - ``Number``: Integer the size of this block in bytes.
-  - ``gasLimit`` - ``Number``: The maximum gas allowed in this block.
-  - ``gasUsed`` - ``Number``: The total used gas by all transactions in this block.
-  - ``timestamp`` - ``Number``: The unix timestamp for when the block was collated.
-  - ``transactions`` - ``Array``: Array of transaction objects, or 32 Bytes transaction hashes depending on the ``returnTransactionObjects`` parameter.
-  - ``uncles`` - ``Array``: Array of uncle hashes.
+  - ``number`` - ``Number``: 区块号。 打包中的区块其值为 ``null``。
+  - ``hash`` 32 字节 - ``String``: Hash of the block. 打包中的区块其值为 ``null``。
+  - ``parentHash`` 32 字节 - ``String``: 父区块哈希值。
+  - ``nonce`` 8 Bytes - ``String``: 所生成的工作量证明哈希值。打包中的区块其值为 ``null``。
+  - ``sha3Uncles`` 32 字节 - ``String``: 区块中叔块数据的 SHA3 哈希值。
+  - ``logsBloom`` 256 Bytes - ``String``: 区块日志的布隆过滤器。打包中的区块其值为 ``null``。
+  - ``transactionsRoot`` 32 字节 - ``String``: 区块中交易 trie 树的根哈希。
+  - ``stateRoot`` 32 字节 - ``String``: 区块中状态 trie 树的根哈希。
+  - ``miner`` - ``String``: 获得挖矿奖励的受益人地址。
+  - ``difficulty`` - ``String``: 该区块难度值。
+  - ``totalDifficulty`` - ``String``: 到此区块为止链的总难度值。
+  - ``extraData`` - ``String``: 区块补充数据字段。
+  - ``size`` - ``Number``: 该区块的字节数大小。
+  - ``gasLimit`` - ``Number``: 该区块允许的最大 gas 消耗量。
+  - ``gasUsed`` - ``Number``: 该区块所有交易所消耗的 gas 总量。
+  - ``timestamp`` - ``Number``: 区块生成时的时间戳。
+  - ``transactions`` - ``Array``: 交易对象数组, 或者基于 ``returnTransactionObjects`` 参数的 32 字节交易哈希。
+  - ``uncles`` - ``Array``: 叔块哈希数组。
 
 -------
-Example
+代码示例
 -------
 
 
@@ -896,25 +889,25 @@ getBlockTransactionCount
 
     web3.eth.getBlockTransactionCount(blockHashOrBlockNumber [, callback])
 
-Returns the number of transaction in a given block.
+返回区块中包含的交易数量。
 
 ----------
-Parameters
+参数
 ----------
 
 
-1. ``String|Number|BN|BigNumber`` - The block number or hash. Or the string ``"genesis"``, ``"latest"``, ``"earliest"``, or ``"pending"`` as in the :ref:`default block parameter <eth-defaultblock>`.
-2. ``Function`` - (optional) Optional callback, returns an error object as first parameter and the result as second.
+1. ``String|Number|BN|BigNumber`` - 区块号或区块哈希。 或者像 ``"genesis"``, ``"latest"``, ``"earliest"``, or ``"pending"`` 这些在 :ref:`默认区块参数 <eth-defaultblock>` 中指定的字符串。
+2. ``Function`` - (可选) 可选的回调函数，其第一个参数为错误对象，第二个参数为函数运行结果。
 
 -------
-Returns
+返回值
 -------
 
 
-``Promise`` returns ``Number`` - The number of transactions in the given block.
+``Promise`` 返回 ``Number`` - 区块中包含的交易数量。
 
 -------
-Example
+代码示例
 -------
 
 
@@ -936,25 +929,25 @@ getBlockUncleCount
 
     web3.eth.getBlockUncleCount(blockHashOrBlockNumber [, callback])
 
-Returns the number of uncles in a block from a block matching the given block hash.
+返回区块中包含的叔块数量。
 
 ----------
-Parameters
+参数
 ----------
 
 
-1. ``String|Number|BN|BigNumber`` - The block number or hash. Or the string ``"genesis"``, ``"latest"``, ``"earliest"``, or ``"pending"`` as in the :ref:`default block parameter <eth-defaultblock>`.
-2. ``Function`` - (optional) Optional callback, returns an error object as first parameter and the result as second.
+1. ``String|Number|BN|BigNumber`` - 区块号或区块哈希。 或者像 ``"genesis"``, ``"latest"``, ``"earliest"``, or ``"pending"`` 这些在 :ref:`默认区块参数 <eth-defaultblock>` 中指定的字符串。
+2. ``Function`` - (可选) 可选的回调函数，其第一个参数为错误对象，第二个参数为函数运行结果。
 
 -------
-Returns
+返回值
 -------
 
 
-``Promise`` returns ``Number`` - The number of transactions in the given block.
+``Promise`` 返回 ``Number`` - 区块中包含的叔块数量。
 
 -------
-Example
+代码示例
 -------
 
 
@@ -974,29 +967,29 @@ getUncle
 
     web3.eth.getUncle(blockHashOrBlockNumber, uncleIndex [, returnTransactionObjects] [, callback])
 
-Returns a blocks uncle by a given uncle index position.
+根据给定叔块索引返回对应叔块。
 
 ----------
-Parameters
+参数
 ----------
 
-1. ``String|Number|BN|BigNumber`` - The block number or hash. Or the string ``"genesis"``, ``"latest"``, ``"earliest"``, or ``"pending"`` as in the :ref:`default block parameter <eth-defaultblock>`.
-2. ``Number`` - The index position of the uncle.
-3. ``Boolean`` - (optional, default ``false``) If specified ``true``, the returned block will contain all transactions as objects. By default it is ``false`` so, there is no need to explictly specify false. And, if ``false`` it will only contains the transaction hashes.
-4. ``Function`` - (optional) Optional callback, returns an error object as first parameter and the result as second.
+1. ``String|Number|BN|BigNumber`` - 区块号或区块哈希。 或者像 ``"genesis"``, ``"latest"``, ``"earliest"``, or ``"pending"`` 这些在 :ref:`默认区块参数 <eth-defaultblock>` 中指定的字符串。
+2. ``Number`` - 叔块位置索引。
+3. ``Boolean`` - (可选, 默认值 ``false``) 如果设定为 ``true``，返回的区块会包含完整的交易对象。 默认值为 ``false`` ，没必要特别设置为 false 了。 如果设置为 false，则返回的区块中仅包含交易哈希值。
+4. ``Function`` - (可选) 可选的回调函数，其第一个参数为错误对象，第二个参数为函数运行结果。
 
 
 -------
-Returns
+返回值
 -------
 
 
-``Promise`` returns ``Object`` - the returned uncle. For a return value see :ref:`web3.eth.getBlock() <eth-getblock>`.
+``Promise`` 返回 ``Object`` - 返回的叔块对象。 具体返回值可查看 :ref:`web3.eth.getBlock() <eth-getblock>`。
 
-.. note:: An uncle doesn't contain individual transactions.
+.. note:: 叔块不包含任何交易。
 
 -------
-Example
+代码示例
 -------
 
 
@@ -1004,7 +997,7 @@ Example
 
     web3.eth.getUncle(500, 0)
     .then(console.log);
-    > // see web3.eth.getBlock
+    > // 查看 web3.eth.getBlock
 
 
 
@@ -1018,40 +1011,40 @@ getTransaction
 
     web3.eth.getTransaction(transactionHash [, callback])
 
-Returns a transaction matching the given transaction hash.
+返回匹配给定交易哈希的交易对象。
 
 ----------
-Parameters
+参数
 ----------
 
-1. ``String`` - The transaction hash.
-2. ``Function`` - (optional) Optional callback, returns an error object as first parameter and the result as second.
+1. ``String`` - 交易哈希。
+2. ``Function`` - (可选) 可选的回调函数，其第一个参数为错误对象，第二个参数为函数运行结果。
 
 
 .. _eth-gettransaction-return:
 
 -------
-Returns
+返回值
 -------
 
 
-``Promise`` returns ``Object`` - A transaction object its hash ``transactionHash``:
+``Promise`` 返回 ``Object`` - 交易对象，其哈希值为 ``transactionHash``：
 
-  - ``hash`` 32 Bytes - ``String``: Hash of the transaction.
-  - ``nonce`` - ``Number``: The number of transactions made by the sender prior to this one.
-  - ``blockHash`` 32 Bytes - ``String``: Hash of the block where this transaction was in. ``null`` when its pending.
-  - ``blockNumber`` - ``Number``: Block number where this transaction was in. ``null`` when its pending.
-  - ``transactionIndex`` - ``Number``: Integer of the transactions index position in the block. ``null`` when its pending.
-  - ``from`` - ``String``: Address of the sender.
-  - ``to`` - ``String``: Address of the receiver. ``null`` when its a contract creation transaction.
-  - ``value`` - ``String``: Value transferred in :ref:`wei <what-is-wei>`.
-  - ``gasPrice`` - ``String``: Gas price provided by the sender in :ref:`wei <what-is-wei>`.
-  - ``gas`` - ``Number``: Gas provided by the sender.
-  - ``input`` - ``String``: The data sent along with the transaction.
+  - ``hash`` 32 字节 - ``String``: 交易哈希。
+  - ``nonce`` - ``Number``: 发送人在此之前进行的交易次数。
+  - ``blockHash`` 32 字节 - ``String``: 该交易所在区块的区块哈希。 打包中的区块其值为 ``null``。
+  - ``blockNumber`` - ``Number``: 该交易所在区块的区块号。 打包中的区块其值为 ``null``。
+  - ``transactionIndex`` - ``Number``: 该交易在区块中的位置索引。 打包中的区块其值为 ``null``。
+  - ``from`` - ``String``: 交易发送人地址。
+  - ``to`` - ``String``: 交易接收人地址。 对于合约创建交易其值为``null`` 
+  - ``value`` - ``String``: 转账金额。以 :ref:`wei <what-is-wei>` 为单位。
+  - ``gasPrice`` - ``String``: 由发送人指定的 gas 价格。以 :ref:`wei <what-is-wei>` 为单位。
+  - ``gas`` - ``Number``: 由发送人指定的 gas 数量。
+  - ``input`` - ``String``: 伴随交易发送的数据。
 
 
 -------
-Example
+代码示例
 -------
 
 
@@ -1085,40 +1078,40 @@ getPendingTransactions
 
     web3.eth.getPendingTransactions([, callback])
 
-Returns a list of pending transactions.
+返回处理中的交易列表。
 
 ----------
-Parameters
+参数
 ----------
 
-1. ``Function`` - (optional) Optional callback, returns an error object as first parameter and the result as second.
+1. ``Function`` - (可选) 可选的回调函数，其第一个参数为错误对象，第二个参数为函数运行结果。
 
 
 .. _eth-getpendingtransactions-return:
 
 -------
-Returns
+返回值
 -------
 
 
-``Promise<object[]>`` - Array of pending transactions:
+``Promise<object[]>`` - 等待打包的交易数组：
 
-  - ``hash`` 32 Bytes - ``String``: Hash of the transaction.
-  - ``nonce`` - ``Number``: The number of transactions made by the sender prior to this one.
-  - ``blockHash`` 32 Bytes - ``String``: Hash of the block where this transaction was in. ``null`` when its pending.
-  - ``blockNumber`` - ``Number``: Block number where this transaction was in. ``null`` when its pending.
-  - ``transactionIndex`` - ``Number``: Integer of the transactions index position in the block. ``null`` when its pending.
-  - ``from`` - ``String``: Address of the sender.
-  - ``to`` - ``String``: Address of the receiver. ``null`` when its a contract creation transaction.
-  - ``value`` - ``String``: Value transferred in :ref:`wei <what-is-wei>`.
-  - ``gasPrice`` - ``String``: The wei per unit of gas provided by the sender in :ref:`wei <what-is-wei>`.
-  - ``gas`` - ``Number``: Gas provided by the sender.
-  - ``input`` - ``String``: The data sent along with the transaction.
+  - ``hash`` 32 字节 - ``String``: 交易哈希。
+  - ``nonce`` - ``Number``: 发送人在此之前进行的交易次数。
+  - ``blockHash`` 32 字节 - ``String``: 该交易所在区块的区块哈希。 打包中的区块其值为 ``null``。
+  - ``blockNumber`` - ``Number``: 该交易所在区块的区块号。 打包中的区块其值为 ``null``。
+  - ``transactionIndex`` - ``Number``: 该交易在区块中的位置索引。 打包中的区块其值为 ``null``。
+  - ``from`` - ``String``: 交易发送人地址。
+  - ``to`` - ``String``: 交易接收人地址。 对于合约创建交易其值为``null`` 
+  - ``value`` - ``String``: 转账金额。以 :ref:`wei <what-is-wei>` 为单位。
+  - ``gasPrice`` - ``String``: 由发送人指定的 gas 价格。以 :ref:`wei <what-is-wei>` 为单位。
+  - ``gas`` - ``Number``: 由发送人指定的 gas 数量。
+  - ``input`` - ``String``: 伴随交易发送的数据。
 
 
 
 -------
-Example
+代码示例
 -------
 
 .. code-block:: javascript
@@ -1167,27 +1160,27 @@ getTransactionFromBlock
 
     getTransactionFromBlock(hashStringOrNumber, indexNumber [, callback])
 
-Returns a transaction based on a block hash or number and the transactions index position.
+根据区块哈希或区块号，以及交易位置索引获取交易对象。
 
 ----------
-Parameters
+参数
 ----------
 
 
-1. ``String|Number|BN|BigNumber`` - A block number or hash. Or the string ``"genesis"``, ``"latest"``, ``"earliest"``, or ``"pending"`` as in the :ref:`default block parameter <eth-defaultblock>`.
-2. ``Number`` - The transactions index position.
-3. ``Function`` - (optional) Optional callback, returns an error object as first parameter and the result as second.
+1. ``String|Number|BN|BigNumber`` - 区块号或区块哈希。 或者像 ``"genesis"``, ``"latest"``, ``"earliest"``, or ``"pending"`` 这些在 :ref:`默认区块参数 <eth-defaultblock>` 中指定的字符串。
+2. ``Number`` - 交易位置索引。
+3. ``Function`` - (可选) 可选的回调函数，其第一个参数为错误对象，第二个参数为函数运行结果。
 
 -------
-Returns
+返回值
 -------
 
 
-``Promise`` returns ``Object`` - A transaction object, see :ref:`web3.eth.getTransaction <eth-gettransaction-return>`:
+``Promise`` 返回 ``Object`` - 交易对象, 详情请查看 :ref:`web3.eth.getTransaction <eth-gettransaction-return>`:
 
 
 -------
-Example
+代码示例
 -------
 
 
@@ -1195,7 +1188,7 @@ Example
 
     var transaction = web3.eth.getTransactionFromBlock('0x4534534534', 2)
     .then(console.log);
-    > // see web3.eth.getTransaction
+    > // 请查看 web3.eth.getTransaction
 
 
 
@@ -1209,42 +1202,41 @@ getTransactionReceipt
 
     web3.eth.getTransactionReceipt(hash [, callback])
 
-Returns the receipt of a transaction by transaction hash.
+根据交易哈希返回交易收据。
 
-.. note:: The receipt is not available for pending transactions and returns ``null``.
-
+.. note:: 处理中的交易没有收据，返回 ``null``。
 
 ----------
-Parameters
+参数
 ----------
 
-1. ``String`` - The transaction hash.
-2. ``Function`` - (optional) Optional callback, returns an error object as first parameter and the result as second.
+1. ``String`` - 交易哈希。
+2. ``Function`` - (可选) 可选的回调函数，其第一个参数为错误对象，第二个参数为函数运行结果。
 
 
 .. _eth-gettransactionreceipt-return:
 
 -------
-Returns
+返回值
 -------
 
 
-``Promise`` returns ``Object`` - A transaction receipt object, or ``null`` when no receipt was found:
+``Promise`` 返回 ``Object`` - 交易收据对象，未能找到交易收据时返回 ``null`` ：
 
-  - ``status`` - ``Boolean``: ``TRUE`` if the transaction was successful, ``FALSE``, if the EVM reverted the transaction.
-  - ``blockHash`` 32 Bytes - ``String``: Hash of the block where this transaction was in.
-  - ``blockNumber`` - ``Number``: Block number where this transaction was in.
-  - ``transactionHash`` 32 Bytes - ``String``: Hash of the transaction.
-  - ``transactionIndex``- ``Number``: Integer of the transactions index position in the block.
-  - ``from`` - ``String``: Address of the sender.
-  - ``to`` - ``String``: Address of the receiver. ``null`` when its a contract creation transaction.
-  - ``contractAddress`` - ``String``: The contract address created, if the transaction was a contract creation, otherwise ``null``.
-  - ``cumulativeGasUsed`` - ``Number``: The total amount of gas used when this transaction was executed in the block.
-  - ``gasUsed``- ``Number``:  The amount of gas used by this specific transaction alone.
-  - ``logs`` - ``Array``: Array of log objects, which this transaction generated.
+  - ``status`` - ``Boolean``: 若交易成功其值为 ``TRUE`` ， 交易被 EVM 回退其值为 ``FALSE``。
+  - ``blockHash`` 32 字节 - ``String``: 该交易所在区块的区块哈希。
+  - ``blockNumber`` - ``Number``: 该交易所在区块的区块号。
+  - ``transactionHash`` 32 字节 - ``String``: 交易哈希。
+  - ``transactionIndex``- ``Number``: 该交易在区块中的位置索引。
+  - ``from`` - ``String``: 交易发送人地址。
+  - ``to`` - ``String``: 交易接收人地址。 对于合约创建交易其值为``null`` 
+  - ``contractAddress`` - ``String``: 若指定交易为合约创建交易，其值为新创合约地址，否则其值为 ``null``。
+  - ``cumulativeGasUsed`` - ``Number``: 该交易执行时其所在区块已经累计消耗的 gas 量。
+  - ``gasUsed``- ``Number``:  该交易本身所消耗的 gas 量。
+  - ``logs`` - ``Array``: 该交易所生成的日志对象。
 
 -------
-Example
+代码示例
 -------
 
 .. code-block:: javascript
@@ -1262,7 +1254,7 @@ Example
       "cumulativeGasUsed": 314159,
       "gasUsed": 30234,
       "logs": [{
-             // logs as returned by getPastLogs, etc.
+             // getPastLogs 等返回的日志对象
          }, ...]
     }
 
@@ -1279,25 +1271,25 @@ getTransactionCount
 
     web3.eth.getTransactionCount(address [, defaultBlock] [, callback])
 
-Get the numbers of transactions sent from this address.
+获取由指定地址发送的交易数量。
 
 ----------
-Parameters
+参数
 ----------
 
-1. ``String`` - The address to get the numbers of transactions from.
-2. ``Number|String|BN|BigNumber`` - (optional) If you pass this parameter it will not use the default block set with :ref:`web3.eth.defaultBlock <eth-defaultblock>`. Pre-defined block numbers as ``"latest"``, ``"earliest"``, ``"pending"``, and ``"genesis"`` can also be used.
-3. ``Function`` - (optional) Optional callback, returns an error object as first parameter and the result as second.
+1. ``String`` - 要获取发送交易量的地址。
+2. ``Number|String|BN|BigNumber`` - (可选) 如果传入值则会覆盖通过 :ref:`web3.eth.defaultBlock <eth-defaultblock>` 设置的默认区块号。预定义的区块号 ``"latest"``, ``"earliest"`` ``"pending"``, 和 ``"genesis"`` 等也可以使用。
+3. ``Function`` - (可选) 可选的回调函数，其第一个参数为错误对象，第二个参数为函数运行结果。
 
 -------
-Returns
+返回值
 -------
 
 
-``Promise`` returns ``Number`` - The number of transactions sent from the given address.
+``Promise`` 返回 ``Number`` - 从给定地址发出的交易数量。
 
 -------
-Example
+代码示例
 -------
 
 
@@ -1319,63 +1311,62 @@ sendTransaction
 
     web3.eth.sendTransaction(transactionObject [, callback])
 
-Sends a transaction to the network.
+将交易发送到网络。
 
 ----------
-Parameters
+参数
 ----------
 
 
-1. ``Object`` - The transaction object to send:
-    - ``from`` - ``String|Number``: The address for the sending account. Uses the :ref:`web3.eth.defaultAccount <eth-defaultaccount>` property, if not specified. Or an address or index of a local wallet in :ref:`web3.eth.accounts.wallet <eth_accounts_wallet>`.
-    - ``to`` - ``String``: (optional) The destination address of the message, left undefined for a contract-creation transaction.
-    - ``value`` - ``Number|String|BN|BigNumber``: (optional) The value transferred for the transaction in :ref:`wei <what-is-wei>`, also the endowment if it's a contract-creation transaction.
-    - ``gas``  - ``Number``: (optional, default: To-Be-Determined) The amount of gas to use for the transaction (unused gas is refunded).
-    - ``gasPrice`` - ``Number|String|BN|BigNumber``: (optional) The price of gas for this transaction in :ref:`wei <what-is-wei>`, defaults to :ref:`web3.eth.gasPrice <eth-gasprice>`.
-    - ``data`` - ``String``: (optional) Either a `ABI byte string <http://solidity.readthedocs.io/en/latest/abi-spec.html>`_ containing the data of the function call on a contract, or in the case of a contract-creation transaction the initialisation code.
-    - ``nonce`` - ``Number``: (optional) Integer of a nonce. This allows to overwrite your own pending transactions that use the same nonce.
-    - ``chain`` - ``String``: (optional) Defaults to ``mainnet``.
-    - ``hardfork`` - ``String``: (optional) Defaults to ``petersburg``.
-    - ``common`` - ``Object``: (optional) The common object
-        - ``customChain`` - ``Object``: The custom chain properties
-            - ``name`` - ``string``: (optional) The name of the chain
-            - ``networkId`` - ``number``: Network ID of the custom chain
-            - ``chainId`` - ``number``: Chain ID of the custom chain
-        - ``baseChain`` - ``string``: (optional) ``mainnet``, ``goerli``, ``kovan``, ``rinkeby``, or ``ropsten``
-        - ``hardfork`` - ``string``: (optional) ``chainstart``, ``homestead``, ``dao``, ``tangerineWhistle``, ``spuriousDragon``, ``byzantium``, ``constantinople``, ``petersburg``, or ``istanbul``
+1. ``Object`` - 要发送的交易对象：
+    - ``from`` - ``String|Number``: 发送账户地址。 如未指定，则使用 :ref:`web3.eth.defaultAccount <eth-defaultaccount>` 属性值。 或者在 :ref:`web3.eth.accounts.wallet <eth_accounts_wallet>` 中的本地钱包地址。
+    - ``to`` - ``String``: (可选) 交易消息的目标地址，对于合约创建交易来说其值为空。
+    - ``value`` - ``Number|String|BN|BigNumber``: (可选) 交易转账金额，以 :ref:`wei <what-is-wei>` 为单位，也是合约创建交易的初始转账。
+    - ``gas``  - ``Number``: (可选, 默认值: 待定) 交易可用的 gas 量 (未使用的 gas 会被退回)。
+    - ``gasPrice`` - ``Number|String|BN|BigNumber``: (可选) 交易可用的 gas 价格，以 :ref:`wei <what-is-wei>` 为单位, 默认值通过 :ref:`web3.eth.gasPrice <eth-gasprice>` 获得。
+    - ``data`` - ``String``: (可选) 包含合约函数调用数据的 `ABI 字节字符串 <http://solidity.readthedocs.io/en/latest/abi-spec.html>`_ ，对合约创建交易来说，其值为合约初始化代码。
+    - ``nonce`` - ``Number``: (可选) 使用同样的 nonce 值可以覆盖处理中的交易。
+    - ``chain`` - ``String``: (可选) 默认值为 ``mainnet``.
+    - ``hardfork`` - ``String``: (可选) 默认值为 ``petersburg``.
+    - ``common`` - ``Object``: (可选) 通用对象
+        - ``customChain`` - ``Object``: 自定义链属性。
+            - ``name`` - ``string``: (可选) 链名称。
+            - ``networkId`` - ``number``: 自定义链的网络 ID。
+            - ``chainId`` - ``number``: 自定义链的链 ID。
+        - ``baseChain`` - ``string``: (可选) ``mainnet``, ``goerli``, ``kovan``, ``rinkeby``, 或 ``ropsten``
+        - ``hardfork`` - ``string``: (可选) ``chainstart``, ``homestead``, ``dao``, ``tangerineWhistle``, ``spuriousDragon``, ``byzantium``, ``constantinople``, ``petersburg``, 或 ``istanbul``
 
-2. ``callback`` - ``Function``: (optional) Optional callback, returns an error object as first parameter and the result as second.
+2. ``callback`` - ``Function``: (可选) 可选的回调函数，其第一个参数为错误对象，第二个参数为函数运行结果。
 
-.. note:: The ``from`` property can also be an address or index from the :ref:`web3.eth.accounts.wallet <eth_accounts_wallet>`. It will then sign locally using the private key of that account, and send the transaction via :ref:`web3.eth.sendSignedTransaction() <eth-sendsignedtransaction>`. If the properties ``chain`` and ``hardfork`` or ``common`` are not set, Web3 will try to set appropriate values by
-querying the network for its chainId and networkId.
+.. note:: ``from`` 属性可以是个地址或者 :ref:`web3.eth.accounts.wallet <eth_accounts_wallet>` 的索引值。 随后可以在本地通过该账户对应的私钥签名并通过 :ref:`web3.eth.sendSignedTransaction() <eth-sendsignedtransaction>`发送交易。 如果 ``chain``、 ``hardfork`` 或 ``common`` 这些属性值都没有设置, Web3 会尝试通过网络查询相应的网络 ID 和链 ID 并设置它们。
 
 .. _eth-sendtransaction-return:
 
 -------
-Returns
+返回值
 -------
 
-The **callback** will return the 32 bytes transaction hash.
+该 **回调** 会返回 32 字节交易哈希。
 
-``PromiEvent``: A :ref:`promise combined event emitter <promiEvent>`. Will be resolved when the transaction :ref:`receipt <eth-gettransactionreceipt-return>` is available. Additionally the following events are available:
+``PromiEvent``: 一个 :ref:`整合事件发生器的 promise 对象 <promiEvent>`. 将在收到交易收据 :ref:`receipt <eth-gettransactionreceipt-return>` 后得到解析。 此外有以下事件可用：
 
-- ``"transactionHash"`` returns ``String``: Is fired right after the transaction is sent and a transaction hash is available.
-- ``"receipt"`` returns ``Object``: Is fired when the transaction receipt is available.
-- ``"confirmation"`` returns ``Number``, ``Object``: Is fired for every confirmation up to the 12th confirmation. Receives the confirmation number as the first and the :ref:`receipt <eth-gettransactionreceipt-return>` as the second argument. Fired from confirmation 0 on, which is the block where its minded.
-``"error"`` returns ``Error`` and ``Object|undefined``: Is fired if an error occurs during sending. If the transaction was rejected by the network with a receipt, the second parameter will be the receipt.
+- ``"transactionHash"`` 返回 ``String``: 在交易发出并得到有效的交易哈希后立刻触发。
+- ``"receipt"`` 返回 ``Object``: 当收到交易收据后立刻触发。
+- ``"confirmation"`` 返回 ``Number``, ``Object``: 每次确认后立刻触发，最多 12 次确认。确认编号为第一个参数，收据 :ref:`receipt <eth-gettransactionreceipt-return>` 为第二个参数。从交易所在区块被挖到的 0 号确认开始触发。
+``"error"`` 返回 ``Error`` and ``Object|undefined``: 在发送交易的过程中如果出现错误则立刻触发。如果交易被网络拒绝时附带有交易收据，则第二个参数为交易收据。
 
 
 -------
-Example
+代码示例
 -------
 
 .. code-block:: javascript
 
-    // compiled solidity source code using https://remix.ethereum.org
+    // 通过 https://remix.ethereum.org 编译的 solidity 源码
     var code = "603d80600c6000396000f3007c01000000000000000000000000000000000000000000000000000000006000350463c6888fa18114602d57005b6007600435028060005260206000f3";
 
 
-    // using the callback
+    // 使用回调
     web3.eth.sendTransaction({
         from: '0xde0B295669a9FD93d5F28D9Ec85E40f4cb697BAe',
         data: code // deploying a contracrt
@@ -1383,7 +1374,7 @@ Example
         ...
     });
 
-    // using the promise
+    // 使用 promise
     web3.eth.sendTransaction({
         from: '0xde0B295669a9FD93d5F28D9Ec85E40f4cb697BAe',
         to: '0x11f4d0A3c12e86B4b5F39B213F7E19D048276DAe',
@@ -1394,7 +1385,7 @@ Example
     });
 
 
-    // using the event emitter
+    // 使用事件发生器
     web3.eth.sendTransaction({
         from: '0xde0B295669a9FD93d5F28D9Ec85E40f4cb697BAe',
         to: '0x11f4d0A3c12e86B4b5F39B213F7E19D048276DAe',
@@ -1407,7 +1398,7 @@ Example
         ...
     })
     .on('confirmation', function(confirmationNumber, receipt){ ... })
-    .on('error', console.error); // If a out of gas error, the second parameter is the receipt.
+    .on('error', console.error); // 如果是 out of gas 错误, 第二个参数为交易收据
 
 
 ------------------------------------------------------------------------------
@@ -1421,26 +1412,26 @@ sendSignedTransaction
 
     web3.eth.sendSignedTransaction(signedTransactionData [, callback])
 
-Sends an already signed transaction, generated for example using :ref:`web3.eth.accounts.signTransaction <eth-accounts-signtransaction>`.
+发送已签名的交易，交易签名可以通过 :ref:`web3.eth.accounts.signTransaction <eth-accounts-signtransaction>` 生成。
 
 ----------
-Parameters
+参数
 ----------
 
-1. ``String`` - Signed transaction data in HEX format
-2. ``Function`` - (optional) Optional callback, returns an error object as first parameter and the result as second.
+1. ``String`` - 16 进制格式的签名交易数据。
+2. ``Function`` - (可选) 可选的回调函数，其第一个参数为错误对象，第二个参数为函数运行结果。
 
 -------
-Returns
+返回值
 -------
 
 
-``PromiEvent``: A :ref:`promise combined event emitter <promiEvent>`. Will be resolved when the transaction :ref:`receipt <eth-gettransactionreceipt-return>` is available.
+一个 :ref:`整合事件发生器的 promise 对象 <promiEvent>`. 将在收到交易收据 :ref:`receipt <eth-gettransactionreceipt-return>` 后得到解析。
 
-Please see the return values for :ref:`web3.eth.sendTransaction <eth-sendtransaction-return>` for details.
+更多详情请查看 :ref:`web3.eth.sendTransaction <eth-sendtransaction-return>` 的返回值。
 
 -------
-Example
+代码示例
 -------
 
 
@@ -1469,10 +1460,9 @@ Example
     web3.eth.sendSignedTransaction('0x' + serializedTx.toString('hex'))
     .on('receipt', console.log);
 
-    > // see eth.getTransactionReceipt() for details
+    > // 更多详情请查看 eth.getTransactionReceipt()
 
-.. note:: When use the package `ethereumjs-tx` at the version of `2.0.0`, if we don't specify the parameter `chain`, it will use `mainnet`, so if you wan to use at the other network, you should add this parameter `chain` to specify.
-
+.. note:: 在使用 `2.0.0` 版本的 `ethereumjs-tx` 包时, 如果我们不指定参数 `chain`, 默认会使用 `mainnet`， 如果你要使用其它网络， 需要通过 `chain` 参数来指定。
 
 ------------------------------------------------------------------------------
 
@@ -1484,30 +1474,30 @@ sign
 
     web3.eth.sign(dataToSign, address [, callback])
 
-Signs data using a specific account. This account needs to be unlocked.
+使用指定账户对数据进行签名，该账户必须先解锁。
 
 ----------
-Parameters
+参数
 ----------
 
 
-1. ``String`` - Data to sign. If String it will be converted using :ref:`web3.utils.utf8ToHex <utils-utf8tohex>`.
-2. ``String|Number`` - Address to sign data with. Or an address or index of a local wallet in :ref:`web3.eth.accounts.wallet <eth_accounts_wallet>`.
-3. ``Function`` - (optional) Optional callback, returns an error object as first parameter and the result as second.
+1. ``String`` - 待签名的数据。 对于字符串要先用 :ref:`web3.utils.utf8ToHex <utils-utf8tohex>` 将其转换为 16 进制数据。
+2. ``String|Number`` - 用来签名的账户地址。或者本地钱包 :ref:`web3.eth.accounts.wallet <eth_accounts_wallet>` 中的地址或其索引。
+3. ``Function`` - (可选) 可选的回调函数，其第一个参数为错误对象，第二个参数为函数运行结果。
 
-.. note:: The 2. ``address`` parameter can also be an address or index from the :ref:`web3.eth.accounts.wallet <eth_accounts_wallet>`. It will then sign locally using the private key of this account.
-
-
--------
-Returns
--------
-
-
-``Promise`` returns ``String`` - The signature.
+.. note::  2. ``address`` 参数也可以是钱包 :ref:`web3.eth.accounts.wallet <eth_accounts_wallet>` 中的地址或索引。 随后可以使用该账户对应的本地私钥进行签名。
 
 
 -------
-Example
+返回值
+-------
+
+
+``Promise`` 返回 ``String`` - 签名。
+
+
+-------
+代码示例
 -------
 
 
@@ -1517,7 +1507,7 @@ Example
     .then(console.log);
     > "0x30755ed65396facf86c53e6217c52b4daebe72aa4941d89635409de4c9c7f9466d4e9aaec7977f05e923889b33c0d0dd27d7226b6e6f56ce737465c5cfd04be400"
 
-    // the below is the same
+    // 同上
     web3.eth.sign(web3.utils.utf8ToHex("Hello world"), "0x11f4d0A3c12e86B4b5F39B213F7E19D048276DAe")
     .then(console.log);
     > "0x30755ed65396facf86c53e6217c52b4daebe72aa4941d89635409de4c9c7f9466d4e9aaec7977f05e923889b33c0d0dd27d7226b6e6f56ce737465c5cfd04be400"
@@ -1532,28 +1522,28 @@ signTransaction
 
     web3.eth.signTransaction(transactionObject, address [, callback])
 
-Signs a transaction. This account needs to be unlocked.
+签名交易，用来签名的账户需要首先解锁。
 
 ----------
-Parameters
+参数
 ----------
 
 
-1. ``Object`` - The transaction data to sign :ref:`web3.eth.sendTransaction() <eth-sendtransaction>` for more.
-2. ``String`` - Address to sign transaction with.
-3. ``Function`` - (optional) Optional callback, returns an error object as first parameter and the result as second.
+1. ``Object`` - 要签名的交易数据，更多信息请看 :ref:`web3.eth.sendTransaction() <eth-sendtransaction>` 。
+2. ``String`` - 签名交易所用的账户地址。
+3. ``Function`` - (可选) 可选的回调函数，其第一个参数为错误对象，第二个参数为函数运行结果。
 
 
 -------
-Returns
+返回值
 -------
 
 
-``Promise`` returns ``Object`` - The RLP encoded transaction. The ``raw`` property can be used to send the transaction using :ref:`web3.eth.sendSignedTransaction <eth-sendsignedtransaction>`.
+``Promise`` 返回 ``Object`` - RLP 编码的交易。``raw`` 属性可以用来通过 :ref:`web3.eth.sendSignedTransaction <eth-sendsignedtransaction>` 来发送交易。
 
 
 -------
-Example
+代码示例
 -------
 
 
@@ -1594,31 +1584,31 @@ call
 
     web3.eth.call(callObject [, defaultBlock] [, callback])
 
-Executes a message call transaction, which is directly executed in the VM of the node, but never mined into the blockchain.
+执行一个消息调用交易，消息调用交易直接在节点旳 VM 中而不需要通过区块链挖矿来执行。
 
 ----------
-Parameters
+参数
 ----------
 
-1. ``Object`` - A transaction object see :ref:`web3.eth.sendTransaction <eth-sendtransaction-return>`, with the difference that for calls the ``from`` property is optional as well.
-2. ``Number|String|BN|BigNumber`` - (optional) If you pass this parameter it will not use the default block set with :ref:`web3.eth.defaultBlock <eth-defaultblock>`. Pre-defined block numbers as ``"latest"``, ``"earliest"``, ``"pending"``, and ``"genesis"`` can also be used.
-3. ``Function`` - (optional) Optional callback, returns an error object as first parameter and the result as second.
+1. ``Object`` - 交易对象，相关信息可以查看 :ref:`web3.eth.sendTransaction <eth-sendtransaction-return>`, 消息调用交易和一般交易的区别是 ``from`` 属性也是可选的。
+2. ``Number|String|BN|BigNumber`` - (可选) 如果传入值则会覆盖通过 :ref:`web3.eth.defaultBlock <eth-defaultblock>` 设置的默认区块号。预定义的区块号 ``"latest"``, ``"earliest"`` ``"pending"``, 和 ``"genesis"`` 等也可以使用。
+3. ``Function`` - (可选) 可选的回调函数，其第一个参数为错误对象，第二个参数为函数运行结果。
 
 -------
-Returns
+返回值
 -------
 
-``Promise`` returns ``String``: The returned data of the call, e.g. a smart contract functions return value.
+``Promise`` 返回 ``String``: 消息调用的返回数据, 比如合约函数的返回值。
 
 -------
-Example
+代码示例
 -------
 
 
 .. code-block:: javascript
 
     web3.eth.call({
-        to: "0x11f4d0A3c12e86B4b5F39B213F7E19D048276DAe", // contract address
+        to: "0x11f4d0A3c12e86B4b5F39B213F7E19D048276DAe", // 合约地址
         data: "0xc6888fa10000000000000000000000000000000000000000000000000000000000000003"
     })
     .then(console.log);
@@ -1635,25 +1625,25 @@ estimateGas
 
     web3.eth.estimateGas(callObject [, callback])
 
-Executes a message call or transaction and returns the amount of the gas used.
+通过执行一个消息调用来得到交易的 gas 用量。
 
 ----------
-Parameters
+参数
 ----------
 
 
-1. ``Object`` - A transaction object see :ref:`web3.eth.sendTransaction <eth-sendtransaction-return>`, with the difference that for calls the ``from`` property is optional as well.
-2. ``Function`` - (optional) Optional callback, returns an error object as first parameter and the result as second.
+1. ``Object`` - 交易对象，相关信息可以查看 :ref:`web3.eth.sendTransaction <eth-sendtransaction-return>`, 消息调用交易和一般交易的区别是 ``from`` 属性也是可选的。
+2. ``Function`` - (可选) 可选的回调函数，其第一个参数为错误对象，第二个参数为函数运行结果。
 
 
 -------
-Returns
+返回值
 -------
 
-``Promise`` returns ``Number`` - the used gas for the simulated call/transaction.
+``Promise`` 返回 ``Number`` - 模拟消息或交易调用的 gas 用量。
 
 -------
-Example
+代码示例
 -------
 
 
@@ -1677,40 +1667,40 @@ getPastLogs
 
     web3.eth.getPastLogs(options [, callback])
 
-Gets past logs, matching the given options.
+获取匹配给定条件的历史日志。
 
 ----------
-Parameters
+参数
 ----------
 
-1. ``Object`` - The filter options as follows:
-  - ``fromBlock`` - ``Number|String``: The number of the earliest block (``"latest"`` may be given to mean the most recent and ``"pending"`` currently mining, block). By default ``"latest"``.
-  - ``toBlock`` -  ``Number|String``: The number of the latest block (``"latest"`` may be given to mean the most recent and ``"pending"`` currently mining, block). By default ``"latest"``.
-  - ``address`` -  ``String|Array``: An address or a list of addresses to only get logs from particular account(s).
-  - ``topics`` - ``Array``: An array of values which must each appear in the log entries. The order is important, if you want to leave topics out use ``null``, e.g. ``[null, '0x12...']``. You can also pass an array for each topic with options for that topic e.g. ``[null, ['option1', 'option2']]``
+1. ``Object`` - 过滤器对象，包含如下字段：
+  - ``fromBlock`` - ``Number|String``: 起始区块 (``"latest"`` 是指最近已挖出区块， ``"pending"`` 指待挖出的区块). 默认为 ``"latest"``。
+  - ``toBlock`` -  ``Number|String``: 终止区块 (``"latest"`` 是指最近已挖出区块 and ``"pending"`` 指待挖出的区块). 默认为 ``"latest"``。
+  - ``address`` -  ``String|Array``: 需要获取日志的一个或多个地址。
+  - ``topics`` - ``Array``: 必须出现在日志项中的主题值数组。这里的顺序是很重要的， 你可以使用 ``null`` 值来忽略某个主题, e.g. ``[null, '0x12...']``. 你也可以通过一个数组来指定该主题关联的一系列属性 e.g. ``[null, ['option1', 'option2']]``
 
 
 .. _eth-getpastlogs-return:
 
 -------
-Returns
+返回值
 -------
 
-``Promise`` returns ``Array`` - Array of log objects.
+``Promise`` 返回 ``Array`` - 日志对象数组。
 
-The structure of the returned event ``Object`` in the ``Array`` looks as follows:
+``数组``中的事件``对象``结构如下：
 
-- ``address`` - ``String``: From which this event originated from.
-- ``data`` - ``String``: The data containing non-indexed log parameter.
-- ``topics`` - ``Array``: An array with max 4 32 Byte topics, topic 1-3 contains indexed parameters of the log.
-- ``logIndex`` - ``Number``: Integer of the event index position in the block.
-- ``transactionIndex`` - ``Number``: Integer of the transaction's index position, the event was created in.
-- ``transactionHash`` 32 Bytes - ``String``: Hash of the transaction this event was created in.
-- ``blockHash`` 32 Bytes - ``String``: Hash of the block where this event was created in. ``null`` when its still pending.
-- ``blockNumber`` - ``Number``: The block number where this log was created in. ``null`` when still pending.
+- ``address`` - ``String``: 事件发生源地址。
+- ``data`` - ``String``: 包含未索引的日志参数。
+- ``topics`` - ``Array``: 包含最多 4 个 32 字节主题的数组，主题 1-3 包含日志的索引参数。
+- ``logIndex`` - ``Number``: 事件在块中的索引位置。
+- ``transactionIndex`` - ``Number``: 创建事件的交易的索引位置。
+- ``transactionHash`` 32 字节 - ``String``: 创建事件的交易的哈希值。
+- ``blockHash`` 32 字节 - ``String``: 创建事件的块的哈希值，若处于 pending 状态，其值为 ``null``。
+- ``blockNumber`` - ``Number``: 创建事件的块编号，处于 pending 状态时其值为 ``null``。
 
 -------
-Example
+代码示例
 -------
 
 .. code-block:: javascript
@@ -1742,26 +1732,26 @@ getWork
 
     web3.eth.getWork([callback])
 
-Gets work for miners to mine on. Returns the hash of the current block, the seedHash, and the boundary condition to be met ("target").
+获取矿工要满足的挖矿条件。返回当前区块的哈希，种子哈希以及要满足的边界条件（"目标值"）。
 
 ----------
-Parameters
+参数
 ----------
 
-1. ``Function`` - (optional) Optional callback, returns an error object as first parameter and the result as second.
+1. ``Function`` - (可选) 可选的回调函数，其第一个参数为错误对象，第二个参数为函数运行结果。
 
 -------
-Returns
+返回值
 -------
 
-``Promise`` returns ``Array`` - the mining work with the following structure:
+``Promise`` 返回 ``Array`` - 具有一下结构的挖矿条件:
 
-    - ``String`` 32 Bytes - at **index 0**: current block header pow-hash
-    - ``String`` 32 Bytes - at **index 1**: the seed hash used for the DAG.
-    - ``String`` 32 Bytes - at **index 2**: the boundary condition ("target"), 2^256 / difficulty.
+    - ``String`` 32 字节 - 于 **索引位置 0**: 当前区块头工作量证明哈希。
+    - ``String`` 32 字节 - 于 **索引位置 1**: 用于 DAG 的种子哈希。
+    - ``String`` 32 字节 - 于 **索引位置 2**: 边界条件 ("目标值"), 2^256 / 难度.
 
 -------
-Example
+代码示例
 -------
 
 
@@ -1785,25 +1775,25 @@ submitWork
 
     web3.eth.submitWork(nonce, powHash, digest, [callback])
 
-Used for submitting a proof-of-work solution.
+用来提交一个工作量证明方案。
 
 ----------
-Parameters
+参数
 ----------
 
-1. ``String`` 8 Bytes: The nonce found (64 bits)
-2. ``String`` 32 Bytes: The header's pow-hash (256 bits)
-3. ``String`` 32 Bytes: The mix digest (256 bits)
-4. ``Function`` - (optional) Optional callback, returns an error object as first parameter and the result as second.
+1. ``String`` 8 Bytes: 找到的 nonce 值 (64 位)
+2. ``String`` 32 字节: 区块头的工作量证明哈希 (256 位)
+3. ``String`` 32 字节: The mix digest (256 位)
+4. ``Function`` - (可选) 可选的回调函数，其第一个参数为错误对象，第二个参数为函数运行结果。
 
 -------
-Returns
+返回值
 -------
 
-``Promise`` returns ``Boolean`` - Returns ``TRUE`` if the provided solution is valid, otherwise false.
+``Promise`` 返回 ``Boolean`` - 如果提交的方案有效返回 ``TRUE``，否则返回 false。
 
 -------
-Example
+代码示例
 -------
 
 
@@ -1829,26 +1819,26 @@ requestAccounts
 
     web3.eth.requestAccounts([callback])
 
-This method will request/enable the accounts from the current environment it is running (Metamask, Status or Mist).
-It doesn't work if you're connected to a node with a default Web3.js provider. (WebsocketProvider, HttpProvidder and IpcProvider)
-This method will only work if you're using the injected provider from a application like Status, Mist or Metamask.
+该方法将从当前运行环境（Metamask，Status 或 Mist）中请求/启用帐户。
+如果你使用默认的 Web3.js provider (WebsocketProvider, HttpProvidder and IpcProvider) 连接节点，则该方法不起作用。
+该方法只在你使用像 Status, Mist or Metamask 这些应用的嵌入式 provider 时才有效。
 
-For further information about the behavior of this method please read the EIP of it: `EIP-1102 <https://github.com/ethereum/EIPs/blob/master/EIPS/eip-1102.md>`_
+更多详情请查看 EIP : `EIP-1102 <https://github.com/ethereum/EIPs/blob/master/EIPS/eip-1102.md>`_
 
 ----------
-Parameters
+参数
 ----------
 
-1. ``Function`` - (optional) Optional callback, returns an error object as first parameter and the result as second.
+1. ``Function`` - (可选) 可选的回调函数，其第一个参数为错误对象，第二个参数为函数运行结果。
 
 -------
-Returns
+返回值
 -------
 
-``Promise<Array>`` - Returns an array of enabled accounts.
+``Promise<Array>`` - 返回所启用账户数组。
 
 -------
-Example
+代码示例
 -------
 
 
@@ -1868,16 +1858,16 @@ getChainId
 
     web3.eth.getChainId([callback])
 
-Returns the chain ID of the current connected node as described in the `EIP-695 <https://github.com/ethereum/EIPs/blob/master/EIPS/eip-695.md>`_.
+返回当前所连接节点的链 ID，如 `EIP-695 <https://github.com/ethereum/EIPs/blob/master/EIPS/eip-695.md>`_ 所述。
 
 -------
-Returns
+返回值
 -------
 
-``Promise<Number>`` - Returns chain ID.
+``Promise<Number>`` - 返回链 ID。
 
 -------
-Example
+代码示例
 -------
 
 .. code-block:: javascript
@@ -1897,13 +1887,13 @@ getNodeInfo
     web3.eth.getNodeInfo([callback])
 
 -------
-Returns
+返回值
 -------
 
-``Promise<String>`` - The current client version.
+``Promise<String>`` - 当前客户端版本。
 
 -------
-Example
+代码示例
 -------
 
 
@@ -1923,35 +1913,35 @@ getProof
 
     web3.eth.getProof(address, storageKey, blockNumber, [callback])
 
-Returns the account and storage-values of the specified account including the Merkle-proof as described in `EIP-1186 <https://github.com/ethereum/EIPs/blob/master/EIPS/eip-1186.md>`_.
+返回账户及相关存储数据，包括 `EIP-1186 <https://github.com/ethereum/EIPs/blob/master/EIPS/eip-1186.md>`_ 所描述的默克尔证明。
 
 ----------
-Parameters
+参数
 ----------
 
-1. ``String`` 20 Bytes:  The Address of the account or contract.
-2. ``Number[] | BigNumber[] | BN[] | String[]`` 32 Bytes: Array of storage-keys which should be proofed and included. See :ref:`web3.eth.getStorageAt <eth-getStorageAt>`.
-3. ``Number | String | BN | BigNumber``: Integer block number. Pre-defined block numbers as ``"latest"``, ``"earliest"``, and ``"genesis"`` can also be used.
-4. ``Function`` - (optional) Optional callback, returns an error object as first parameter and the result as second.
+1. ``String`` 20 字节:  账户或合约地址。
+2. ``Number[] | BigNumber[] | BN[] | String[]`` 32 字节: 应该被证明和包含的存储键值数组， 更多信息请看 :ref:`web3.eth.getStorageAt <eth-getStorageAt>`。
+3. ``Number | String | BN | BigNumber``: 区块号。 也可以使用预定义区块号 ``"latest"``, ``"earliest"``, and ``"genesis"`` 。
+4. ``Function`` - (可选) 可选的回调函数，其第一个参数为错误对象，第二个参数为函数运行结果。
 
 -------
-Returns
+返回值
 -------
 
 ``Promise<Object>`` - A account object.
 
-    - ``address`` - ``String``: The address of the account.
-    - ``balance`` - ``String``: The balance of the account. See :ref:`web3.eth.getBalance <eth-getBalance>`.
-    - ``codeHash`` - ``String``: hash of the code of the account. For a simple Account without code it will return "0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470"
-    - ``nonce`` -  ``String``: Nonce of the account.
-    - ``storageHash`` - ``String``: SHA3 of the StorageRoot. All storage will deliver a MerkleProof starting with this rootHash.
-    - ``accountProof`` - ``String[]``:Array of rlp-serialized MerkleTree-Nodes, starting with the stateRoot-Node, following the path of the SHA3 (address) as key.
-    - ``storageProof`` - ``Object[]`` Array of storage-entries as requested.
-        - ``key`` - ``String``  The requested storage key.
-        - ``value`` - ``String``  The storage value.
+    - ``address`` - ``String``: 账户地址。
+    - ``balance`` - ``String``: 账户余额。 详情请查看 :ref:`web3.eth.getBalance <eth-getBalance>`.
+    - ``codeHash`` - ``String``: 账户关联代码哈希值。 对于没有代码的一般账户会返回 "0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470"
+    - ``nonce`` -  ``String``: 账户 nonce 值。
+    - ``storageHash`` - ``String``: 存储树的根哈希. 所有存储将由此根哈希开始提供默克尔证明。
+    - ``accountProof`` - ``String[]``: rlp 编码序列化的默克尔节点数组，从状态根节点开始，接着是以 SHA3 (地址) 为键值的路径。
+    - ``storageProof`` - ``Object[]`` 请求的存储条目数组。
+        - ``key`` - ``String``  请求的存储键值。
+        - ``value`` - ``String``  存储数据。
 
 -------
-Example
+代码示例
 -------
 
 
