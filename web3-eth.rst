@@ -215,14 +215,14 @@ defaultHardfork
 
     web3.eth.defaultHardfork
 
-签名交易时所使用的应分叉属性。
+签名交易时所使用的硬分叉属性。
 
 ----------
 属性
 ----------
 
 
-默认应分叉属性可以是下面中的一个：
+默认硬分叉属性可以是下面中的一个：
 
 - ``"chainstart"`` - ``String``
 - ``"homestead"`` - ``String``
@@ -246,7 +246,7 @@ defaultHardfork
     web3.eth.defaultHardfork;
     > "petersburg"
 
-    // 设置默认应分叉
+    // 设置默认硬分叉
     web3.eth.defaultHardfork = 'istanbul';
 
 
@@ -385,7 +385,7 @@ transactionPollingTimeout
     web3.eth.transactionPollingTimeout
 
 ``transactionPollingTimeout``  在基于 HTTP 的连接上使用。
-这个选项定义了 Web3 等待确认交易被网络挖出的收据的秒数。注意：当此种超时发生时，交易可能仍未完成。
+这个选项定义了 Web3 等待网络挖出交易的确认收据的秒数。注意：当此种超时发生时，交易可能仍未完成。
 
 -------
 返回值
@@ -1094,7 +1094,7 @@ getPendingTransactions
 -------
 
 
-``Promise<object[]>`` - 处理中交易数组：
+``Promise<object[]>`` - 等待打包的交易数组：
 
   - ``hash`` 32 字节 - ``String``: 交易哈希。
   - ``nonce`` - ``Number``: 发送人在此之前进行的交易次数。
