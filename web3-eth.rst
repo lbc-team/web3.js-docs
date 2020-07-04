@@ -31,9 +31,9 @@ Note on checksum addresses
 校验和不正确的地址在传入函数时会抛错。
 你可以使用全大写或全小写的地址来绕过校验和检查。
 
--------
+-----------
 代码示例
--------
+-----------
 
 .. code-block:: javascript
 
@@ -141,9 +141,9 @@ defaultAccount
 ``String`` - 20 字节: 任意以太坊地址。 该地址对应的私钥应该保存在你的以太坊节点或 keystore 文件中。 (默认值为 ``undefined``)
 
 
--------
+-----------
 代码示例
--------
+-----------
 
 
 .. code-block:: javascript
@@ -192,9 +192,9 @@ defaultBlock
 默认值为 ``"latest"``
 
 
--------
+-----------
 代码示例
--------
+-----------
 
 .. code-block:: javascript
 
@@ -237,9 +237,9 @@ defaultHardfork
 默认值为 ``"petersburg"``
 
 
--------
+-----------
 代码示例
--------
+-----------
 
 .. code-block:: javascript
 
@@ -278,9 +278,9 @@ defaultChain
 默认值为 ``"mainnet"``
 
 
--------
+-----------
 代码示例
--------
+-----------
 
 .. code-block:: javascript
 
@@ -321,9 +321,9 @@ defaultCommon
 默认值为 ``undefined``。
 
 
--------
+-----------
 代码示例
--------
+-----------
 
 .. code-block:: javascript
 
@@ -437,9 +437,9 @@ getProtocolVersion
 ``Promise`` 返回 ``String``: 协议版本。
 
 
--------
+-----------
 代码示例
--------
+-----------
 
 .. code-block:: javascript
 
@@ -475,9 +475,9 @@ isSyncing
     - ``pulledStates`` - ``Number``: 已经下载的状态数据。
 
 
--------
+-----------
 代码示例
--------
+-----------
 
 .. code-block:: javascript
 
@@ -512,9 +512,9 @@ getCoinbase
 ``Promise`` 返回 ``String`` - 20 个字节： 在节点中设置的用来挖矿的 coinbase 地址。
 
 
--------
+-----------
 代码示例
--------
+-----------
 
 .. code-block:: javascript
 
@@ -542,9 +542,9 @@ isMining
 ``Promise`` 返回 ``Boolean``: 如果节点正在挖矿返回 ``true`` ，否则返回 ``false``。
 
 
--------
+-----------
 代码示例
--------
+-----------
 
 .. code-block:: javascript
 
@@ -570,9 +570,9 @@ getHashrate
 
 ``Promise`` 返回 ``Number``: 每秒哈希数。
 
--------
+-----------
 代码示例
--------
+-----------
 
 
 .. code-block:: javascript
@@ -606,9 +606,9 @@ gas 价格由最后几个区块 gas 价格的中位数确定。
 
 可以参考 :ref:`关于使用 JavaScript 大数处理的注解 <utils-bn>`.
 
--------
+-----------
 代码示例
--------
+-----------
 
 
 .. code-block:: javascript
@@ -637,9 +637,9 @@ getAccounts
 
 ``Promise`` 返回 ``Array`` - 节点所控制的节点数组。
 
--------
+-----------
 代码示例
--------
+-----------
 
 
 .. code-block:: javascript
@@ -667,9 +667,9 @@ getBlockNumber
 
 ``Promise`` 返回 ``Number`` - 最近区块号。
 
--------
+-----------
 代码示例
--------
+-----------
 
 
 .. code-block:: javascript
@@ -709,9 +709,9 @@ getBalance
 
 可以参考 :ref:`使用 Javascript 进行大数运算 <big-numbers-in-javascript>`.
 
--------
+-----------
 代码示例
--------
+-----------
 
 
 .. code-block:: javascript
@@ -748,9 +748,9 @@ getStorageAt
 
 ``Promise`` 返回 ``String`` - 给定位置的存储值。
 
--------
+-----------
 代码示例
--------
+-----------
 
 
 .. code-block:: javascript
@@ -786,9 +786,9 @@ getCode
 
 ``Promise`` 返回 ``String`` - 给定地址的代码数据。
 
--------
+-----------
 代码示例
--------
+-----------
 
 
 .. code-block:: javascript
@@ -845,9 +845,9 @@ getBlock
   - ``transactions`` - ``Array``: 交易对象数组, 或者基于 ``returnTransactionObjects`` 参数的 32 字节交易哈希。
   - ``uncles`` - ``Array``: 叔块哈希数组。
 
--------
+-----------
 代码示例
--------
+-----------
 
 
 .. code-block:: javascript
@@ -906,9 +906,9 @@ getBlockTransactionCount
 
 ``Promise`` 返回 ``Number`` - 区块中包含的交易数量。
 
--------
+-----------
 代码示例
--------
+-----------
 
 
 .. code-block:: javascript
@@ -946,9 +946,9 @@ getBlockUncleCount
 
 ``Promise`` 返回 ``Number`` - 区块中包含的叔块数量。
 
--------
+-----------
 代码示例
--------
+-----------
 
 
 .. code-block:: javascript
@@ -988,9 +988,9 @@ getUncle
 
 .. note:: 叔块不包含任何交易。
 
--------
+-----------
 代码示例
--------
+-----------
 
 
 .. code-block:: javascript
@@ -1043,9 +1043,9 @@ getTransaction
   - ``input`` - ``String``: 伴随交易发送的数据。
 
 
--------
+-----------
 代码示例
--------
+-----------
 
 
 .. code-block:: javascript
@@ -1110,9 +1110,9 @@ getPendingTransactions
 
 
 
--------
+-----------
 代码示例
--------
+-----------
 
 .. code-block:: javascript
 
@@ -1179,9 +1179,9 @@ getTransactionFromBlock
 ``Promise`` 返回 ``Object`` - 交易对象, 详情请查看 :ref:`web3.eth.getTransaction <eth-gettransaction-return>`:
 
 
--------
+-----------
 代码示例
--------
+-----------
 
 
 .. code-block:: javascript
@@ -1235,9 +1235,9 @@ getTransactionReceipt
   - ``gasUsed``- ``Number``:  该交易本身所消耗的 gas 量。
   - ``logs`` - ``Array``: 该交易所生成的日志对象。
 
--------
+-----------
 代码示例
--------
+-----------
 
 .. code-block:: javascript
 
@@ -1288,9 +1288,9 @@ getTransactionCount
 
 ``Promise`` 返回 ``Number`` - 从给定地址发出的交易数量。
 
--------
+-----------
 代码示例
--------
+-----------
 
 
 .. code-block:: javascript
@@ -1338,7 +1338,7 @@ sendTransaction
 
 2. ``callback`` - ``Function``: (可选) 可选的回调函数，其第一个参数为错误对象，第二个参数为函数运行结果。
 
-.. note:: ``from`` 属性可以是个地址或者 :ref:`web3.eth.accounts.wallet <eth_accounts_wallet>` 的索引值。 随后可以在本地通过该账户对应的私钥签名并通过 :ref:`web3.eth.sendSignedTransaction() <eth-sendsignedtransaction>`发送交易。 如果 ``chain``、 ``hardfork`` 或 ``common`` 这些属性值都没有设置, Web3 会尝试通过网络查询相应的网络 ID 和链 ID 并设置它们。
+.. note:: ``from`` 属性可以是个地址或者 :ref:`web3.eth.accounts.wallet <eth_accounts_wallet>` 的索引值。 随后可以在本地通过该账户对应的私钥签名并通过 :ref:`web3.eth.sendSignedTransaction() <eth-sendsignedtransaction>` 发送交易。 如果 ``chain``、 ``hardfork`` 或 ``common`` 这些属性值都没有设置, Web3 会尝试通过网络查询相应的网络 ID 和链 ID 并设置它们。
 
 .. _eth-sendtransaction-return:
 
@@ -1356,9 +1356,9 @@ sendTransaction
 ``"error"`` 返回 ``Error`` and ``Object|undefined``: 在发送交易的过程中如果出现错误则立刻触发。如果交易被网络拒绝时附带有交易收据，则第二个参数为交易收据。
 
 
--------
+-----------
 代码示例
--------
+-----------
 
 .. code-block:: javascript
 
@@ -1430,9 +1430,9 @@ sendSignedTransaction
 
 更多详情请查看 :ref:`web3.eth.sendTransaction <eth-sendtransaction-return>` 的返回值。
 
--------
+-----------
 代码示例
--------
+-----------
 
 
 .. code-block:: javascript
@@ -1496,9 +1496,9 @@ sign
 ``Promise`` 返回 ``String`` - 签名。
 
 
--------
+-----------
 代码示例
--------
+-----------
 
 
 .. code-block:: javascript
@@ -1542,9 +1542,9 @@ signTransaction
 ``Promise`` 返回 ``Object`` - RLP 编码的交易。``raw`` 属性可以用来通过 :ref:`web3.eth.sendSignedTransaction <eth-sendsignedtransaction>` 来发送交易。
 
 
--------
+-----------
 代码示例
--------
+-----------
 
 
 .. code-block:: javascript
@@ -1600,9 +1600,9 @@ call
 
 ``Promise`` 返回 ``String``: 消息调用的返回数据, 比如合约函数的返回值。
 
--------
+-----------
 代码示例
--------
+-----------
 
 
 .. code-block:: javascript
@@ -1642,9 +1642,9 @@ estimateGas
 
 ``Promise`` 返回 ``Number`` - 模拟消息或交易调用的 gas 用量。
 
--------
+-----------
 代码示例
--------
+-----------
 
 
 .. code-block:: javascript
@@ -1699,9 +1699,9 @@ getPastLogs
 - ``blockHash`` 32 字节 - ``String``: 创建事件的块的哈希值，若处于 pending 状态，其值为 ``null``。
 - ``blockNumber`` - ``Number``: 创建事件的块编号，处于 pending 状态时其值为 ``null``。
 
--------
+-----------
 代码示例
--------
+-----------
 
 .. code-block:: javascript
 
@@ -1750,9 +1750,9 @@ getWork
     - ``String`` 32 字节 - 于 **索引位置 1**: 用于 DAG 的种子哈希。
     - ``String`` 32 字节 - 于 **索引位置 2**: 边界条件 ("目标值"), 2^256 / 难度.
 
--------
+-----------
 代码示例
--------
+-----------
 
 
 .. code-block:: javascript
@@ -1792,9 +1792,9 @@ submitWork
 
 ``Promise`` 返回 ``Boolean`` - 如果提交的方案有效返回 ``TRUE``，否则返回 false。
 
--------
+-----------
 代码示例
--------
+-----------
 
 
 .. code-block:: javascript
@@ -1837,9 +1837,9 @@ requestAccounts
 
 ``Promise<Array>`` - 返回所启用账户数组。
 
--------
+-----------
 代码示例
--------
+-----------
 
 
 .. code-block:: javascript
@@ -1866,9 +1866,9 @@ getChainId
 
 ``Promise<Number>`` - 返回链 ID。
 
--------
+-----------
 代码示例
--------
+-----------
 
 .. code-block:: javascript
 
@@ -1892,9 +1892,9 @@ getNodeInfo
 
 ``Promise<String>`` - 当前客户端版本。
 
--------
+-----------
 代码示例
--------
+-----------
 
 
 .. code-block:: javascript
@@ -1940,9 +1940,9 @@ getProof
         - ``key`` - ``String``  请求的存储键值。
         - ``value`` - ``String``  存储数据。
 
--------
+-----------
 代码示例
--------
+-----------
 
 
 .. code-block:: javascript

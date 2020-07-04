@@ -19,7 +19,7 @@
 | web3-eth-ens.rst     |Ashton(05/03 - 05/06) | Tiny熊 | 470 |
 | web3-eth-contract.rst     |Ashton(05/07 - 05/19) | Tiny熊 | 863 |
 | web3-eth-accounts.rst |Ashton(06/13 - 06/20) | Tiny熊 | 673 |
-| web3-eth.rst |Ashton(06/29 - 06/30) |Tiny熊||
+| web3-eth.rst |Ashton(06/29 - 06/30) |Tiny熊| 1264 |
 
 
 
