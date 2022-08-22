@@ -1095,7 +1095,7 @@ events
 
 1. ``options`` - ``Object`` （可选）: 用于部署的选项。
     * ``filter`` - ``Object`` （可选）: 按索引参数过滤事件, 例如 ``{filter: {myNumber: [12,13]}}`` 表示 "myNumber" 为 12 或 13 的所有事件。
-    * ``fromBlock`` - ``Number|String|BN|BigNumber`` （可选）: 读取从该编号开始的区块中的事件（大于或等于该区块号）。 也可以使用预先定义的区块号，比如 ``"latest"``, ``"earlist"``, ``"pending"``, ``"genesis"`` 等。
+    * ``fromBlock`` - ``Number|String|BN|BigNumber`` （可选）: 读取从该编号开始的区块中的事件（大于或等于该区块号）。 也可以使用预先定义的区块号，比如 ``"latest"``, ``"earliest"``, ``"pending"``, ``"genesis"`` 等。
     * ``topics`` - ``Array`` （可选）: 手动设置事件过滤器的主题。如果提供了过滤器属性和事件签名，则不会自动设置（topic [0]）。
 2. ``callback`` - ``Function`` （可选）: 回调函数，触发时把*事件*对象作为第二个参数，错误作为第一个参数。
 
@@ -1204,8 +1204,8 @@ getPastEvents
 1. ``event`` - ``String``: 合约事件名，或者用 ``"allEvents"`` 读取所有事件。
 2. ``options`` - ``Object`` （可选）: 用于部署的选项。
     * ``filter`` - ``Object`` （可选）: 按索引参数过滤事件, 例如 ``{filter: {myNumber: [12,13]}}`` 表示 "myNumber" 为 12 或 13 的所有事件。
-    * ``fromBlock`` - ``Number|String|BN|BigNumber`` （可选）: 读取从该编号开始的区块中的历史事件（大于或等于该区块号）。 也可以使用预先定义的区块编号，比如 ``"latest"``, ``"earlist"``, ``"pending"``, ``"genesis"`` 。
-    * ``toBlock`` - ``Number|String|BN|BigNumber`` （可选）: 读取截止到该编号的区块中的历史事件（小于或等于该区块号）（默认值为 "latest"）。 也可以使用预先定义的区块编号，比如 ``"latest"``, ``"earlist"``, ``"pending"``, ``"genesis"`` 。
+    * ``fromBlock`` - ``Number|String|BN|BigNumber`` （可选）: 读取从该编号开始的区块中的历史事件（大于或等于该区块号）。 也可以使用预先定义的区块编号，比如 ``"latest"``, ``"earliest"``, ``"pending"``, ``"genesis"`` 。
+    * ``toBlock`` - ``Number|String|BN|BigNumber`` （可选）: 读取截止到该编号的区块中的历史事件（小于或等于该区块号）（默认值为 "latest"）。 也可以使用预先定义的区块编号，比如 ``"latest"``, ``"earliest"``, ``"pending"``, ``"genesis"`` 。
     * ``topics`` - ``Array`` （可选）: 用来手动设置事件过滤器的主题。如果设置了 filter 属性和事件签名，则不会自动设置（topic [0]）。
 3. ``callback`` - ``Function`` （可选）: 回调函数，触发时其第一个参数为错误对象，第二个参数为历史事件日志数组。
 
